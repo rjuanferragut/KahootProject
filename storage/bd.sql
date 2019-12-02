@@ -99,3 +99,6 @@ insert into player_answer value(4,3);
 insert into player_answer value(6,1);
 insert into player_answer value(5,2);
 insert into player_answer value(6,3);
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';	
+GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
