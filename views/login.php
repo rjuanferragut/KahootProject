@@ -40,7 +40,9 @@
 				//$_SESSION['expire'] = $_SESSION['start'] + (1 * 60) ;						
 				
 				echo "<div class='alert alert-success mt-4' role='alert'><strong>Welcome!</strong> ".$row['name']."			
-				</div>";	
+				</div>";
+				
+				header("location: layouts/homePage.html");
 			
 			} else {
 				echo "<div class='alert alert-danger mt-4' role='alert'>Email or Password are incorrects!
