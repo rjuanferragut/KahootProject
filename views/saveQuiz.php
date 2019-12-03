@@ -5,11 +5,13 @@ include '../controllers/random_id_pin.php';
 
     session_start();
 
-    $loggedin = $_SESSION['loggedin'];
-	$nameUser = $_SESSION['name'];
-    $idUser = $_SESSION['idUser'];
+    if(isset($_SESSION['loggedin']) && isset($_SESSION['name']) && isset($_SESSION['idUser'])){
 
+        $loggedin = $_SESSION['loggedin'];
+	    $nameUser = $_SESSION['name'];
+        $idUser = $_SESSION['idUser'];
 
+    }
 
     if (isset($_POST['name']) && isset($_POST['resume'])){
 
