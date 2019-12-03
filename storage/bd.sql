@@ -1,3 +1,5 @@
+create database kahoot;
+use kahoot;
 create table if not exists user(
     id int auto_increment primary key,
     email varchar(250) not null,
@@ -17,7 +19,7 @@ create table if not exists quiz(
     num_plays int,
     fk_id_user int,
     foreign key (fk_id_user) references user(id) on delete cascade
-); 
+);
 
 create table if not exists question(
     id int auto_increment primary key,
@@ -100,5 +102,5 @@ insert into player_answer value(6,1);
 insert into player_answer value(5,2);
 insert into player_answer value(6,3);
 
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';	
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
 GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
