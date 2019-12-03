@@ -1,3 +1,7 @@
+create database kahoot;
+
+use kahoot;
+
 create table if not exists user(
     id int auto_increment primary key,
     email varchar(250) not null,
