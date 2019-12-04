@@ -29,6 +29,9 @@ include '../controllers/random_id_pin.php';
         $_SESSION['idQuiz'] = $id;
 
         $insert = "insert into quiz (id, name, resume, create_date, num_questions, num_plays, fk_id_user) value(".$id.",'".$name."', '".$resume."', curdate(), 0, 0, ".$idUser." )";
+        
+
+        header("location: layouts/newQuestion.html");
 
     }
         

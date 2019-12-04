@@ -3,12 +3,18 @@
 include '../controllers/random_id_pin.php';
 
 session_start();
+// isset($_SESSION['loggedin']) && 
 
-    if(isset($_SESSION['loggedin']) && isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['idQuiz'])){
+echo $_SESSION['test'];
+    if(isset($_SESSION['name'])){
+        echo $_SESSION['name'];
+    }
+    if(isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['idQuiz'])){
         $loggedin = $_SESSION['loggedin'];
 		$nameUser = $_SESSION['name'];
         $idUser = $_SESSION['idUser'];
         $idQuiz = $_SESSION['idQuiz'];
+        echo $idQuiz;
     }        
         
         //info of the database
@@ -41,7 +47,7 @@ session_start();
         }
 
     } else if (isset($_POST['Done'])){
-        header("location: layouts/newQuestion.html");
+        header("location: layouts/homePage.html");
     } else {
         header("location: layouts/newQuestion.html");
     }
