@@ -1,0 +1,77 @@
+* {
+  margin:0px;
+}
+body{
+  background:rgba(87, 79, 125, 0.6);
+}
+.buttons{
+  position: absolute;
+  width: 90px;
+  top: 95%;
+  left:45%;
+  background: #C4C4C4;
+  border-radius: 38px;
+}
+.buttons:hover{
+  background: #C4Cfff;
+}
+#intropin{
+  text-decoration: none;
+}
+.container > h1{
+  position: relative;
+  width: 60%;
+  left: 20%;
+  top: 1vh;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 7vw;
+  line-height: 146px;
+  text-align: center;
+  color:#FFFFFF;
+}
+.log{
+  position: absolute;
+  width: 60%;
+  left: 20%;
+  height: 70%;
+  top: 20%;
+  bottom: 10%;
+
+  background: #95ADBE;
+  border-radius: 38px;
+  overflow:hidden;
+
+}
+
+.log > h1{
+
+  position: relative;
+  top: 10%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8vw;
+  line-height: 56px;
+  text-align: center;
+}
+.log > form{
+  position: absolute;
+  top:40%;
+  margin:auto 25%;
+  width:100%;
+}
+.form{
+  bottom: 10%;
+  display:block;
+}
+.form > input{
+  width: 50%;
+  height:40px;
+  background: #C4C4C4;
+  border-radius: 38px;
+}
+.form > input:hover{
+  background: #C4Cfff;
+}
