@@ -31,7 +31,7 @@
 			match the password hash on the database. If everything is OK the session
 			is created for one minute. Change 1 on $_SESSION[start] to 5 for a 5 minutes session.
 			*/
-			if ($password ==$hash) {
+			if ($password == $hash) {
 
 				$_SESSION['loggedin'] = true;
 				$_SESSION['name'] = $row['name'];
@@ -44,6 +44,6 @@
 
 			} else {
 				echo "<div class='alert alert-danger mt-4' role='alert'>Email or Password are incorrects!
-				<p><a href='layouts/login.html'><strong>Please try again!</strong></a></p></div>";			
+				<p><a href='layouts/login.html'><strong>Please try again!</strong></a></p></div>";
 			}
 ?>
