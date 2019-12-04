@@ -47,9 +47,13 @@ body{
   border-radius: 38px;
 }
 .names{
-  float:left;
   margin-top: 10%;
   margin-left:10%;
+  flex-wrap: wrap;
+  overflow:auto;
+  display:flex;
+  flex-direction: row;
+
 }
 form > h2{
   margin-left:10%;
@@ -60,4 +64,5 @@ form > h2{
   color:white;
   margin-bottom: 50px;
   font-size: 2vw;
+  padding-right:18%;
 }
