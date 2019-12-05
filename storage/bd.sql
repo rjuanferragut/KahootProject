@@ -106,3 +106,6 @@ insert into player_answer value(6,3);
 
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';	
 GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
+
+KahootProject/views/layouts/login.html
+ProyectoFallout/menuPrincipal.php

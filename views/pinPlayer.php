@@ -15,6 +15,8 @@
         $result = mysqli_query($conn, $consulta);
         if(mysqli_num_rows($result)>0){
             $_SESSION['roomPin'] = $pin;
+            header("location: layouts/NamePlayer.html");
+        }else{
             header("location: layouts/PINPlayer.html");
         }
     }

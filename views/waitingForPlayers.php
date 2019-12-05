@@ -5,37 +5,37 @@
   <meta http-equiv="refresh" content="3">
   <title>Waiting For Players</title>
   <link rel="stylesheet" href="../public/css/waitingForPlayers.css">
-  <?php
-  session_start();
-  // Connection info. file
-  include '../controllers/conn.php';
-  //include '../controllers/random_id_pin.php';
+    <?php
+      session_start();
+      // Connection info. file
+      include '../controllers/conn.php';
+      //include '../controllers/random_id_pin.php';
 
-  if(isset($_SESSION['roomPin'])){
-    $roomPin = $_SESSION['roomPin'];
-  }
+      if(isset($_SESSION['roomPin'])){
+        $roomPin = $_SESSION['roomPin'];
+      }
 
-  // Connection variables
-  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+      // Connection variables
+      $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-  // Check connection
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
 
-  // Query sent to database
-  //falta la llamada al pin de la room entre los dos puntos
-  //$consulta ="SELECT pin FROM room WHERE pin=".$roomPin.";";
-  $consulta ="SELECT pin FROM room WHERE pin= 12345;";
-  $result = mysqli_query($conn, $consulta);
+      // Query sent to database
+      //falta la llamada al pin de la room entre los dos puntos
+      $consulta ="SELECT pin FROM room WHERE pin=".$roomPin.";";
+      // $consulta ="SELECT pin FROM room WHERE pin= 12345;";
+      $result = mysqli_query($conn, $consulta);
 
-  // Variable $row hold the result of the query
-  $row = mysqli_fetch_assoc($result);
-  $names = "SELECT name FROM player WHERE fk_pin_room = '".$row['pin']."';";
-  $resultNames = mysqli_query($conn, $names);
-  $countNames = mysqli_num_rows($resultNames);
+      // Variable $row hold the result of the query
+      $row = mysqli_fetch_assoc($result);
+      $names = "SELECT name FROM player WHERE fk_pin_room = '".$row['pin']."';";
+      $resultNames = mysqli_query($conn, $names);
+      $countNames = mysqli_num_rows($resultNames);
 
-  ?>
+    ?>
 
 </head>
 <body>
