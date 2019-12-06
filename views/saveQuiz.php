@@ -29,6 +29,16 @@ include '../controllers/random_id_pin.php';
         $_SESSION['idQuiz'] = $id;
 
         $insert = "insert into quiz (id, name, resume, create_date, num_questions, num_plays, fk_id_user) value(".$id.",'".$name."', '".$resume."', curdate(), 0, 0, ".$idUser." )";
+        $result = mysqli_query($conn, $insert);
+
+        if(mysqli_num_rows($result)>0){
+            echo "<script type='text/javascript'>alert('Quiz created succesfully');</script>";
+        }else{
+            header("location: layouts/newQuiz.html");
+        }
+        
+
+        header("location: layouts/newQuestion.html");
 
     }
         

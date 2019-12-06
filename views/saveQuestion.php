@@ -3,12 +3,18 @@
 include '../controllers/random_id_pin.php';
 
 session_start();
+// isset($_SESSION['loggedin']) && 
 
-    if(isset($_SESSION['loggedin']) && isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['idQuiz'])){
+echo $_SESSION['test'];
+    if(isset($_SESSION['name'])){
+        echo $_SESSION['name'];
+    }
+    if(isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['idQuiz'])){
         $loggedin = $_SESSION['loggedin'];
 		$nameUser = $_SESSION['name'];
         $idUser = $_SESSION['idUser'];
         $idQuiz = $_SESSION['idQuiz'];
+        echo $idQuiz;
     }        
         
         //info of the database
@@ -27,7 +33,7 @@ session_start();
 
             $id = randomID();
             $_SESSION['idQuestion'] = $id;
-
+                  
             // Connection variables
 			$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
@@ -36,12 +42,29 @@ session_start();
 				die("Connection failed: " . mysqli_connect_error());
             }
             
-            $insert = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+            $resultPrgunta = mysqli_query($conn, $insertPregunta);
+
+            $idAnswer1= randomID();
+            $idAnswer2= randomID();
+
+            if($correct == 'true'){
+                $insertAnsewr1 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer1.",'True', true, ".$id.")";
+                $insertAnsewr2 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer2.",'False', false, ".$id.")";
+            }elseif($correct == 'false'){
+                $insertAnsewr1 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer1.",'True', false, ".$id.")";
+                $insertAnsewr2 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer2.",'False', true, ".$id.")";
+            } 
+
+            $resultAnswer1 = mysqli_query($conn, $insertAnsewr1);
+            $resultAnswer2 = mysqli_query($conn, $insertAnsewr2);
+
+            header("location: layouts/newQuestion.html");
 
         }
 
     } else if (isset($_POST['Done'])){
-        header("location: layouts/newQuestion.html");
+        header("location: layouts/homePage.php");
     } else {
         header("location: layouts/newQuestion.html");
     }

@@ -33,7 +33,7 @@ body{
 	position: absolute;
 
 	bottom: 2%;
-	left: 20%;
+	left: 25%;
 	align-content: center;
 	font-family: Roboto;
 	font-style: normal;
@@ -43,6 +43,12 @@ body{
 	text-align: center;
 	color: #FFFBFB;
 	display: inline-block;
+}
+
+form{
+    position: relative;
+    left: auto;
+	top: 25%;
 }
 
 .button{
@@ -162,4 +168,3 @@ body{
 	}
 	
 }
-

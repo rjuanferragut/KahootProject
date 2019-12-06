@@ -1,0 +1,68 @@
+* {
+    margin:0px;
+  }
+  
+  body{
+    background:#4EC1D0;
+  }
+  
+  .pinZone{
+    height:300px;
+    border-bottom: 2px Solid Black;
+    align-content:center;
+  }
+  
+  .pinZone > h1{
+    position: relative;
+    width: 60%;
+    left: 20%;
+    top: 1vh;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 7vw;
+    line-height: 146px;
+    text-align: center;
+    color:#FFFFFF;
+  }
+  
+  .pinZone > h3{
+    position: relative;
+    width: 60%;
+    left: 20%;
+    top: 1vh;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 3vw;
+    line-height: 146px;
+    text-align: center;
+    color:#FFFFFF;
+  }
+  
+  #start{
+    float:right;
+    margin-right:5%;
+    margin-top:1%;
+    color:white;
+    background-color: black;
+    border-radius: 38px;
+  }
+  .names{
+    margin-top: 10%;
+    margin-left:10%;
+    flex-wrap: wrap;
+    overflow:auto;
+    display:flex;
+    flex-direction: row;
+  
+  }
+  form > h2{
+    margin-left:10%;
+    color:white;
+  }
+  
+  .names > h3{
+    color:white;
+    margin-bottom: 50px;
+    font-size: 2vw;
+    padding-right:18%;
+  }

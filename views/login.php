@@ -1,5 +1,7 @@
 <?php
 			session_start();
+
+			$_SESSION['test'] = "test";
 			// Connection info. file
 			include '../controllers/conn.php';	
 
@@ -41,9 +43,9 @@
 				echo "<div class='alert alert-success mt-4' role='alert'><strong>Welcome!</strong> ".$row['name']."			
 				</div>";
 				
-				header("location: layouts/homePage.html");
+				header("location: layouts/homePage.php");
 			
 			} else {
 				echo "<div class='alert alert-danger mt-4' role='alert'>Email or Password are incorrects!
-				<p><a href='login.html'><strong>Please try again!</strong></a></p></div>";			
+				<p><a href='layouts/login.html'><strong>Please try again!</strong></a></p></div>";			
 			}	
