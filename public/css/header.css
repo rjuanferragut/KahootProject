@@ -7,6 +7,7 @@ body{
   background: #FFFFFF;
   border: 1px solid #000000;
   padding: 20px 10px;
+  margin-bottom: 5px;
 }
 
 .header a {
@@ -18,7 +19,19 @@ body{
   font-size: 25px;
   line-height: 25px;
   border-radius: 4px;
+  font-weight: bold;
 
+}
+
+.header input{
+  float: right;
+  padding: 12px;
+  font-size: 15px;
+  line-height: 25px;
+  border-radius: 4px;
+  color: black;
+  background-color: lightblue;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 500px) {

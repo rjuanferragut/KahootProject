@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="../../public/css/header.css">
+    <link rel="stylesheet" href="../../public/css/homePage.css">
 </head>
 <body>
+    <div class="header">
+        <a>Kahoot</a>
 
-    <form action="../homePage.php" method="Post">
+        <form action="../homePage.php" method="Post">
     
         <input type="submit" name="createQuiz" value="CreateQuiz">
 
     </form>
+    </div>
+
+    
+
 
     <?php
 
@@ -42,16 +50,15 @@
             while($registre){
                 echo "<br><div class='quiz'>";
                 echo '<form method="Post" action="../createRoom.php">';
-                echo "ID: ".$registre['id']."<br>";
-                echo "Name: ".$registre['name']."<br>";
-                echo "Description: ".$registre['resume']."<br>";
-                echo "Create date: ".$registre['create_date']."<br>";
+                echo "<a>Name: ".$registre['name']."</a>";
+                echo "<a>Create date: ".$registre['create_date']."</a>";
                 echo '<input type="hidden" name="pin" value="'.randomPin().'">';
                 echo '<input type="hidden" name="idQuiz" value="'.$registre['id'].'">';
                 // if($registre['fk_id_user']== $_SESSION['idUser']){
                 //     echo "<input type='submit' name='Edit' value='Edit'>";
                 // }
-                echo "<input type='submit' name='Play' value='Play'>";
+                echo "<input type='submit' name='Play' value='Play'><br>";
+                echo "<a>Description: ".$registre['resume']."</a>";
                 echo "</form>";
                 echo "</div>";
                 $registre = $query->fetch();
