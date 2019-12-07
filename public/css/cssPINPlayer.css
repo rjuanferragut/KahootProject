@@ -88,24 +88,24 @@ form{
 	#logo{
 		left: 23%;
 		font-size: 120px;
-		
+
 	}
 
 	#footer{
 
 		font-size: 25px;
-	
+
 	}
-	
+
 }
 
 @media (max-width: 915px){
-	
+
 
 	#footer{
 
 		font-size: 20px;
-	
+
 	}
 
 	#logo{
@@ -124,11 +124,11 @@ form{
 		font-size: 100px;
 		line-height: 146px;
 	}
-	
+
 	#footer{
 
 		font-size: 16px;
-	
+
 	}
 }
 
@@ -141,7 +141,7 @@ form{
 		top: 39%;
 	}
 
-	
+
 }
 
 
@@ -153,7 +153,7 @@ form{
 		font-size: 80px;
 		line-height: 146px;
 	}
-	
+
 }
 
 
@@ -166,5 +166,5 @@ form{
 		font-size: 70px;
 		line-height: 146px;
 	}
-	
+
 }
