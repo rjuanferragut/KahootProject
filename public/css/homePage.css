@@ -1,0 +1,31 @@
+body{
+	background-color: #C4C4C4;
+}
+
+
+.quiz{
+	background-color:#F2E4E4;
+	border-radius: 38px;
+    flex-wrap: wrap;
+    overflow:auto;
+    display:flex;
+    flex-direction: row;
+    font-size: 17px;
+    font-weight: bold;
+
+}
+
+.quiz input{
+	background-color: lightblue;
+	font-size: 17px;
+	padding: 4px;
+	margin: 5px;
+	font-weight: bold;
+
+
+}
+
+.quiz a{
+	margin-right: 25px;
+	margin-left: 10px;
+}

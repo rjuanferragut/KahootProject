@@ -1,0 +1,14 @@
+body{
+	background: #66BF39;
+	margin: 0;
+	padding: 0;
+}
+.padre {
+ 
+  margin: 1rem;
+  padding: 1rem;
+
+
+  text-align: center;
+  font-size: 30px;
+}
