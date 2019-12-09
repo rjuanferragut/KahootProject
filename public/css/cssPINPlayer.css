@@ -1,3 +1,6 @@
+* {
+  margin:0px;
+}
 body{
 	background-color: #574F7D;
 }
@@ -48,17 +51,18 @@ body{
 form{
     position: relative;
     left: auto;
-	top: 25%;
+		top: 25%;
+		display:block;
 }
 
 .button{
 	position: relative;
 
 	width: 50%;
-	height: 10%;
+	height: 40px;
 	left: 22%;
 	top: 34%;
-
+	margin-top:5%;
 	background: #000000;
 	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 38px;
@@ -71,7 +75,7 @@ form{
 	position: relative;
 	text-align: center;
 	width: 50%;
-	height: 10%;
+	height: 40px;
 	top: 30%;
 	left: 22%;
 	background: #FFF5F5;
@@ -80,6 +84,10 @@ form{
 	border-radius: 38px;
 	font-size: 20px;
 }
+.input:hover{
+  background: #C4Cfff;
+}
+
 
 
 
