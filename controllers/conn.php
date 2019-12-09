@@ -5,3 +5,4 @@ $dbuser	= "admin";		 // database username
 $dbpass	= "admin123";   // database password
 $dbname	= "kahoot";    // database name
 ?>
+

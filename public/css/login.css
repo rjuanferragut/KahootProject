@@ -12,6 +12,12 @@ body{
   background: #C4C4C4;
   border-radius: 38px;
 }
+<<<<<<< HEAD
+=======
+.buttons:hover{
+  background: #C4Cfff;
+}
+>>>>>>> 34badc177a0a696a22e65642c1885f3e25b22cc1
 #intropin{
   text-decoration: none;
 }
@@ -19,6 +25,7 @@ body{
   position: relative;
   width: 60%;
   left: 20%;
+<<<<<<< HEAD
   top: 15%;
   font-family: Roboto;
   font-style: normal;
@@ -28,6 +35,16 @@ body{
   text-align: center;
   color:
   #FFFFFF;
+=======
+  top: 1vh;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 7vw;
+  line-height: 146px;
+  text-align: center;
+  color:#FFFFFF;
+>>>>>>> 34badc177a0a696a22e65642c1885f3e25b22cc1
 }
 .log{
   position: absolute;
@@ -70,3 +87,9 @@ body{
   background: #C4C4C4;
   border-radius: 38px;
 }
+<<<<<<< HEAD
+=======
+.form > input:hover{
+  background: #C4Cfff;
+}
+>>>>>>> 34badc177a0a696a22e65642c1885f3e25b22cc1
