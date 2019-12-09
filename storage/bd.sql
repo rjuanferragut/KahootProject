@@ -1,11 +1,7 @@
 create database kahoot;
-<<<<<<< HEAD
-use kahoot;
-=======
 
 use kahoot;
 
->>>>>>> 34badc177a0a696a22e65642c1885f3e25b22cc1
 create table if not exists user(
     id int auto_increment primary key,
     email varchar(250) not null,
@@ -108,13 +104,9 @@ insert into player_answer value(6,1);
 insert into player_answer value(5,2);
 insert into player_answer value(6,3);
 
-<<<<<<< HEAD
+
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
 GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
-=======
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';	
-GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
 
-KahootProject/views/layouts/login.html
-ProyectoFallout/menuPrincipal.php
->>>>>>> 34badc177a0a696a22e65642c1885f3e25b22cc1
+-- KahootProject/views/layouts/login.html
+-- ProyectoFallout/menuPrincipal.php
