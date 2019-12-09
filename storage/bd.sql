@@ -7,7 +7,8 @@ create table if not exists user(
     email varchar(250) not null,
     name varchar(60) not null,
     password varchar(512) not null,
-    role varchar(15) not null
+    role varchar(15) not null,
+    img varchar(512)
     check(role='teacher' or role='student'),
     unique(email)
 );

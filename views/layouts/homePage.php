@@ -16,10 +16,6 @@
 
     </form>
     </div>
-
-    
-
-
     <?php
 
         session_start();
