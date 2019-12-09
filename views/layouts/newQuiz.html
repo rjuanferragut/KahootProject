@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>New Quiz</title>
+    <link rel="stylesheet" href="../../public/css/header.css">
+    <link rel="stylesheet" href="../../public/css/newQuiz.css">
 </head>
 <body>
+	<div class="header">
+        <a>Kahoot</a>
+    </div>
 
-    <label> New Questonary</label>
-    <form action="../saveQuiz.php" method="Post">
-        <input type="text" name="name" placeholder="Quetionary name">
-        <input type="text" name="resume" placeholder="Description">
-        <input type="submit" value="Continue">
-    </form>
-
+    <div class="content">
+	    <label> New Questonary</label>
+	    <form action="../saveQuiz.php" method="Post">
+	        <input type="text" name="name" placeholder="Quetionary name">
+	        <input type="text" name="resume" placeholder="Description">
+	        <input type="submit" value="Continue">
+	    </form>
+	</div>
     
     
 </body>

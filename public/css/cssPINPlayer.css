@@ -1,3 +1,6 @@
+* {
+  margin:0px;
+}
 body{
 	background-color: #574F7D;
 }
@@ -16,7 +19,7 @@ body{
 	height: 10%;
 	left: 30%;
 	top: 10%;
-
+  margin-left: 3%;
 	font-family: Roboto;
 	font-style: normal;
 	font-weight: 500;
@@ -48,17 +51,18 @@ body{
 form{
     position: relative;
     left: auto;
-	top: 25%;
+		top: 25%;
+		display:block;
 }
 
 .button{
 	position: relative;
 
 	width: 50%;
-	height: 10%;
+	height: 40px;
 	left: 22%;
 	top: 34%;
-
+	margin-top:5%;
 	background: #000000;
 	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 38px;
@@ -71,7 +75,7 @@ form{
 	position: relative;
 	text-align: center;
 	width: 50%;
-	height: 10%;
+	height: 40px;
 	top: 30%;
 	left: 22%;
 	background: #FFF5F5;
@@ -80,6 +84,10 @@ form{
 	border-radius: 38px;
 	font-size: 20px;
 }
+.input:hover{
+  background: #C4Cfff;
+}
+
 
 
 
@@ -88,24 +96,24 @@ form{
 	#logo{
 		left: 23%;
 		font-size: 120px;
-		
+
 	}
 
 	#footer{
 
 		font-size: 25px;
-	
+
 	}
-	
+
 }
 
 @media (max-width: 915px){
-	
+
 
 	#footer{
 
 		font-size: 20px;
-	
+
 	}
 
 	#logo{
@@ -124,11 +132,11 @@ form{
 		font-size: 100px;
 		line-height: 146px;
 	}
-	
+
 	#footer{
 
 		font-size: 16px;
-	
+
 	}
 }
 
@@ -141,7 +149,7 @@ form{
 		top: 39%;
 	}
 
-	
+
 }
 
 
@@ -153,7 +161,7 @@ form{
 		font-size: 80px;
 		line-height: 146px;
 	}
-	
+
 }
 
 
@@ -166,5 +174,5 @@ form{
 		font-size: 70px;
 		line-height: 146px;
 	}
-	
+
 }

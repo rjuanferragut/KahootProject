@@ -1,0 +1,70 @@
+body{
+	background-color:#F2E4E4;
+}
+
+.content{
+	
+	position: absolute;
+	width: 99%;
+	height: 86%;
+	display: row;
+
+}
+
+form :last-child{
+	position: absolute;
+	bottom: 8%;
+	left: 46.5%;
+	align-content: center;
+	font-size: 30px;
+	background-color: lightblue;
+	text-align: center;
+	display: inline-block;
+	border-radius:20px;
+
+}
+
+form :first-child{
+	position: absolute;
+	bottom: 62%;
+	left: 15%;
+	align-content: center;
+	font-size: 30px;
+	background-color: lightblue;
+	text-align: center;
+	display:flex;
+	flex-direction: row;
+	width: 70%;
+	height: 7%;
+	border-radius:20px;
+
+}
+
+form :nth-child(2n){
+	position: absolute;
+	bottom: 30%;
+	left: 15%;
+	align-content: center;
+	font-size: 30px;
+	background-color: lightblue;
+	text-align: center;
+	display:flex;
+	flex-direction: row;
+	width: 70%;
+	height: 25%;
+	border-radius:20px;
+
+}
+label{
+	position: absolute;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 68px;
+	line-height: 146px;
+	text-align: center;
+	left:15%;
+
+}
+
+
