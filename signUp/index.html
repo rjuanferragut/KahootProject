@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Sign Up Form by Colorlib</title>
 
     <!-- Font Icon -->
@@ -13,13 +18,31 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">KAHOOT</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <form action="../views/layouts/PINPlayer.html" method="Post">
+                        <input type="submit" name="pinPlayer" value="Enter game PIN" class="btn btn-danger">
+                    </form>
+                    <form action="../Login/index.html" method="Post">
+                        <input type="submit" name="createQuiz" value="Login" class="btn btn-success">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
 
     <div class="main">
-
-        <h1>Sign up</h1>
+        <!-- <h1>Sign up</h1> -->
         <div class="container">
             <div class="sign-up-content">
-                <form method="POST" class="signup-form">
+                <form method="POST" class="signup-form" action="../views/signUp.php">
                     <h2 class="form-title">What type of user are you ?</h2>
                     <div class="form-radio">
                         <input type="radio" name="role" value="student" id="newbie" checked="checked" />
@@ -39,12 +62,12 @@
 
                     <div class="form-textbox">
                         <label for="pass">Password</label>
-                        <input type="password" name="pass" id="pass" />
+                        <input type="password" name="password1" id="pass" />
                     </div>
 
                     <div class="form-textbox">
                         <label for="pass">Password</label>
-                        <input type="password" name="pass2" id="pass" />
+                        <input type="password" name="password2" id="pass" />
                     </div>
 
                     <div class="form-textbox">
@@ -61,7 +84,7 @@
                 </form>
 
                 <p class="loginhere">
-                    Already have an account ?<a href="#" class="loginhere-link"> Log in</a>
+                    Already have an account ?<a href="../Login/index.html" class="loginhere-link"> Log in</a>
                 </p>
             </div>
         </div>

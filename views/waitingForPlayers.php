@@ -3,6 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="refresh" content="3">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <title>Waiting For Players</title>
   <link rel="stylesheet" href="../public/css/waitingForPlayers.css">
     <?php
@@ -39,6 +45,24 @@
 
 </head>
 <body>
+  <div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a href="#" class="navbar-brand">KAHOOT</a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ml-auto">
+            <!-- <form action="../homePage.php" method="Post">
+                <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success">
+            </form>
+            <form action="#" method="Post">
+                <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
+            </form> -->
+          </div>
+      </div>
+    </nav>
+  </div>
   <div class="pinZone">
     <?php
     echo "<h1> PIN: ".$row['pin']."</h1>";
@@ -46,13 +70,14 @@
       ?>
 
   </div>
-  <form action="" method="post">
+  <form action="layouts/nextQuestion.php" method="post">
     <!-- <input id="start" type="submit" value="START"> -->
     <?php
     echo "<h2>".$countNames." Player</h2>";
 
     if($countNames != 0){
       echo "<input id='start' type='submit' value='START'>";
+      // echo '<input type="submit" value="Start" class="btn btn-primary">';
     }
     echo "<div class='names'>";
 
