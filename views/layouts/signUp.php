@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <body>
     <form action="" method="post">
@@ -11,7 +11,7 @@
         <label id="student"><input id="ButtonStudent" type="radio" name="role" value="student">STUDENT</label>
         <input type="text" name="name" id="name" placeholder="Name">
         <input type="email" name="email" id="email" placeholder="Email">
-        <?php 
+        <?php
             if(isset($_GET['wrongPassword'])){
                 echo "<h5 style='color: red'>**passwords doesn't match**</h5>";
             }

@@ -29,9 +29,7 @@ function createElementDOM(tagElement, text, parentNode, attributes) {
 function createImgUploader(){
     var form = document.getElementById('formJs');
     //creating image uploader
-    //We hide the default file <input> via opacity and instead style the <label>. The button is generated and positioned with ::after. Lastly, we declare a width and height on the <input> for proper spacing for surrounding content.
-    createElementDOM('input', "", form, ["type=file", "class=custom-file-input", "id=customFile", "accept=image/png, image/jpeg"]);
-    createElementDOM('label', "Choose File", form, ["class=custom-file-label", "for=customFile"]);
+    createElementDOM('input', "", form, ["type=file","value=Search", "id=customFile", "accept=image/*"]);
 }
 
 function createTrueFalseForm(){
@@ -53,7 +51,7 @@ function deleteForm(){
     var form = document.getElementById('formJs');
     if(form != null){
         form.parentElement.removeChild(form);
-    }  
+    }
 }
 
 function createForm(){

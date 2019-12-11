@@ -62,6 +62,7 @@
                     echo '</form>';
                     $registreNameQuestions = $queryNameQuestions->fetch();
                 }
+
             ?>
         </div>
         <div class="col-8" id="Questions">
