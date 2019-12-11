@@ -36,7 +36,8 @@ function createMultipleChoiceForm(){
     deleteForm();
     createForm();
     createInputNameQuestion();
-    
+    createInputsAnswerMultipleChoice();
+    createButtonsMultipleChoice();
 }
 
 function deleteForm(){
@@ -44,6 +45,13 @@ function deleteForm(){
     if(form != null){
         form.parentElement.removeChild(form);
     }  
+}
+
+function removeButtonsMultipleChoice(){
+    var div = document.getElementById('buttonsMultipleChoice');
+    if(div != null){
+        div.parentElement.removeChild(div);
+    }
 }
 
 function createForm(){
@@ -91,10 +99,25 @@ function createButtonsMultipleChoice(){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['id=buttonsMultipleChoice', 'class=mt-5']);
     var div = document.getElementById('buttonsMultipleChoice');
-    createElementDOM('input', "");
+    createElementDOM('button', "Add Answer", div, ["id=addAnswer","type=button", "name=AddAnswer", 'onclick=addAnswerMultipleChoice()','class=btn btn-warning mr-1']);
     createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
     createElementDOM('input', '', div, ["id=doneQuestions","type=submit", "name=Done", "value=Done", 'class=btn btn-success']);
 
+}
+
+function createInputsAnswerMultipleChoice(){
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['class=input-group mb-3 mt-3', 'id=divInputMultipleChoice1']);
+    var div = document.getElementById('divInputMultipleChoice1');
+    createElementDOM('div', "", div, ['class=input-group-prepend', 'id=divInputMultipleChoice2']);
+    var div2 = document.getElementById('divInputMultipleChoice2');
+    createElementDOM('input', "", div, ['type=text', 'name=question[]', 'class=form-control']);
+}
+
+function addAnswerMultipleChoice(){
+    removeButtonsMultipleChoice();
+    createInputsAnswerMultipleChoice();
+    createButtonsMultipleChoice();
 }
 
 
