@@ -9,7 +9,8 @@ create table if not exists user(
     password varchar(512) not null,
     role varchar(15) not null
     check(role='teacher' or role='student'),
-    unique(email)
+    unique(email),
+    imgDirUser varchar(300)
 );
 
 create table if not exists quiz(
@@ -30,7 +31,8 @@ create table if not exists question(
     time int default 30,
     points int not null,
     fk_id_quiz int,
-    foreign key (fk_id_quiz) references quiz(id) on delete cascade
+    foreign key (fk_id_quiz) references quiz(id) on delete cascade,
+    imgDir varchar(300)
 );
 
 create table if not exists answer(
