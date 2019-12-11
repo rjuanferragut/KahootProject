@@ -58,14 +58,14 @@ session_start();
             $resultAnswer1 = mysqli_query($conn, $insertAnsewr1);
             $resultAnswer2 = mysqli_query($conn, $insertAnsewr2);
 
-            header("location: layouts/newQuestion.html");
+            header("location: layouts/newQuestion.php");
 
         }
 
     } else if (isset($_POST['Done'])){
         header("location: layouts/homePage.php");
     } else {
-        header("location: layouts/newQuestion.html");
+        header("location: layouts/newQuestion.php");
     }
 
 ?>

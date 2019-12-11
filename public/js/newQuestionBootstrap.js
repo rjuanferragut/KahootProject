@@ -107,11 +107,14 @@ function createButtonsMultipleChoice(){
 
 function createInputsAnswerMultipleChoice(){
     var form = document.getElementById('formJs');
-    createElementDOM('div', "", form, ['class=input-group mb-3 mt-3', 'id=divInputMultipleChoice1']);
-    var div = document.getElementById('divInputMultipleChoice1');
-    createElementDOM('div', "", div, ['class=input-group-prepend', 'id=divInputMultipleChoice2']);
-    var div2 = document.getElementById('divInputMultipleChoice2');
+    createElementDOM('div', "", form, ['class=input-group mb-3 mt-3 divInputMultipleChoice1']);
+    var div = document.getElementsByClassName('divInputMultipleChoice1')[document.getElementsByClassName('divInputMultipleChoice1').length-1];
+    createElementDOM('div', "", div, ['class=input-group-prepend divInputMultipleChoice2']);
+    var div2 = document.getElementsByClassName('divInputMultipleChoice2')[document.getElementsByClassName('divInputMultipleChoice2').length-1];
     createElementDOM('input', "", div, ['type=text', 'name=question[]', 'class=form-control']);
+    createElementDOM('div', "", div2, ['class=input-group-text divInputMultipleChoice3']);
+    var div3 = document.getElementsByClassName('divInputMultipleChoice3')[document.getElementsByClassName('divInputMultipleChoice3').length-1];
+    createElementDOM('input', "", div3, ['type=checkbox', 'name=correct?[]', 'value=true']);
 }
 
 function addAnswerMultipleChoice(){
