@@ -8,11 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <title>New Questions</title>
     <link rel="stylesheet" href="../../public/css/header.css">
     <link rel="stylesheet" href="../../public/css/newQuestion.css">
-    <script src="../../public/js/newQuestion.js"></script>
+    <script src="../../public/js/newQuestionBootstrap.js"></script>
+    <!-- <script src="../../public/js/newQuestion.js"></script> -->
 </head>
 <body>
     <div>
@@ -21,14 +21,56 @@
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <a href="#" class="nav-item nav-link">Sign out</a>
-                    
                 </div>
             </div>
         </nav>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h2>Here you'll see the created Questions</h2>
+            <?php
+                session_start();
+                try{
+                    $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+                } catch (PDOException $e) {
+                    echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                    exit;
+                }
+                if(isset($_SESSION['idQuiz'])){
+                    $idQuiz = $_SESSION['idQuiz'];
+                }
+                $queryNameQuiz = $pdo->prepare("SELECT name FROM quiz WHERE id=".$idQuiz."");
+                $queryNameQuiz->execute();
+                $registreNameQuiz = $queryNameQuiz->fetch();
+
+                echo "<h2>".$registreNameQuiz['name']."</h2>";
+
+                $queryNameQuestions = $pdo->prepare("SELECT * FROM question WHERE fk_id_quiz=".$idQuiz."");
+                $queryNameQuestions->execute();
+                $registreNameQuestions = $queryNameQuestions->fetch();
+
+                while($registreNameQuestions){
+                    $idQuestion = $registreNameQuestions['id'];
+                    $textQuestion = $registreNameQuestions['text_question'];
+                    echo '<form action="#" method="POST">';
+                    echo '<label class="col3">'.$textQuestion.'</label>';
+                    echo '<input type="hidden" name="idQuestion" value="'.$idQuestion.'">';
+                    echo '<input type="submit" name="delete" value="X" class="btn btn-danger rounded-circle col-1">';
+                    echo '</form>';
+                    $registreNameQuestions = $queryNameQuestions->fetch();
+                }
+            ?>
+        </div>
+        <div class="col-8" id="Questions">
+            <select id="typeQuestion" class="custom-select" name="typeQuestion" onchange="main()">
+                <option selected>Select the type of question</option>
+                <option value="true/false">True/False</option>
+                <option value="multipleChoice">Multiple Choice</option>
+            </select>
+        </div>
     </div>
     <!-- <div class= "content"> -->
         <!-- <form action="../saveQuestion.php" method="post"> -->

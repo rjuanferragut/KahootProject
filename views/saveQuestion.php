@@ -5,7 +5,6 @@ include '../controllers/random_id_pin.php';
 session_start();
 // isset($_SESSION['loggedin']) && 
 
-echo $_SESSION['test'];
     if(isset($_SESSION['name'])){
         echo $_SESSION['name'];
     }

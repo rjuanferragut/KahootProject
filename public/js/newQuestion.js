@@ -6,7 +6,7 @@ function main(){
     createSelectTimeForm();
     createSelectPointsForm();
     createButtonsForm();
-    styleElements()
+    // styleElements()
 }
 
 function createElementDOM(tagElement, text, parentNode, attributes) {
@@ -27,8 +27,9 @@ function createElementDOM(tagElement, text, parentNode, attributes) {
 }
 
 function createForm(){
-    createElementDOM('div', '', document.body, ["class=content"]);
-    var div = document.getElementsByClassName('content')[0];
+    var div = document.getElementById('Questions');
+    // createElementDOM('div', '', divPadre, ["class=content"]);
+    // var div = document.getElementsByClassName('content')[0];
     createElementDOM('a', "NEW QUESTION:", div, ["id=a"]);
     createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "id=formJs"]);
 }
