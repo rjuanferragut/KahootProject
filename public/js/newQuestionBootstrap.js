@@ -35,6 +35,7 @@ function createImgUploader(){
 }
 
 function createTrueFalseForm(){
+    deleteForm();
     createForm();
     createInputNameQuestion();
     createInputsTrueFalse();
@@ -42,11 +43,18 @@ function createTrueFalseForm(){
 }
 
 function createMultipleChoiceForm(){
+    deleteForm();
     createForm();
     createInputNameQuestion();
 
 }
 
+function deleteForm(){
+    var form = document.getElementById('formJs');
+    if(form != null){
+        form.parentElement.removeChild(form);
+    }  
+}
 
 function createForm(){
     var div = document.getElementById('Questions');
@@ -83,11 +91,23 @@ function createInputsTrueFalse(){
 
 function createButtonsTrueFalse(){
     var form = document.getElementById('formJs');
-    createElementDOM('div', "", form, ['id=buttonsTruFalse', 'class=mt-5']);
-    var div = document.getElementById('buttonsTruFalse');
+    createElementDOM('div', "", form, ['id=buttonsTrueFalse', 'class=mt-5']);
+    var div = document.getElementById('buttonsTrueFalse');
     createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
     createElementDOM('input', '', div, ["id=doneQuestions","type=submit", "name=Done", "value=Done", 'class=btn btn-success']);
 }
+
+function createButtonsMultipleChoice(){
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['id=buttonsMultipleChoice', 'class=mt-5']);
+    var div = document.getElementById('buttonsMultipleChoice');
+    createElementDOM('input', "");
+    createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
+    createElementDOM('input', '', div, ["id=doneQuestions","type=submit", "name=Done", "value=Done", 'class=btn btn-success']);
+
+}
+
+
 // https://getbootstrap.com/docs/4.0/components/input-group/#checkboxes-and-radios
 
 // https://stackoverflow.com/questions/7880619/multiple-inputs-with-same-name-through-post-in-php
