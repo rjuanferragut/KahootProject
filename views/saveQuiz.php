@@ -38,7 +38,7 @@ include '../controllers/random_id_pin.php';
         }
         
 
-        header("location: layouts/newQuestion.html");
+        header("location: layouts/newQuestion.php");
 
     }
         

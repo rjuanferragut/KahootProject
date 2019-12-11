@@ -19,7 +19,7 @@ include '../controllers/random_id_pin.php';
 
     if(isset($_POST['createQuiz'])){
 
-        header("location:layouts/newQuiz.php");
+        header("location:layouts/newQuiz.html");
 
     }
 

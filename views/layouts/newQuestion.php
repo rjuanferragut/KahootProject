@@ -65,7 +65,7 @@
             ?>
         </div>
         <div class="col-8" id="Questions">
-            <select id="typeQuestion" class="custom-select" name="typeQuestion" onchange="main()">
+            <select id="typeQuestion" class="custom-select col-3 mt-3" name="typeQuestion" onchange="main()">
                 <option selected>Select the type of question</option>
                 <option value="true/false">True/False</option>
                 <option value="multipleChoice">Multiple Choice</option>
