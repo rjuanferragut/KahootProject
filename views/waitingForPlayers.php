@@ -46,15 +46,19 @@
       ?>
 
   </div>
-  <form action="" method="post">
+  <form action="layouts/ShowQuestion.php" method="post">
     <!-- <input id="start" type="submit" value="START"> -->
     <?php
+
     echo "<h2>".$countNames." Player</h2>";
 
     if($countNames != 0){
-      echo "<input id='start' type='submit' value='START'>";
+      echo "<input id='start' type='submit' value='START' onclick='location.href='layouts/ShowQuestion.php';'>";
+      
     }
     echo "<div class='names'>";
+
+   
 
     while( $rowNames = mysqli_fetch_assoc($resultNames) )
       {
@@ -62,6 +66,8 @@
       }
     echo "</div>";
     ?>
+
+
 
   </form>
 </body>

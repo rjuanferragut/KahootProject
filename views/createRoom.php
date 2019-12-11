@@ -9,6 +9,7 @@
         $_SESSION['roomPin']= $_POST['pin'];
         $pin = $_POST['pin'];
         $idQuiz = $_POST['idQuiz'];
+        $_SESSION['idQuiz']= $idQuiz;
 
         // Connection variables
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
