@@ -129,7 +129,7 @@ function createInputsAnswerMultipleChoice(){
     var div = document.getElementsByClassName('divInputMultipleChoice1')[document.getElementsByClassName('divInputMultipleChoice1').length-1];
     createElementDOM('div', "", div, ['class=input-group-prepend divInputMultipleChoice2']);
     var div2 = document.getElementsByClassName('divInputMultipleChoice2')[document.getElementsByClassName('divInputMultipleChoice2').length-1];
-    createElementDOM('input', "", div, ['type=text', 'name=answer[]', 'class=form-control']);
+    createElementDOM('input', "", div, ['type=text', 'name=answer[]', 'class=form-control col-8']);
     createElementDOM('div', "", div2, ['class=input-group-text divInputMultipleChoice3']);
     var div3 = document.getElementsByClassName('divInputMultipleChoice3')[document.getElementsByClassName('divInputMultipleChoice3').length-1];
     createElementDOM('input', "", div3, ['type=checkbox', 'name=correctAnswer[]', 'value='+id+'']);
@@ -140,7 +140,7 @@ function createSelectTime(){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['id=divSelectTime']);
     var div = document.getElementById('divSelectTime');
-    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectTime', 'name=time']);
+    createElementDOM('select', "", div, ['class=custom-select mr-sm-2 col-8 mb-3', 'id=selectTime', 'name=time']);
     var select = document.getElementById('selectTime');
     createElementDOM('option', '10s', select, ["value=10"]);
     createElementDOM('option', '20s', select, ["value=20"]);
@@ -154,7 +154,7 @@ function createSelectPoints(){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['id=divSelectPoints']);
     var div = document.getElementById('divSelectPoints');
-    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectPoints', 'name=points']);
+    createElementDOM('select', "", div, ['class=custom-select mr-sm-2 col-8', 'id=selectPoints', 'name=points']);
     var select = document.getElementById('selectPoints');
     createElementDOM('option', '10 points', select, ["value=10"]);
     createElementDOM('option', '50 points', select, ["value=50"]);
