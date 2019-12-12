@@ -1,9 +1,7 @@
 <?php
 include '../controllers/random_id_pin.php';
-
 session_start();
 // isset($_SESSION['loggedin']) &&
-
 if(isset($_SESSION['name'])){
   echo $_SESSION['name'];
 }
@@ -17,149 +15,113 @@ if(isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['id
 
 //info of the database
 include '../controllers/conn.php';
-
+echo "fuera";
 // check if the button press is to add another question
 if (isset($_POST['AddQuestion'])) {
+  echo "in addQuestion";
+  if(isset($_POST['text_question']) && isset($_POST['time']) && isset($_POST['points']) && isset($_POST['idAnswer']) && isset($_POST['correctAnswer']) && isset($_POST['answer'])){
+    echo "in MultipleChoice";
+    $textAnswers = $_POST['answer'];
+    $textQuestion= $_POST['text_question'];
+    $idAnswers = $_POST['idAnswer'];
+    $idCorrectAnswer = $_POST['correctAnswer'];
+    $time = $_POST['time'];
+    $points = $_POST['points'];
+    $idQuestion = randomID();
+    // $_SESSION['idQuestion'] = $idQuestion;
+    // Connection variables
+
+//image uploading
+    //$image = $_POST['customFile'];
+
+    $uploadDirectory = "../public/img/imatges_kahoot/";
+    if(isset($_POST['customFile'])){
+          $errors= array();
+          $file_name = $_POST['customFile']['name'];
+          $file_size =$_POST['customFile']['size'];
+          $file_tmp =$_POST['customFile']['tmp_name'];
+          $file_type=$_POST['customFile']['type'];
+          $file_ext=strtolower(end(explode('.',$_POST['customFile']['name'])));
+
+          $extensions= array("jpeg","jpg","png");
+
+          if(in_array($file_ext,$extensions)=== false){
+             $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+          }
+
+          if($file_size > 6000000000){
+             $errors[]='File size so big';
+          }
+
+          if(empty($errors)==true){
+             move_uploaded_file($file_tmp,$uploadDirectory.$file_name);
+             echo "Success";
+          }else{
+             print_r($errors);
+          }
+       }
+//////
+
+
+
+
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    // Check connection
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+    $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+    $resultPrgunta = mysqli_query($conn, $insertPregunta);
+    for($i = 0; $i < sizeof($textAnswers); $i++){
+      $textQ = $textAnswers[$i];
+      $idAns = $idAnswers[$i];
+      if(in_array($idAnswers[$i], $idCorrectAnswer)){
+        $insertAnswer = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAns.",'".$textQ."', true, ".$idQuestion.")";
+        $result = mysqli_query($conn, $insertAnswer);
+      }else{
+        $insertAnswer = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAns.",'".$textQ."', false, ".$idQuestion.")";
+        $result = mysqli_query($conn, $insertAnswer);
+      }
+    }
+    header("location: layouts/newQuestion.php");
+
+  }
 
   //verifying that all the data is send correctly
   if(isset($_POST['text_question']) && isset($_POST['correct?']) && isset($_POST['time']) && isset($_POST['points'])){
-
+    echo "in True/False";
     $textQuestion = $_POST['text_question'];
     $correct = $_POST['correct?'];
     $time = $_POST['time'];
     $points = $_POST['points'];
-    $file = $_POST['customFile'];
-    upload_img($file);
-    $rute = "'../public/img/imatges_kahoot/".$file."'";
-
-
     $id = randomID();
     $_SESSION['idQuestion'] = $id;
 
     // Connection variables
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
     // Check connection
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-    if(isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['idQuiz'])){
-        $loggedin = $_SESSION['loggedin'];
-		$nameUser = $_SESSION['name'];
-        $idUser = $_SESSION['idUser'];
-        $idQuiz = $_SESSION['idQuiz'];
-        echo $idQuiz;
+
+    $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+    $resultPrgunta = mysqli_query($conn, $insertPregunta);
+    $idAnswer1= randomID();
+    $idAnswer2= randomID();
+    if($correct == 'true'){
+      $insertAnsewr1 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer1.",'True', true, ".$id.")";
+      $insertAnsewr2 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer2.",'False', false, ".$id.")";
+    }elseif($correct == 'false'){
+      $insertAnsewr1 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer1.",'True', false, ".$id.")";
+      $insertAnsewr2 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer2.",'False', true, ".$id.")";
     }
-
-        //info of the database
-        include '../controllers/conn.php';
-
-    echo "fuera";
-    // check if the button press is to add another question
-    if (isset($_POST['AddQuestion'])) {
-        echo "in addQuestion";
-
-        if(isset($_POST['text_question']) && isset($_POST['time']) && isset($_POST['points']) && isset($_POST['idAnswer']) && isset($_POST['correctAnswer']) && isset($_POST['answer'])){
-            echo "in MultipleChoice";
-
-            $textAnswers = $_POST['answer'];
-            $textQuestion= $_POST['text_question'];
-            $idAnswers = $_POST['idAnswer'];
-            $idCorrectAnswer = $_POST['correctAnswer'];
-            $time = $_POST['time'];
-            $points = $_POST['points'];
-
-            $idQuestion = randomID();
-            // $_SESSION['idQuestion'] = $idQuestion;
-
-            // Connection variables
-			$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-			// Check connection
-			if (!$conn) {
-				die("Connection failed: " . mysqli_connect_error());
-            }
-
-            
-            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz, imgDir) value(".$idQuestion.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
-
-            $resultPrgunta = mysqli_query($conn, $insertPregunta);
-
-            for($i = 0; $i < sizeof($textAnswers); $i++){
-                $textQ = $textAnswers[$i];
-                $idAns = $idAnswers[$i];
-                if(in_array($idAnswers[$i], $idCorrectAnswer)){
-                    $insertAnswer = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAns.",'".$textQ."', true, ".$idQuestion.")";
-                    $result = mysqli_query($conn, $insertAnswer);
-                }else{
-                    $insertAnswer = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAns.",'".$textQ."', false, ".$idQuestion.")";
-                    $result = mysqli_query($conn, $insertAnswer);
-                }
-
-            }
-
-            header("location: layouts/newQuestion.php");
-
-        }
-
-        //verifying that all the data is send correctly
-        if(isset($_POST['text_question']) && isset($_POST['correct?']) && isset($_POST['time']) && isset($_POST['points'])){
-            echo "in True/False";
-
-            $textQuestion = $_POST['text_question'];
-            $correct = $_POST['correct?'];
-            $time = $_POST['time'];
-            $points = $_POST['points'];
-
-            $id = randomID();
-            $_SESSION['idQuestion'] = $id;
-
-            // Connection variables
-			$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-			// Check connection
-			if (!$conn) {
-				die("Connection failed: " . mysqli_connect_error());
-            }
-
-            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz, imgDir) value(".$idQuestion.",'".$textQuestion."','true/false',".$points.",".$idQuiz.",".$rute.")";
-            // $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz, imgDir) value(".$idQuestion.",'".$textQuestion."','true/false',".$points.",".$idQuiz.",".$rute.")";
-            $resultPrgunta = mysqli_query($conn, $insertPregunta);
-
-            $idAnswer1= randomID();
-            $idAnswer2= randomID();
-
-            if($correct == 'true'){
-                $insertAnsewr1 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer1.",'True', true, ".$id.")";
-                $insertAnsewr2 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer2.",'False', false, ".$id.")";
-            }elseif($correct == 'false'){
-                $insertAnsewr1 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer1.",'True', false, ".$id.")";
-                $insertAnsewr2 = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAnswer2.",'False', true, ".$id.")";
-            }
-
-            $resultAnswer1 = mysqli_query($conn, $insertAnsewr1);
-            $resultAnswer2 = mysqli_query($conn, $insertAnsewr2);
-
-            header("location: layouts/newQuestion.php");
-
-        }
-
-    } else if (isset($_POST['Done'])){
-        header("location: layouts/homePage.php");
-    } else {
-        header("location: layouts/newQuestion.php");
-    }
-
     $resultAnswer1 = mysqli_query($conn, $insertAnsewr1);
     $resultAnswer2 = mysqli_query($conn, $insertAnsewr2);
-
+    header("location: layouts/newQuestion.php");
   }
-  header("location: layouts/newQuestion.php");
-
 } else if (isset($_POST['Done'])){
   header("location: layouts/homePage.php");
 } else {
   header("location: layouts/newQuestion.php");
 }
-
 ?>
