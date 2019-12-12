@@ -55,3 +55,17 @@
     
 
 })(jQuery);
+
+
+window.onload = updateClock;
+
+function updateClock() {
+    var totalTime = 15;
+    document.getElementById('countdown').innerHTML = totalTime;
+    if(totalTime==0){
+        alert('Final');
+        }else{
+            totalTime-=1;
+            setTimeout("updateClock()",1000);
+    }
+}
