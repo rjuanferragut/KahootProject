@@ -19,11 +19,14 @@ session_start();
         //info of the database
         include '../controllers/conn.php';	
 
+    echo "fuera";
     // check if the button press is to add another question
     if (isset($_POST['AddQuestion'])) {
+        echo "in addQuestion";
 
         if(isset($_POST['text_question']) && isset($_POST['time']) && isset($_POST['points']) && isset($_POST['idAnswer']) && isset($_POST['correctAnswer']) && isset($_POST['answer'])){
-            
+            echo "in MultipleChoice";
+
             $textAnswers = $_POST['answer'];
             $textQuestion= $_POST['text_question'];
             $idAnswers = $_POST['idAnswer'];
@@ -46,7 +49,7 @@ session_start();
             $resultPrgunta = mysqli_query($conn, $insertPregunta);
 
             for($i = 0; $i < sizeof($textAnswers); $i++){
-                $textQ = ($textAnswers[$i];
+                $textQ = $textAnswers[$i];
                 $idAns = $idAnswers[$i];
                 if(in_array($idAnswers[$i], $idCorrectAnswer)){
                     $insertAnswer = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAns.",'".$textQ."', true, ".$idQuestion.")";
@@ -57,11 +60,14 @@ session_start();
                 }
 
             }
+
+            header("location: layouts/newQuestion.php");
             
         }
         
         //verifying that all the data is send correctly
         if(isset($_POST['text_question']) && isset($_POST['correct?']) && isset($_POST['time']) && isset($_POST['points'])){
+            echo "in True/False";
 
             $textQuestion = $_POST['text_question'];
             $correct = $_POST['correct?'];

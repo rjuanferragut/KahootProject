@@ -74,7 +74,7 @@ function createInputNameQuestion(){
     createElementDOM('div', "", form, ['class=form-group mt-3 ', 'id=divTextName']);
     var div = document.getElementById('divTextName');
     createElementDOM('label', "NEW QUESTION", div, ['for=inputTextQuestion']);
-    createElementDOM('input', "", div, ['type=text', 'class=form-control col-8', 'id=inputTextQuestion', 'placeholder=Enter your question'])
+    createElementDOM('input', "", div, ['type=text', 'class=form-control col-8', 'id=inputTextQuestion', 'name=text_question', 'placeholder=Enter your question'])
 }
 
 function createInputsTrueFalse(){
@@ -130,9 +130,9 @@ function createInputsAnswerMultipleChoice(){
 
 function createSelectTime(){
     var form = document.getElementById('formJs');
-    createElementDOM('div', "", form, ['id=divSelectTime', 'name=time']);
+    createElementDOM('div', "", form, ['id=divSelectTime']);
     var div = document.getElementById('divSelectTime');
-    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectTime']);
+    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectTime', 'name=time']);
     var select = document.getElementById('selectTime');
     createElementDOM('option', '10s', select, ["value=10"]);
     createElementDOM('option', '20s', select, ["value=20"]);
@@ -144,9 +144,9 @@ function createSelectTime(){
 
 function createSelectPoints(){
     var form = document.getElementById('formJs');
-    createElementDOM('div', "", form, ['id=divSelectPoints', 'name=points']);
+    createElementDOM('div', "", form, ['id=divSelectPoints']);
     var div = document.getElementById('divSelectPoints');
-    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectPoints']);
+    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectPoints', 'name=points']);
     var select = document.getElementById('selectPoints');
     createElementDOM('option', '10 points', select, ["value=10"]);
     createElementDOM('option', '50 points', select, ["value=50"]);
