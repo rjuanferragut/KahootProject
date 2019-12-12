@@ -19,7 +19,7 @@
     function upload_img($img){
       $uploaddir = '../public/img/imatges_kahoot/';
       $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
-
+      move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);
       echo "<p>";
 
       if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {

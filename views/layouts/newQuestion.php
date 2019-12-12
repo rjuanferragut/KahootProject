@@ -59,6 +59,13 @@
                     echo '<label class="col3">'.$textQuestion.'</label>';
                     echo '<input type="hidden" name="idQuestion" value="'.$idQuestion.'">';
                     echo '<input type="submit" name="delete" value="X" class="btn btn-danger rounded-circle col-1">';
+                    // <div class="input-group mb-3">
+                    //     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    //         <div class="input-group-append">
+                    //         <button class="btn btn-outline-secondary" type="button">Button</button>
+                    //     </div>
+                    // </div>
+                    // https://getbootstrap.com/docs/4.0/components/input-group/
                     echo '</form>';
                     $registreNameQuestions = $queryNameQuestions->fetch();
                 }
