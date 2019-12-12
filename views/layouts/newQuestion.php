@@ -23,7 +23,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="#" class="nav-item nav-link">Sign out</a>
+                    <a href="#" class="btn btn-danger">Sign out</a>
                 </div>
             </div>
         </nav>
