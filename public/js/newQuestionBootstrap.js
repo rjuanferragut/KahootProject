@@ -29,6 +29,8 @@ function createTrueFalseForm(){
     createForm();
     createInputNameQuestion();
     createInputsTrueFalse();
+    createSelectTime();
+    createSelectPoints();
     createButtonsTrueFalse();
 }
 
@@ -36,8 +38,15 @@ function createMultipleChoiceForm(){
     deleteForm();
     createForm();
     createInputNameQuestion();
+    createSelectTime();
+    createSelectPoints();
     createInputsAnswerMultipleChoice();
     createButtonsMultipleChoice();
+}
+
+function randomId(){
+    var id = Math.floor(Math.random() * 500000) + 1;
+    return id;
 }
 
 function deleteForm(){
@@ -106,15 +115,46 @@ function createButtonsMultipleChoice(){
 }
 
 function createInputsAnswerMultipleChoice(){
+    var id = randomId();
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['class=input-group mb-3 mt-3 divInputMultipleChoice1']);
     var div = document.getElementsByClassName('divInputMultipleChoice1')[document.getElementsByClassName('divInputMultipleChoice1').length-1];
     createElementDOM('div', "", div, ['class=input-group-prepend divInputMultipleChoice2']);
     var div2 = document.getElementsByClassName('divInputMultipleChoice2')[document.getElementsByClassName('divInputMultipleChoice2').length-1];
-    createElementDOM('input', "", div, ['type=text', 'name=question[]', 'class=form-control']);
+    createElementDOM('input', "", div, ['type=text', 'name=answer[]', 'class=form-control']);
     createElementDOM('div', "", div2, ['class=input-group-text divInputMultipleChoice3']);
     var div3 = document.getElementsByClassName('divInputMultipleChoice3')[document.getElementsByClassName('divInputMultipleChoice3').length-1];
-    createElementDOM('input', "", div3, ['type=checkbox', 'name=correct?[]', 'value=true']);
+    createElementDOM('input', "", div3, ['type=checkbox', 'name=correctAnswer[]', 'value='+id+'']);
+    createElementDOM('input', "", div3, ['type=hidden', 'name=idAnswer[]', 'value='+id+'']);
+}
+
+function createSelectTime(){
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['id=divSelectTime', 'name=time']);
+    var div = document.getElementById('divSelectTime');
+    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectTime']);
+    var select = document.getElementById('selectTime');
+    createElementDOM('option', '10s', select, ["value=10"]);
+    createElementDOM('option', '20s', select, ["value=20"]);
+    createElementDOM('option', '30s', select, ["value=30"]);
+    createElementDOM('option', '40s', select, ["value=40"]);
+    createElementDOM('option', '50s', select, ["value=50"]);
+    createElementDOM('option', '60s', select, ["value=60"]);
+}
+
+function createSelectPoints(){
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['id=divSelectPoints', 'name=points']);
+    var div = document.getElementById('divSelectPoints');
+    createElementDOM('select', "", div, ['class=custom-select mr-sm-2', 'id=selectPoints']);
+    var select = document.getElementById('selectPoints');
+    createElementDOM('option', '10 points', select, ["value=10"]);
+    createElementDOM('option', '50 points', select, ["value=50"]);
+    createElementDOM('option', '100 points', select, ["value=100"]);
+    createElementDOM('option', '150 points', select, ["value=150"]);
+    createElementDOM('option', '300 points', select, ["value=300"]);
+    createElementDOM('option', '500 points', select, ["value=500"]);
+    createElementDOM('option', '1000 points', select, ["value=1000"]);
 }
 
 function addAnswerMultipleChoice(){
