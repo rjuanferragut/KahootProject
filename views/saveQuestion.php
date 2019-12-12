@@ -34,14 +34,14 @@ if (isset($_POST['AddQuestion'])) {
 //image uploading
     //$image = $_POST['customFile'];
 
-    $uploadDirectory = "../public/img/imatges_kahoot/";
-    if(isset($_POST['customFile'])){
+    $uploadDirectory = "../../public/img/imatges_kahoot";
+    if(isset($_FILES['customFile'])){
           $errors= array();
-          $file_name = $_POST['customFile']['name'];
-          $file_size =$_POST['customFile']['size'];
-          $file_tmp =$_POST['customFile']['tmp_name'];
-          $file_type=$_POST['customFile']['type'];
-          $file_ext=strtolower(end(explode('.',$_POST['customFile']['name'])));
+          $file_name = $_FILES['customFile']['name'];
+          $file_size =$_FILES['customFile']['size'];
+          $file_tmp =$_FILES['customFile']['tmp_name'];
+          $file_type=$_FILES['customFile']['type'];
+          $file_ext=strtolower(end(explode('.',$_FILES['customFile']['name'])));
 
           $extensions= array("jpeg","jpg","png");
 
@@ -54,7 +54,7 @@ if (isset($_POST['AddQuestion'])) {
           }
 
           if(empty($errors)==true){
-             move_uploaded_file($file_tmp,$uploadDirectory.$file_name);
+             move_uploaded_file($file_tmp,"$uploadDirectory/$file_name");
              echo "Success";
           }else{
              print_r($errors);

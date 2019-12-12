@@ -74,7 +74,7 @@ function removeButtonsMultipleChoice(){
 function createForm(){
     var div = document.getElementById('Questions');
     // createElementDOM('a', "NEW QUESTION:", div, ["id=a"]);
-    createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "id=formJs"]);
+    createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "id=formJs", "enctype=multipart/form-data"]);
 }
 
 function createInputNameQuestion(){
