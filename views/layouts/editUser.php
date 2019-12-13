@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <scrpit src="../../public/js/editUser.js"></script>
     <title>Edit User</title>
 </head>
 <body>
@@ -56,11 +57,11 @@
             <div class="col-lg-4">
                 <h2 class="text-center font-weight-light"><?php echo $name; ?> Profile</h2>
             </div>
-            <div class="col-lg-8 ">
-                <div class="alert alert-info alert-dismissable"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
+            <div class="col-lg-8 " id="alert" style="display:none">
+                <div class="alert alert-info alert-dismissable" id="textAlert"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
             </div>
             <div class="col-lg-8 order-lg-1 personal-info">
-                <form role="form">
+                <form role="form" id="formEditUser">
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Name</label>
                         <div class="col-lg-9">
@@ -73,22 +74,28 @@
                             <input class="form-control" type="email" value="<?php echo $email;?>" />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                    <!-- <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Current password</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="password" value="" />
+                            <input class="form-control" type="password" value="" id="currentPassword"/>
+                        </div>
+                    </div> -->
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">New password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" value="" id="newPassword"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="password" value="" />
+                            <input class="form-control" type="password" value="" id="confirmNewPassword"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-9 ml-auto text-right">
                             <input type="reset" class="btn btn-outline-secondary" value="Cancel" />
-                            <input type="button" class="btn btn-primary" value="Save Changes" />
+                            <input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" />
                         </div>
                     </div>
                 </form>
