@@ -34,6 +34,22 @@
     $name = $registre['name'];
     $imgUser = $registre['imgDirUser'];
     ?>
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">KAHOOT</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <form action="#" method="Post">
+                        <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="container py-2">
         <div class="row my-2">
             <!-- edit form column -->
