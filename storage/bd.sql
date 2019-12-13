@@ -13,6 +13,14 @@ create table if not exists user(
     unique(email)
 );
 
+create table if not exists user_token(
+    id int  auto_increment primary key,
+    token varchar(255) not null,
+    expires datetime not null,
+    fk_id_user int,
+    foreign key (fk_id_user) references user(id) on delete cascade
+)
+
 create table if not exists quiz(
     id int auto_increment primary key,
     name varchar(60) not null,
