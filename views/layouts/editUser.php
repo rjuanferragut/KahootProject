@@ -4,7 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <scrpit src="../../public/js/editUser.js"></script>
+    <script>
+    function checkNewPassword(){
+        var newPassword = document.getElementById('newPassword').value;
+        var confirmNewPassword = document.getElementById('confirmNewPassword').value;
+        var alertElement = document.getElementById('textAlert');
+        var form = document.getElementById('formEditUser');
+
+        if(newPassword != null && confirmNewPassword != null){
+
+            if(newPassword != confirmNewPassword){
+                console.log(newPassword+" ; "+confirmNewPassword);
+                // var classNewPassword = newPassword.getAttribute("class")+" is-invalid";
+                // newPassword.removeAttribute('class');
+                // newPassword.setAttribute("class", classNewPassword);
+                alertElement.innerHTML = "Las contraseñas no coinciden";
+                alertElement.style.display = "block";
+            }else{
+                // form.submit();
+                alert("enviar Formulario");
+            }
+        }
+    
+    }
+    </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
