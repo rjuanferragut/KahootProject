@@ -16,46 +16,40 @@ function randomPin(){
   return $pin;
 }
 
-// function upload_img($img){
-//   $ruta_base   = "../public/img/imatges_kahoot/";
-//   $archivo     = $ruta_base . basename( $_FILES["ent_reg"]["name"] );
-//   $Ok          = 1;
-//   $tipo_imagen = pathinfo( $archivo, PATHINFO_EXTENSION );
-//
-//   //comprueba que es una imagen
-//   if ( isset( $_POST["submit"] ) ) {
-//     $check = getimagesize( $_FILES["ent_reg"]["tmp_name"] );
-//     if ( $check !== false ) {
-//       echo "Es una imagen - " . $check["mime"] . ".";
-//       $Ok = 1;
-//     } else {
-//       echo "No es una imagen.";
-//       $Ok = 0;
-//     }
-//   }
-//
-//   //comprueba si existe
-//   if ( file_exists( $archivo ) ) {
-//     echo "El archivo ya existe.";
-//     $Ok = 0;
-//   }
-//
-//   //valida la extensión
-//   if ( $tipo_imagen != "jpg" && $tipo_imagen != "png" && $tipo_imagen != "jpeg" && $tipo_imagen != "gif" ) {
-//     echo "Solo aceptamos extensiones JPG, JPEG, PNG & GIF.";
-//     $Ok = 0;
-//   }
-//
-//   //Sube el archivo, si se ha recibido un archivo válido
-//   if ( $Ok == 0 ) {
-//     echo "El archivo no ha sido subido, lo sentimos.";
-//   } else {
-//     if ( move_uploaded_file( $_FILES["ent_reg"]["tmp_name"], $archivo ) ) {
-//       echo "El archivo " . basename( $_FILES["ent_reg"]["name"] ) . " ha sido subido.";
-//     } else {
-//       echo "Lo sentimos, ha habido un error subiendo el archivo.";
-//     }
-//   }
-// }
+function saveQuestionImage($image){
+  $target_dir = '../public/img/imatges_kahoot/';
+  $target_file = $target_dir . basename($image["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  // Check if image file is a actual image or fake image
+  if(isset($_POST["submit"])) {
+    $check = getimagesize($image["tmp_name"]);
+    if($check !== false) {
+      echo "File is an image - " . $check["mime"] . ".";
+      move_uploaded_file($image["tmp_name"], $target_dir . $newImageName);
+      $uploadOk = 1;
+    } else {
+      echo "File is not an image.";
+      $uploadOk = 0;
+    }
+  }
+}
+  // function saveQuestionImage($image){
+  //   $target_dir = '../public/img/imatges_kahoot/';
+  //   $target_file = $target_dir . basename($_FILES["customFile"]["name"]);
+  //   $uploadOk = 1;
+  //   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  //   // Check if image file is a actual image or fake image
+  //   if(isset($_POST["submit"])) {
+  //     $check = getimagesize($_FILES["customFile"]["tmp_name"]);
+  //     if($check !== false) {
+  //       echo "File is an image - " . $check["mime"] . ".";
+  //       $uploadOk = 1;
+  //     } else {
+  //       echo "File is not an image.";
+  //       $uploadOk = 0;
+  //     }
+  //   }
 
-?>
+
+  ?>

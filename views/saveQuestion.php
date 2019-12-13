@@ -17,8 +17,10 @@ if(isset($_SESSION['name']) && isset($_SESSION['idUser']) && isset($_SESSION['id
 include '../controllers/conn.php';
 echo "fuera";
 // check if the button press is to add another question
+
 if (isset($_POST['AddQuestion'])) {
   echo "in addQuestion";
+
   if(isset($_POST['text_question']) && isset($_POST['time']) && isset($_POST['points']) && isset($_POST['idAnswer']) && isset($_POST['correctAnswer']) && isset($_POST['answer'])){
     echo "in MultipleChoice";
     $textAnswers = $_POST['answer'];
@@ -30,47 +32,12 @@ if (isset($_POST['AddQuestion'])) {
     $idQuestion = randomID();
     // $_SESSION['idQuestion'] = $idQuestion;
     // Connection variables
-
-//image uploading
-    //$image = $_POST['customFile'];
-
-    $uploadDirectory = "../../public/img/imatges_kahoot";
-    if(isset($_FILES['customFile'])){
-          $errors= array();
-          $file_name = $_FILES['customFile']['name'];
-          $file_size =$_FILES['customFile']['size'];
-          $file_tmp =$_FILES['customFile']['tmp_name'];
-          $file_type=$_FILES['customFile']['type'];
-          $file_ext=strtolower(end(explode('.',$_FILES['customFile']['name'])));
-
-          $extensions= array("jpeg","jpg","png");
-
-          if(in_array($file_ext,$extensions)=== false){
-             $errors[]="extension not allowed, please choose a JPEG or PNG file.";
-          }
-
-          if($file_size > 6000000000){
-             $errors[]='File size so big';
-          }
-
-          if(empty($errors)==true){
-             move_uploaded_file($file_tmp,"$uploadDirectory/$file_name");
-             echo "Success";
-          }else{
-             print_r($errors);
-          }
-       }
-//////
-
-
-
-
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     // Check connection
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-    $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+    $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multiChoice',".$points.",".$idQuiz.")";
     $resultPrgunta = mysqli_query($conn, $insertPregunta);
     for($i = 0; $i < sizeof($textAnswers); $i++){
       $textQ = $textAnswers[$i];
@@ -83,6 +50,10 @@ if (isset($_POST['AddQuestion'])) {
         $result = mysqli_query($conn, $insertAnswer);
       }
     }
+
+    }
+    $image = $_FILES["customFile"];
+    saveQuestionImage($image);
     header("location: layouts/newQuestion.php");
 
   }
@@ -95,6 +66,11 @@ if (isset($_POST['AddQuestion'])) {
     $time = $_POST['time'];
     $points = $_POST['points'];
     $id = randomID();
+    // $image = array($_FILES['customFile']);
+    // saveQuestionImage($image);
+
+
+
     $_SESSION['idQuestion'] = $id;
 
     // Connection variables
@@ -117,11 +93,20 @@ if (isset($_POST['AddQuestion'])) {
     }
     $resultAnswer1 = mysqli_query($conn, $insertAnsewr1);
     $resultAnswer2 = mysqli_query($conn, $insertAnsewr2);
+
+    $image = $_FILES["customFile"];
+    saveQuestionImage($image);
+    header("location: layouts/newQuestion.php");
+
+} else if (isset($_POST['Done'])){
+
+    $image = $_FILES["customFile"];
+    saveQuestionImage($image);
+    header("location: layouts/homePage.php");
+  } else {
+    $image = $_FILES["customFile"];
+    saveQuestionImage($image);
     header("location: layouts/newQuestion.php");
   }
-} else if (isset($_POST['Done'])){
-  header("location: layouts/homePage.php");
-} else {
-  header("location: layouts/newQuestion.php");
-}
-?>
+
+  ?>
