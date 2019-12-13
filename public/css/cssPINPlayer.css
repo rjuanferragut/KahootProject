@@ -17,9 +17,9 @@ body{
 	display: flex;
 	width: 50%;
 	height: 10%;
-	left: 30%;
+	left: 32.5%;
 	top: 10%;
-
+  margin-left: 3%;
 	font-family: Roboto;
 	font-style: normal;
 	font-weight: 500;

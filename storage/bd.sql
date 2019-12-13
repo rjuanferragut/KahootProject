@@ -7,7 +7,8 @@ create table if not exists user(
     email varchar(250) not null,
     name varchar(60) not null,
     password varchar(512) not null,
-    role varchar(15) not null
+    role varchar(15) not null,
+    imgDirUser varchar(512),
     check(role='teacher' or role='student'),
     unique(email)
 );
@@ -21,7 +22,7 @@ create table if not exists quiz(
     num_plays int,
     fk_id_user int,
     foreign key (fk_id_user) references user(id) on delete cascade
-); 
+);
 
 create table if not exists question(
     id int auto_increment primary key,
@@ -30,6 +31,7 @@ create table if not exists question(
     time int default 30,
     points int not null,
     fk_id_quiz int,
+    imgDir varchar(512),
     foreign key (fk_id_quiz) references quiz(id) on delete cascade
 );
 
@@ -104,8 +106,6 @@ insert into player_answer value(6,1);
 insert into player_answer value(5,2);
 insert into player_answer value(6,3);
 
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';	
-GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
 
-KahootProject/views/layouts/login.html
-ProyectoFallout/menuPrincipal.php
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
+GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';

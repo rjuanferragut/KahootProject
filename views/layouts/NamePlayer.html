@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<title></title>
 	<link rel="stylesheet" href="../../public/css/cssPINPlayer.css">
 </head>
 <body>
-	<div id="divMenu">
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">KAHOOT</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <form action="../../Login/index.html" method="Post">
+                        <input type="submit" name="createQuiz" value="Login" class="btn btn-success">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <a id="logo" class="mt-5">Kahoot!</a>
+    <div class="col-3 mx-auto mt-5">
+        <form action="../namePlayer.php" method="post">
+            <!-- <input type="text" class="input" name="PIN" placeholder="Game PIN"> -->
+            <input class="form-control form-control-lg " type="text" name="nickName" placeholder="Nickname" style="text-align: center">
+            <input type="submit" class="btn btn-dark btn-lg btn-block mt-3" value="Ok, go!">
+            <input type="submit" class= "button" value="Ok, go!">
+        </form>
+    </div>
+	<!-- <div id="divMenu">
         <a id="logo">Kahoot!</a>
         <form action="../namePlayer.php" method="post">
             <input type="text" class="input" name="nickName" placeholder="Nickname">
             <input type="submit" class= "button" value="Ok, go!">
         </form>
-		        
-		<a id="footer">Create your own kahoot at kahoot.tk</a>
-	</div>
+		<a id="footer">Create your own kahoot at kahootmcoarj.tk</a>
+	</div> -->
 </body>
 </html>

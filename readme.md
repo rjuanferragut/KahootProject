@@ -9,4 +9,6 @@ A continuació explicarem com Arrancar-lo.</i></p>
 <p>Per a que el repositori funcioni requereix un servidor web, com per exemple apache, IIS, nginx...
 Has de descarregar el repositori (si es descarrega desde la web de github caldrà descomprimir el zip) i introduïr-lo <b>dins del directori arrel del servidor, iniciar el servei corresponent i al navegador, introduïm localhost/<i>nomdelprojecte</i></b> a la barra de cerca i ja el tendràs funcionant.</p>
 
-<p>A més, tenir conexió a Internet é esencial per a jugar al joc ja que es necessita connexió al servidor constant per a que carreguin les preguntes, les respostes, contestar...</p>
+<p>A més, tenir conexió a Internet és esencial per a jugar al joc ja que es necessita connexió al servidor constant per a que carreguin les preguntes, les respostes, contestacions...</p>
+
+<p>Necessitem que el servidor tengui servei de PHP i MySQL, per a crear la base ed dades, tenim al directori "storage2 un arxiu anomenat bd.sql, el qual conté un script que carrega una seed amb dades de prova per a que pugui funcionar ràpidament<p>
