@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <scrpit src="../../public/js/editUser.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <scrpit src="../../public/js/editUser.js"></script>
     <title>Edit User</title>
 </head>
 <body>
@@ -61,7 +61,7 @@
                 <div class="alert alert-info alert-dismissable" id="textAlert"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
             </div>
             <div class="col-lg-8 order-lg-1 personal-info">
-                <form role="form" id="formEditUser">
+                <form role="form" id="formEditUser" action="#">
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Name</label>
                         <div class="col-lg-9">
