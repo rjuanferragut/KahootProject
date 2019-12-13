@@ -21,8 +21,8 @@
                 alertElement.innerHTML = "Passwords doesn't match";
                 alertElement.style.display = "";
             }else{
-                // form.submit();
-                alert("enviar Formulario");
+                form.submit();
+                // alert("enviar Formulario");
             }
         }
     
@@ -41,6 +41,7 @@
     session_start();
 
     if(isset($_SESSION['idUser'])){
+        $nameUser = $_SESSION['name'];
 		$idUser = $_SESSION['idUser'];
     }
 
@@ -55,7 +56,7 @@
     $query->execute();
     $registre = $query->fetch();
     $email = $registre['email'];
-    $name = $registre['name'];
+    $nameUser = $registre['name'];
     // $imgUser = $registre['imgDirUser'];
     ?>
     <div>
@@ -78,17 +79,17 @@
         <div class="row my-2">
             <!-- edit form column -->
             <div class="col-lg-4">
-                <h2 class="text-center font-weight-light"><?php echo $name; ?> Profile</h2>
+                <h2 class="text-center font-weight-light"><?php echo $nameUser; ?> Profile</h2>
             </div>
             <div class="col-lg-8 " id="alert" >
                 <div class="alert alert-danger alert-dismissable" id="textAlert" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
             </div>
             <div class="col-lg-8 order-lg-1 personal-info">
-                <form role="form" id="formEditUser" action="#">
+                <form role="form" id="formEditUser" action="../editProfile.php" method="POST">
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Name</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="text" value="<?php echo $name;?>" />
+                            <input class="form-control" type="text" name="name" value="<?php echo $registre['name'];?>" />
                         </div>
                     </div>
                     <fieldset disabled>
@@ -108,13 +109,13 @@
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">New password</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="password" value="" id="newPassword"/>
+                            <input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="password" value="" id="confirmNewPassword"/>
+                            <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>
                         </div>
                     </div>
                     <div class="form-group row">
