@@ -78,7 +78,7 @@
                 $encryptToken = hash("sha256", $token);
                 $idUser = $registre['id'];
 
-                $insertToken = $pdo->prepare("INSERT INTO user_token (token, expires, fk_id_user) VALUE ('".$encryptToken."', (current_timestamp()+'02:00:00'), '".$idUser."')");
+                $insertToken = $pdo->prepare("INSERT INTO user_token (token, expires, fk_id_user) VALUE ('".$encryptToken."', TIMESTAMPADD(HOUR, 2, current_timestamp()), '".$idUser."')");
                 $insert = $insertToken->execute();
 
                 if($insert){
