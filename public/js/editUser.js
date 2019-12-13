@@ -11,7 +11,7 @@ function checkNewPassword(){
             // var classNewPassword = newPassword.getAttribute("class")+" is-invalid";
             // newPassword.removeAttribute('class');
             // newPassword.setAttribute("class", classNewPassword);
-            alertElement.innerHTML = "Las contraseñas no coinciden";
+            alertElement.innerHTML = "Passwords doesn't match";
             alertElement.style.display = "block";
         }else{
             // form.submit();

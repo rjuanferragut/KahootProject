@@ -18,7 +18,7 @@
                 // var classNewPassword = newPassword.getAttribute("class")+" is-invalid";
                 // newPassword.removeAttribute('class');
                 // newPassword.setAttribute("class", classNewPassword);
-                alertElement.innerHTML = "Las contraseñas no coinciden";
+                alertElement.innerHTML = "Passwords doesn't match";
                 alertElement.style.display = "";
             }else{
                 // form.submit();
@@ -56,7 +56,7 @@
     $registre = $query->fetch();
     $email = $registre['email'];
     $name = $registre['name'];
-    $imgUser = $registre['imgDirUser'];
+    // $imgUser = $registre['imgDirUser'];
     ?>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -81,7 +81,7 @@
                 <h2 class="text-center font-weight-light"><?php echo $name; ?> Profile</h2>
             </div>
             <div class="col-lg-8 " id="alert" >
-                <div class="alert alert-info alert-dismissable" id="textAlert" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
+                <div class="alert alert-danger alert-dismissable" id="textAlert" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
             </div>
             <div class="col-lg-8 order-lg-1 personal-info">
                 <form role="form" id="formEditUser" action="#">
@@ -91,12 +91,14 @@
                             <input class="form-control" type="text" value="<?php echo $name;?>" />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="email" value="<?php echo $email;?>" />
+                    <fieldset disabled>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control disabled" type="email" value="<?php echo $email;?>" />
+                            </div>
                         </div>
-                    </div>
+                    </fieldset>
                     <!-- <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Current password</label>
                         <div class="col-lg-9">
