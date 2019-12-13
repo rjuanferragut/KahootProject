@@ -30,7 +30,6 @@
     </div>
     <div class="row">
         <div class="col-4">
-            <h2>Here you'll see the created Questions</h2>
             <?php
                 session_start();
                 try{
@@ -46,7 +45,9 @@
                 $queryNameQuiz->execute();
                 $registreNameQuiz = $queryNameQuiz->fetch();
 
-                echo "<h2>".$registreNameQuiz['name']."</h2>";
+                echo "<div class=''>";
+                echo "<h2 class='my-3' style='text-align:center'>".$registreNameQuiz['name']."</h2>";
+                echo "</div>";
 
                 $queryNameQuestions = $pdo->prepare("SELECT * FROM question WHERE fk_id_quiz=".$idQuiz."");
                 $queryNameQuestions->execute();
@@ -56,9 +57,18 @@
                     $idQuestion = $registreNameQuestions['id'];
                     $textQuestion = $registreNameQuestions['text_question'];
                     echo '<form action="#" method="POST">';
-                    echo '<label class="col3">'.$textQuestion.'</label>';
+                    echo '<div style="border: solid grey 1px">';
+                    echo '<label class="col-8 h3 mb-0" style="text-align:center">'.$textQuestion.'</label>';
                     echo '<input type="hidden" name="idQuestion" value="'.$idQuestion.'">';
-                    echo '<input type="submit" name="delete" value="X" class="btn btn-danger rounded-circle col-1">';
+                    echo '<input type="submit" name="delete" value="X" class="btn btn-danger rounded col-1 btn-sm mb-1">';
+                    echo '</div>';
+                    // <div class="input-group mb-3">
+                    //     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    //         <div class="input-group-append">
+                    //         <button class="btn btn-outline-secondary" type="button">Button</button>
+                    //     </div>
+                    // </div>
+                    // https://getbootstrap.com/docs/4.0/components/input-group/
                     echo '</form>';
                     $registreNameQuestions = $queryNameQuestions->fetch();
                 }
