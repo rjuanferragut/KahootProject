@@ -25,6 +25,9 @@
                     <form action="../homePage.php" method="Post">
                         <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success">
                     </form>
+                    <form action="editUser.php" method="Post">
+                        <input type="submit" name="signOut" value="Profile" class="btn btn-danger">
+                    </form>
                     <form action="#" method="Post">
                         <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
                     </form>
