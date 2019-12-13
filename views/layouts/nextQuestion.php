@@ -56,6 +56,8 @@
 
         }
 
+        $UpdateRoom = "UPDATE room SET event='Question' WHERE pin=".$pinRoom.""; 
+
         $queryNumQuestions = $pdo->prepare("SELECT count(*) as numQuestions FROM question WHERE fk_id_quiz=".$idQuiz."");
         $queryNumQuestions->execute();
         $registreNumQuestions = $queryNumQuestions->fetch();
