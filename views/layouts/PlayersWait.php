@@ -15,15 +15,16 @@
 		<h3>See your nickname on screen?</h3>
 	</div>
 	<?php
-	
+
 		session_start();
 	      // Connection info. file
-	      include '../controllers/conn.php';
+	      include '../../controllers/conn.php';
 	      //include '../controllers/random_id_pin.php';
 
 	      if(isset($_SESSION['roomPin'])){
 	        $roomPin = $_SESSION['roomPin'];
 	      }
+
 
 	      // Connection variables
 	      $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -32,6 +33,16 @@
 	      if (!$conn) {
 	        die("Connection failed: " . mysqli_connect_error());
 	      }
+
+
+      	$consulta ="SELECT * FROM room WHERE pin=".$roomPin.";";
+      	$result = mysqli_query($conn, $consulta);
+      	$row = mysqli_fetch_assoc($result);
+      	
+
+      	if ($row['event']=="Question") {
+      		header('location:PlayerQuestion.php');
+      	}
 
 	?>
 </body>
