@@ -19,7 +19,7 @@
                 // newPassword.removeAttribute('class');
                 // newPassword.setAttribute("class", classNewPassword);
                 alertElement.innerHTML = "Las contraseñas no coinciden";
-                alertElement.style.display = "block";
+                alertElement.style.display = "";
             }else{
                 // form.submit();
                 alert("enviar Formulario");
@@ -80,8 +80,8 @@
             <div class="col-lg-4">
                 <h2 class="text-center font-weight-light"><?php echo $name; ?> Profile</h2>
             </div>
-            <div class="col-lg-8 " id="alert" style="display:none">
-                <div class="alert alert-info alert-dismissable" id="textAlert"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
+            <div class="col-lg-8 " id="alert" >
+                <div class="alert alert-info alert-dismissable" id="textAlert" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
             </div>
             <div class="col-lg-8 order-lg-1 personal-info">
                 <form role="form" id="formEditUser" action="#">
