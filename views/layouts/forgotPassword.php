@@ -78,10 +78,11 @@
                 $encryptToken = hash("sha256", $token);
                 $idUser = $registre['id'];
 
-                $insertToken = $pdo->prepare("INSERT INTO user_token (token, expires, fk_id_user) VALUE ('".$encryptToken."', (addtime(current_timestamp(),'02:00:00')), '".$idUser."')");
+                $insertToken = $pdo->prepare("INSERT INTO user_token (token, expires, fk_id_user) VALUE ('".$encryptToken."', (current_timestamp()+'02:00:00'), '".$idUser."')");
                 $insert = $insertToken->execute();
 
                 if($insert){
+                    echo "<script>console.log('dentro');</script>";
                     $msg = "Accede a este link para cambiar la contrasena, este solo tiene validez de un uso y caduca en 2 horas.";
                     mail($email, "Reset Password", $msg);
                 }
