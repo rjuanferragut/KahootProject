@@ -25,7 +25,7 @@ function saveQuestionImage($image){
   if(isset($_POST["submit"])) {
     $check = getimagesize($image["tmp_name"]);
     if($check !== false) {
-      echo "File is an image - " . $check["mime"] . ".";
+      //echo "File is an image - " . $check["mime"] . ".";
       move_uploaded_file($image["tmp_name"], $target_dir . $newImageName);
       $uploadOk = 1;
     } else {

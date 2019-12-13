@@ -23,7 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <form action="../homePage.php" method="Post">
-                        <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success">
+                        <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success mr-2">
+                    </form>
+                    <form action="editUser.php" method="Post">
+                        <input type="submit" name="editProfile" value="Profile" class="btn btn-warning mr-2">
                     </form>
                     <form action="#" method="Post">
                         <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">

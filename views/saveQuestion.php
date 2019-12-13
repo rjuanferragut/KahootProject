@@ -49,6 +49,10 @@ if (isset($_POST['AddQuestion'])) {
         $insertAnswer = "insert into answer (id, text_answer, correct, fk_id_question) value(".$idAns.",'".$textQ."', false, ".$idQuestion.")";
         $result = mysqli_query($conn, $insertAnswer);
       }
+      if(isset($_FILES['customFile'])){
+        $image = $_FILES["customFile"];
+        saveQuestionImage($image);
+      }
     }
 
     }
@@ -79,6 +83,10 @@ if (isset($_POST['AddQuestion'])) {
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
+    if(isset($_FILES['customFile'])){
+      $image = $_FILES["customFile"];
+      saveQuestionImage($image);
+    }
 
     $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
     $resultPrgunta = mysqli_query($conn, $insertPregunta);
@@ -94,18 +102,17 @@ if (isset($_POST['AddQuestion'])) {
     $resultAnswer1 = mysqli_query($conn, $insertAnsewr1);
     $resultAnswer2 = mysqli_query($conn, $insertAnsewr2);
 
-    $image = $_FILES["customFile"];
-    saveQuestionImage($image);
+
     header("location: layouts/newQuestion.php");
 
 } else if (isset($_POST['Done'])){
 
-    $image = $_FILES["customFile"];
-    saveQuestionImage($image);
+    // $image = $_FILES["customFile"];
+    // saveQuestionImage($image);
     header("location: layouts/homePage.php");
   } else {
-    $image = $_FILES["customFile"];
-    saveQuestionImage($image);
+    // $image = $_FILES["customFile"];
+    // saveQuestionImage($image);
     header("location: layouts/newQuestion.php");
   }
 
