@@ -17,6 +17,7 @@ create table if not exists user_token(
     id int  auto_increment primary key,
     token varchar(255) not null,
     expires datetime not null,
+    state varchar(120) not null,
     fk_id_user int,
     foreign key (fk_id_user) references user(id) on delete cascade
 )
