@@ -79,9 +79,10 @@
         
 
         if(isset($_GET['token'])){
+
             $token=hash("sha256",$_GET['token']);
 
-            echo $token."GET";
+            echo $token."GET<br>";
 
             try{
                 $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
@@ -90,13 +91,14 @@
                 exit;
             }
 
-            $query = $pdo->prepare("SELECT * as num FROM user_token where token='".$token."'");
+            $query = $pdo->prepare("SELECT * FROM user_token where token='".$token."'");
             $query->execute();
             $registre = $query->fetch();
 
-            echo $registre['token']."dataBase";
+            echo $registre['token']."dataBase<br>";
 
-            if($registre){
+
+            if($registre['token'] == $token){
                 $idUser =$registre['fk_id_user'];
                 echo '<div class="mx-auto col-8">';
                 echo '<form action="reserPassword.php" id="passForm" class="form-signin" method="post">';
