@@ -67,6 +67,14 @@
     <?php
 
         if(isset($_POST['newPassword']) && isset($_POST['idUser'])){
+
+            try{
+                $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+            } catch (PDOException $e) {
+                echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                exit;
+            }
+            
             $password =hash('sha256',$_POST['newPassword']);
             $idUser = $_POST['idUser'];
 
