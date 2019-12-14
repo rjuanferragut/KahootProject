@@ -81,7 +81,7 @@
         if(isset($_GET['token'])){
             $token=hash("sha256",$_GET['token']);
 
-            echo $token;
+            echo $token."GET";
 
             try{
                 $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
@@ -94,7 +94,7 @@
             $query->execute();
             $registre = $query->fetch();
 
-            echo $registre['token'];
+            echo $registre['token']."dataBase";
 
             if($registre){
                 $idUser =$registre['fk_id_user'];
