@@ -77,9 +77,13 @@
             
             $password =hash('sha256',$_POST['newPassword']);
             $idUser = $_POST['idUser'];
+            $token =  $_POST['token'];
 
             $updatePassword = $pdo->prepare("UPDATE user SET password='".$password."' where id=".$idUser."");
             $updatePassword->execute();
+
+            $updateToken = $pdo->prepare("UPDATE user_token SET state='used' where token=".$token."");
+            $updateToken->execute();
 
             echo "<script>correctToken();</script>";
 
@@ -89,8 +93,6 @@
         if(isset($_GET['token'])){
 
             $token=hash("sha256",$_GET['token']);
-
-            echo $token."GET<br>";
 
             try{
                 $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
@@ -103,10 +105,8 @@
             $query->execute();
             $registre = $query->fetch();
 
-            echo $registre['token']."dataBase<br>";
 
-
-            if($registre['token'] == $token){
+            if($registre['token'] == $token && $registre['state'] == "unused"){
                 $idUser =$registre['fk_id_user'];
                 echo '<div class="mx-auto col-8">';
                 echo '<form action="resetPassword.php" id="passForm" class="form-signin" method="post">';
@@ -115,6 +115,7 @@
                 echo '<div class="col-lg-9">';
                 echo '<input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>';
                 echo '<input type="hidden" name="idUser" value="'.$idUser.'">';
+                echo '<input type="hidden" name="token" value="'.$token.'">';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="form-group row">';
@@ -129,28 +130,27 @@
             }else{
                 echo "else";
                 echo '<div class="mx-auto col-8">';
-            echo '<form id="passForm" class="form-signin" method="post">';
-            echo '<fieldset disabled>';
-            echo '<div class="form-group row">';
-            echo '<label for="newPassword" class="col-lg-3 col-form-label form-control-label">New password</label>';
-            echo '<div class="col-lg-6">';
-            echo '<input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>';
-            echo '</div>';
-            echo '</div>';
-            echo '<div class="form-group row">';
-            echo '<label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>';
-            echo '<div class="col-lg-6">';
-            echo' <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>';
-            echo '</div>';
-            echo '</div>';
-            echo '</fieldset>';
-            echo '<input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" disabled/>';
-            echo '</form>';
-            echo '</div>';
-            echo "<script>wrongToken();</script>";
+                echo '<form id="passForm" class="form-signin" method="post">';
+                echo '<fieldset disabled>';
+                echo '<div class="form-group row">';
+                echo '<label for="newPassword" class="col-lg-3 col-form-label form-control-label">New password</label>';
+                echo '<div class="col-lg-6">';
+                echo '<input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>';
+                echo '</div>';
+                echo '</div>';
+                echo '<div class="form-group row">';
+                echo '<label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>';
+                echo '<div class="col-lg-6">';
+                echo' <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>';
+                echo '</div>';
+                echo '</div>';
+                echo '</fieldset>';
+                echo '<input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" disabled/>';
+                echo '</form>';
+                echo '</div>';
+                echo "<script>wrongToken();</script>";
             }
         }else{
-            echo "out";
             echo '<div class="mx-auto col-8">';
             echo '<form id="passForm" class="form-signin" method="post">';
             echo '<fieldset disabled>';
@@ -170,7 +170,6 @@
             echo '<input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" disabled/>';
             echo '</form>';
             echo '</div>';
-            echo "<script>wrongToken();</script>";
         }
 
     ?>
