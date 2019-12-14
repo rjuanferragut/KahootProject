@@ -82,7 +82,7 @@
             $updatePassword = $pdo->prepare("UPDATE user SET password='".$password."' where id=".$idUser."");
             $updatePassword->execute();
 
-            $updateToken = $pdo->prepare("UPDATE user_token SET state='used' where token=".$token."");
+            $updateToken = $pdo->prepare("UPDATE user_token SET state='used' where token='".$token."'");
             $updateToken->execute();
 
             echo "<script>correctToken();</script>";
