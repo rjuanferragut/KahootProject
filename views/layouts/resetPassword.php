@@ -81,6 +81,8 @@
         if(isset($_GET['token'])){
             $token=hash("sha256",$_GET['token']);
 
+            echo $token;
+
             try{
                 $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
             } catch (PDOException $e) {
@@ -91,6 +93,8 @@
             $query = $pdo->prepare("SELECT * as num FROM user_token where token='".$token."'");
             $query->execute();
             $registre = $query->fetch();
+
+            echo $registre['token'];
 
             if($registre){
                 $idUser =$registre['fk_id_user'];
@@ -113,6 +117,7 @@
                 echo '</form>';
                 echo '</div>';
             }else{
+                echo "else";
                 echo '<div class="mx-auto col-8">';
             echo '<form id="passForm" class="form-signin" method="post">';
             echo '<fieldset disabled>';
@@ -135,6 +140,7 @@
             echo "<script>wrongToken();</script>";
             }
         }else{
+            echo "out";
             echo '<div class="mx-auto col-8">';
             echo '<form id="passForm" class="form-signin" method="post">';
             echo '<fieldset disabled>';
