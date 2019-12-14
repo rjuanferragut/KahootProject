@@ -101,7 +101,7 @@
             if($registre['token'] == $token){
                 $idUser =$registre['fk_id_user'];
                 echo '<div class="mx-auto col-8">';
-                echo '<form action="reserPassword.php" id="passForm" class="form-signin" method="post">';
+                echo '<form action="resetPassword.php" id="passForm" class="form-signin" method="post">';
                 echo '<div class="form-group row">';
                 echo '<label class="col-lg-3 col-form-label form-control-label">New password</label>';
                 echo '<div class="col-lg-9">';
