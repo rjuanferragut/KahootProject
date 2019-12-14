@@ -83,7 +83,8 @@
 
                 if($insert){
                     echo "<script>console.log('dentro');</script>";
-                    $msg = "Accede a este link para cambiar la contrasena, solo es valido durante las proximas 2 horas.";
+                    $url = "http://mateocasas.tk/KahootProject/views/layouts/resetPassword.php?token=".$token;
+                    $msg = "Accede a este link para cambiar la contrasena, solo es valido durante las proximas 2 horas. ".$url;
                     mail($email, "Reset Password", $msg);
                 }
                 
