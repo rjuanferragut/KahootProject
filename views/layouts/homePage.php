@@ -28,7 +28,7 @@
                     <form action="editUser.php" method="Post">
                         <input type="submit" name="editProfile" value="Profile" class="btn btn-warning mr-2">
                     </form>
-                    <form action="#" method="Post">
+                    <form action="../../Login/login.php" method="Post">
                         <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
                     </form>
                 </div>

@@ -23,7 +23,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="#" class="nav-item nav-link">Sign out</a>
+                    <form action="../../Login/login.php" method="Post">
+                        <input type="submit" name="createQuiz" value="Login" class="btn btn-success">
+                    </form>
                 </div>
             </div>
         </nav>

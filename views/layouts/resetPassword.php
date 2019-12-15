@@ -128,7 +128,6 @@
                 echo '</form>';
                 echo '</div>';
             }else{
-                echo "else";
                 echo '<div class="mx-auto col-8">';
                 echo '<form id="passForm" class="form-signin" method="post">';
                 echo '<fieldset disabled>';

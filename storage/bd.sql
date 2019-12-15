@@ -9,6 +9,7 @@ create table if not exists user(
     password varchar(512) not null,
     role varchar(15) not null,
     imgDirUser varchar(512),
+    state varchar(60),
     check(role='teacher' or role='student'),
     unique(email)
 );
@@ -115,6 +116,8 @@ insert into player_answer value(6,1);
 insert into player_answer value(5,2);
 insert into player_answer value(6,3);
 
+-- ALTER TABLE user ADD state varchar(60) not null;
+-- UPDATE user SET state='active';
 
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
 GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';
