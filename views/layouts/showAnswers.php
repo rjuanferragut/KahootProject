@@ -54,20 +54,12 @@
             echo "<label class='h1 col-11 mb-0 py-5' style='text-align: center'>".$TextQuestion."</label>";
             echo "</div>";
             echo "<div>";
+
+            $UpdateRoom = $pdo->prepare("UPDATE room SET event='Answer' WHERE pin=".$pinRoom.""); 
+            $UpdateRoom->execute();
           
-            foreach ($listAnswers as $key) {
-
-                if ($key=="True") {
-
-                    echo "<div style='background-color:green; text-align:center ' class='btn btn-responsive col-5 centrado mt-4 mr-2 ml-2' >".$key."</div>";
-                    
-                }else{
-
-                    echo "<div style='background-color:red; text-align:center' class='btn btn-responsive col-5 centrado mt-4' >".$key."</div>";
-                }
-                
-          
-            }
+            
+            
 
             echo "</div>";
             
