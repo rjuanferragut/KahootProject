@@ -3,6 +3,7 @@
 if(isset($_GET['token'])){
 
     $token=hash("sha256",$_GET['token']);
+    echo $token."token<br>";
 
     try{
         $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
@@ -15,7 +16,11 @@ if(isset($_GET['token'])){
     $query->execute();
     $registre = $query->fetch();
 
+    echo $registre['token']."token DataBase<br>";
+
     if($registre['token'] == $token && $registre['state'] == "unused"){
+
+        echo "dentro if<br>";
 
         $idUser= $registre['fk_id_user'];
 
@@ -25,7 +30,7 @@ if(isset($_GET['token'])){
         $updateState = $pdo->prepare("UPDATE user SET state='active' where id=".$idUser."");
         $updateState->execute();
 
-        header("location: ../Login/index.html");
+        header("location: ../Login/login.php");
 
     }
 }

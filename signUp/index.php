@@ -177,7 +177,7 @@
                 echo "<script>console.log('dentro');</script>";
                 $url = "http://mateocasas.tk/KahootProject/views/activateAccount.php?token=".$token;
                 $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
-                mail($email, "Activates account", $msg);
+                mail($email, "Activated account", $msg);
 
                 echo "<script>console.log('fuera');</script>";
                 echo "<script>correctUser();</script>";

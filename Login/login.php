@@ -55,7 +55,7 @@
 	<div class="limiter">
 		<div class="mx-auto pt-3" id="alert" style="background-color: #e9faff">
 			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0" id="textAlertWrong" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>Email/password incorrect.</div>
-			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0"  id="textAlertAccount" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>The account is disabled, pleas check your email to activated.</div>
+			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0"  id="textAlertAccount" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>The account is disabled, please check your email to activated.</div>
 		</div>
 		<div class="container-login100">
 				
