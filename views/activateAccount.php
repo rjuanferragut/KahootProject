@@ -1,8 +1,9 @@
 <?php
 
     if(isset($_GET['token'])){
-
-        $token=hash("sha256",$_GET['token']);
+        $normalToken=$_GET['token'];
+        echo $normalToken."Normal token <br>";
+        $token=hash("sha256", $normalToken);
         echo $token."token<br>";
 
         try{
