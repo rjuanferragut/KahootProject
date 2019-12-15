@@ -1,38 +1,45 @@
 <?php
 
-if(isset($_GET['token'])){
+    if(isset($_GET['token'])){
 
-    $token=hash("sha256",$_GET['token']);
-    echo $token."token<br>";
+        $token=hash("sha256",$_GET['token']);
+        echo $token."token<br>";
 
-    try{
-        $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
-    } catch (PDOException $e) {
-        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        exit;
-    }
+        try{
+            $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            exit;
+        }
 
-    $query = $pdo->prepare("SELECT * FROM user_token where token='".$token."'");
-    $query->execute();
-    $registre = $query->fetch();
+        $query = $pdo->prepare("SELECT * FROM user_token where token='".$token."'");
+        $query->execute();
+        $registre = $query->fetch();
 
-    echo $registre['token']."token DataBase<br>";
+        print_r($registre);
 
-    if($registre['token'] == $token && $registre['state'] == "unused"){
+        echo $registre['token']."token DataBase<br>";
+        echo $registre['expires'];
 
-        echo "dentro if<br>";
+        if($registre['token'] == $token && $registre['state'] == "unused"){
 
-        $idUser= $registre['fk_id_user'];
+            echo "dentro if<br>";
 
-        $updateToken = $pdo->prepare("UPDATE user_token SET state='used' where token='".$token."'");
-        $updateToken->execute();
+            $idUser= $registre['fk_id_user'];
 
-        $updateState = $pdo->prepare("UPDATE user SET state='active' where id=".$idUser."");
-        $updateState->execute();
+            $updateToken = $pdo->prepare("UPDATE user_token SET state='used' where token='".$token."'");
+            $updateToken->execute();
+
+            $updateState = $pdo->prepare("UPDATE user SET state='active' where id=".$idUser."");
+            $updateState->execute();
+
+            header("location: ../Login/login.php");
+
+        }
+
+    }else{
 
         header("location: ../Login/login.php");
-
     }
-}
 
 ?>
