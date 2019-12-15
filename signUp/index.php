@@ -164,8 +164,8 @@
             echo "<script>wrongEmail();</script>";
         }else{
             $idUser= randomID();
-            $inserUser = $pdo->prepare("insert into user (id, email, name, password, role, state) value(".$idUser.",'".$email."', '".$name."', '".$password1."', '".$role."', 'disable')");
-            $inserUser->execute();
+            $insertUser = $pdo->prepare("insert into user (id, email, name, password, role, state) value(".$idUser.",'".$email."', '".$name."', '".$password1."', '".$role."', 'disable')");
+            $insertUser->execute();
 
             if($insertUser){
                 $token = bin2hex(random_bytes(25));
@@ -179,9 +179,11 @@
                 $url = "http://mateocasas.tk/KahootProject/views/activateAccount.php?token=".$token;
                 $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
                 mail($email, "Activates account", $msg);
+
+                echo "<script>console.log('fuera');</script>";
+                echo "<script>correctUser();</script>";
+
             }
-            echo "<script>console.log('fuera');</script>";
-            echo "<script>correctUser();</script>";
 
             // header("location: ../Login/index.html");
         }
