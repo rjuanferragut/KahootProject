@@ -167,7 +167,7 @@
             $inserUser = $pdo->prepare("insert into user (id, email, name, password, role, state) value(".$idUser.",'".$email."', '".$name."', '".$password1."', '".$role."', 'disable')");
             $inserUser->execute();
 
-            if($insert){
+            if($insertUser){
                 $token = bin2hex(random_bytes(25));
                 $encryptToken = hash("sha256", $token);
                 $idUser = $registre['id'];
