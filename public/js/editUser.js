@@ -20,3 +20,16 @@ function checkNewPassword(){
     }
     
 }
+
+function wrongEmail(){
+    var alertElement = document.getElementById('textAlertWrong');
+    alertElement.innerHTML = "Invalid Email address";
+    alertElement.style.display = "block";
+}
+
+function emailSend(){
+    var alertElement = document.getElementById('textAlertGood');
+    alertElement.innerHTML = "Email send successfully";
+    alertElement.style.display = "block";
+}
+
