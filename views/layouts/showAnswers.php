@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Question</title>
-    <script src="../../public/js/nextQuestion.js"></script>
+    
 </head>
 <body>
     <div>
@@ -44,9 +44,25 @@
 
         
 
-        if(isset($_SESSION['roomPin']) && isset($_SESSION['idQuiz'])){
+        if(isset($_SESSION['roomPin']) && isset($_SESSION['idQuiz']) && isset($_SESSION['listAnswers']) && isset($_SESSION['TextQuestion'])){
             $pinRoom = $_SESSION['roomPin'];
             $idQuiz = $_SESSION['idQuiz'];
+
+            $listAnswers = $_SESSION['listAnswers'];
+            $TextQuestion = $_SESSION['TextQuestion'];
+            echo "<div style= ' background-color: lightblue;'>";
+            echo "<label class='h1 col-11 mb-0 py-5' style='text-align: center'>".$TextQuestion."</label>";
+            echo "</div>";
+            echo "<div>";
+
+            $UpdateRoom = $pdo->prepare("UPDATE room SET event='Answer' WHERE pin=".$pinRoom.""); 
+            $UpdateRoom->execute();
+          
+            
+            
+
+            echo "</div>";
+            
 
             if(isset($_SESSION['numQuestion'])){
                 $numQuestion = $_SESSION['numQuestion'];
@@ -54,56 +70,50 @@
                 $_SESSION['numQuestion'] = 1;
             }
 
+         
         }
-
-        $UpdateRoom = $pdo->prepare("UPDATE room SET event='Question' WHERE pin=".$pinRoom.""); 
-        $UpdateRoom->execute();
 
         $queryNumQuestions = $pdo->prepare("SELECT count(*) as numQuestions FROM question WHERE fk_id_quiz=".$idQuiz."");
         $queryNumQuestions->execute();
         $registreNumQuestions = $queryNumQuestions->fetch();
 
-       
+
         if($_SESSION['numQuestion']>$registreNumQuestions['numQuestions']){
             $_SESSION['numQuestion'] = 1;
         }
 
         
-        $query = $pdo->prepare("SELECT * FROM question WHERE fk_id_quiz=".$idQuiz."");
-        $query->execute();
-        $registre = $query->fetch();
-        $contador = 1;
-        $listAnswers = [];
-        while($registre){
-            if($contador == $_SESSION['numQuestion']){
-                $idQuestion = $registre['id'];
-                echo "<div style= ' background-color: lightblue;'>";
-                echo "<label class='h1 col-11 mb-0 py-5' style='text-align: center'>".$registre['text_question']."</label>";
-                echo "<span id='countdown' style=' border: solid black' class='col-1 p-3 rounded-circle'></span>";
-                echo "</div>";
-                $_SESSION['TextQuestion'] = $registre['text_question'];
-                //$_SESSION['numQuestion'] = $_SESSION['numQuestion'] + 1;
-                $queryAnswer = $pdo->prepare("SELECT * FROM answer WHERE fk_id_question=".$idQuestion."");
-                $queryAnswer->execute();
-                $registreAnswer = $queryAnswer->fetch();
-                while($registreAnswer){
-                    array_push($listAnswers, $registreAnswer['text_answer']);
-                    $_SESSION['listAnswers'] = $listAnswers;
-                   echo "<span class= 'showQuestion' style='display: none'>".$registreAnswer['text_answer']."</span>";
-                   $registreAnswer = $queryAnswer->fetch();
-                }
-                echo "<script>onload=updateClock()</script>";
+
+        
+        // $query = $pdo->prepare("SELECT * FROM question WHERE fk_id_quiz=".$idQuiz."");
+        // $query->execute();
+        // $registre = $query->fetch();
+        // $contador = 1;
+        // while($registre){
+        //     if($contador == $_SESSION['numQuestion']){
+        //         $idQuestion = $registre['id'];
+        //         echo $registre['text_question']."<br>";
+        //         $_SESSION['numQuestion'] = $_SESSION['numQuestion'] + 1;
+        //         $queryAnswer = $pdo->prepare("SELECT * FROM answer WHERE fk_id_question=".$idQuestion."");
+        //         $queryAnswer->execute();
+        //         $registreAnswer = $queryAnswer->fetch();
+        //         while($registreAnswer){
+        //            echo "<span class= 'showQuestion'>".$registreAnswer['text_answer']."</span><br>";
+        //            $registreAnswer = $queryAnswer->fetch();
+        //         }
+        //         //echo "<span id='countdown'></span>";
+        //         //echo "<script>onload=updateClock()</script>";
 
                 
 
-            break;
-            }else{
-                $contador = $contador +1;
-            }
-            // echo $registre['text_question']."<br>";
+        //     break;
+        //     }else{
+        //         $contador = $contador +1;
+        //     }
+        //     // echo $registre['text_question']."<br>";
             
-            $registre = $query->fetch();
-        }
+        //     $registre = $query->fetch();
+        // }
 
 
     ?>
