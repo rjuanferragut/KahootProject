@@ -11,7 +11,7 @@ create table if not exists user(
     imgDirUser varchar(512),
     check(role='teacher' or role='student'),
     unique(email),
-    imgDirUser varchar(300)
+    state varchar(15)
 );
 
 create table if not exists quiz(
@@ -32,13 +32,8 @@ create table if not exists question(
     time int default 30,
     points int not null,
     fk_id_quiz int,
-<<<<<<< HEAD
-    foreign key (fk_id_quiz) references quiz(id) on delete cascade,
-    imgDir varchar(300)
-=======
     imgDir varchar(512),
     foreign key (fk_id_quiz) references quiz(id) on delete cascade
->>>>>>> 0f71da932e5d267977c981f6209ecb4721ee3d05
 );
 
 create table if not exists answer(

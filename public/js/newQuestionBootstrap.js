@@ -29,7 +29,8 @@ function createElementDOM(tagElement, text, parentNode, attributes) {
 function createImgUploader(){
     var form = document.getElementById('formJs');
     //creating image uploader
-    createElementDOM('input', "", form, ["type=file","value=Search", "id=customFile", "accept=image/*"]);
+
+    createElementDOM('input', "", form, ["type=file","value=Search", "accept=image/*", "name=customFile"]);
 }
 
 function createTrueFalseForm(){
@@ -74,7 +75,7 @@ function removeButtonsMultipleChoice(){
 function createForm(){
     var div = document.getElementById('Questions');
     // createElementDOM('a', "NEW QUESTION:", div, ["id=a"]);
-    createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "id=formJs", "enctype=multipart/form-data"]);
+    createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "name=formJs", "enctype=multipart/form-data", "id=formJs"]);
 }
 
 function createInputNameQuestion(){
