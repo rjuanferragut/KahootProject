@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php
     include '../../controllers/random_id_pin.php';
-    $image = $_FILES['inputGroupFile02'];
-    saveQuestionImage($image, $rute);
-    $rute = "../../public/img/imatges_perfil/";
+    if(isset($_FILES['inputGroupFile02'])){
+      $image = $_FILES['inputGroupFile02'];
+      $rute = "../../public/img/imatges_perfil/";
+      saveQuestionImage($image, $rute);
+    }
      ?>
     <script>
     function checkNewPassword(){
@@ -137,12 +139,20 @@
                 <h6 class="my-4">Upload a new photo</h6>
                 <div class="input-group px-lg-4">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile02">
-                        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                      <!-- createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "name=formJs", "enctype=multipart/form-data", "id=formJs"]);
+                      createElementDOM('input', "", div, ["type=file","value=Search", "accept=image/*", "name=customFile"]); -->
+                      <form method="post" action="" name="formImgUpdate" enctype="multipart/form-data" id="formImgUpdate">
+                        <input type="file"id="inputGroupFile02" name="inputGroupFile02">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary"><i class="fa fa-upload"></i></button>
+                        </div>
+                      <form>
+                        <!-- <input type="file" class="custom-file-input" id="inputGroupFile02">
+                        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label> -->
                     </div>
-                    <div class="input-group-append">
+                    <!-- <div class="input-group-append">
                         <button class="btn btn-secondary"><i class="fa fa-upload"></i></button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
