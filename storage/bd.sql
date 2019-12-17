@@ -9,10 +9,20 @@ create table if not exists user(
     password varchar(512) not null,
     role varchar(15) not null,
     imgDirUser varchar(512),
+    state varchar(60),
     check(role='teacher' or role='student'),
     unique(email),
     state varchar(15)
 );
+
+create table if not exists user_token(
+    id int  auto_increment primary key,
+    token varchar(255) not null,
+    expires datetime not null,
+    state varchar(120) not null,
+    fk_id_user int,
+    foreign key (fk_id_user) references user(id) on delete cascade
+)
 
 create table if not exists quiz(
     id int auto_increment primary key,
@@ -107,6 +117,8 @@ insert into player_answer value(6,1);
 insert into player_answer value(5,2);
 insert into player_answer value(6,3);
 
+-- ALTER TABLE user ADD state varchar(60) not null;
+-- UPDATE user SET state='active';
 
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
 GRANT ALL PRIVILEGES ON kahoot.* TO 'admin'@'localhost';

@@ -41,7 +41,7 @@ if (isset($_POST['AddQuestion'])) {
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-    $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multiChoice',".$points.",".$idQuiz.")";
+    $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz,imgDir) value(".$idQuestion.",'".$textQuestion."','multichoice',".$points.",".$idQuiz.",'".$_FILES['customFile']['name']."')";
     $resultPrgunta = mysqli_query($conn, $insertPregunta);
     for($i = 0; $i < sizeof($textAnswers); $i++){
       $textQ = $textAnswers[$i];
@@ -84,7 +84,7 @@ if(isset($_POST['text_question']) && isset($_POST['correct?']) && isset($_POST['
   }
 
 
-  $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+  $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz, imgDir) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.",'".$_FILES['customFile']['name']."')";
   $resultPrgunta = mysqli_query($conn, $insertPregunta);
   $idAnswer1= randomID();
   $idAnswer2= randomID();

@@ -17,13 +17,15 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">KAHOOT</a>
+            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="#" class="nav-item nav-link">Sign out</a>
+                    <form action="../../Login/login.php" method="Post">
+                        <input type="submit" name="createQuiz" value="Login" class="btn btn-success">
+                    </form>
                 </div>
             </div>
         </nav>
@@ -57,10 +59,10 @@
                     $idQuestion = $registreNameQuestions['id'];
                     $textQuestion = $registreNameQuestions['text_question'];
                     echo '<form action="#" method="POST">';
-                    echo '<div style="border: solid grey 1px">';
+                    echo '<div>';
                     echo '<label class="col-8 h3 mb-0" style="text-align:center">'.$textQuestion.'</label>';
                     echo '<input type="hidden" name="idQuestion" value="'.$idQuestion.'">';
-                    echo '<input type="submit" name="delete" value="X" class="btn btn-danger rounded col-1 btn-sm mb-1">';
+                    // echo '<input type="submit" name="delete" value="X" class="btn btn-danger rounded col-1 btn-sm mb-1">';
                     echo '</div>';
                     // <div class="input-group mb-3">
                     //     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">

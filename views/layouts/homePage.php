@@ -15,7 +15,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">KAHOOT</a>
+            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,11 +24,13 @@
                 <div class="navbar-nav ml-auto">
                     <form action="../homePage.php" method="Post">
                         <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success mr-2">
+
                     </form>
                     <form action="editUser.php" method="Post">
                         <input type="submit" name="editProfile" value="Profile" class="btn btn-warning mr-2">
+
                     </form>
-                    <form action="#" method="Post">
+                    <form action="../../Login/login.php" method="Post">
                         <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
                     </form>
                 </div>

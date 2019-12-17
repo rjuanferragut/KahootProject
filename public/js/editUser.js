@@ -11,7 +11,7 @@ function checkNewPassword(){
             // var classNewPassword = newPassword.getAttribute("class")+" is-invalid";
             // newPassword.removeAttribute('class');
             // newPassword.setAttribute("class", classNewPassword);
-            alertElement.innerHTML = "Las contraseñas no coinciden";
+            alertElement.innerHTML = "Passwords doesn't match";
             alertElement.style.display = "block";
         }else{
             // form.submit();
@@ -20,3 +20,16 @@ function checkNewPassword(){
     }
     
 }
+
+function wrongEmail(){
+    var alertElement = document.getElementById('textAlertWrong');
+    alertElement.innerHTML = "Invalid Email address";
+    alertElement.style.display = "block";
+}
+
+function emailSend(){
+    var alertElement = document.getElementById('textAlertGood');
+    alertElement.innerHTML = "Email send successfully";
+    alertElement.style.display = "block";
+}
+

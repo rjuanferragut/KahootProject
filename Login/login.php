@@ -20,12 +20,23 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script>
+		function wrongEmailPassword(){
+            var alertElement = document.getElementById('textAlertWrong');
+            alertElement.style.display = "";
+        }
+        function accountDisable(){
+            var alertElement = document.getElementById('textAlertAccount');
+            alertElement.style.display = "";
+        }
+	</script>
 
 </head>
 <body>
+<?php ob_start();  session_start();?>
 	<div>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<a href="#" class="navbar-brand">KAHOOT</a>
+			<a href="index.html" class="navbar-brand">KAHOOT</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -40,56 +51,109 @@
 				</div>
 			</div>
 		</nav>
-	</div>
-	
+	</div>	
 	<div class="limiter">
+		<div class="mx-auto pt-3" id="alert" style="background-color: #e9faff">
+			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0" id="textAlertWrong" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>Email/password incorrect.</div>
+			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0"  id="textAlertAccount" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>The account is disabled, please check your email to activated.</div>
+		</div>
 		<div class="container-login100">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" action="../views/login.php" method="post">
-					<span class="login100-form-title p-b-33">
-						Account Login
-					</span>
-
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-
-					<div class="container-login100-form-btn m-t-20">
-						<input type="submit" value="login" class="login100-form-btn">
-					</div>
-
-					<!-- <div class="text-center p-t-45 p-b-4">
-						<span class="txt1">
-							Forgot
+				
+				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50 ">
+					<form class="login100-form validate-form" action="login.php" method="post">
+						<span class="login100-form-title p-b-33">
+							Account Login
 						</span>
 
-						<a href="#" class="txt2 hov1">
-							Username / Password?
-						</a>
-					</div> -->
+						<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+							<input class="input100" type="text" name="email" placeholder="Email">
+							<span class="focus-input100-1"></span>
+							<span class="focus-input100-2"></span>
+						</div>
 
-					<div class="text-center mt-3">
-						<span class="txt1">
-							Create an account?
-						</span>
+						<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+							<input class="input100" type="password" name="password" placeholder="Password">
+							<span class="focus-input100-1"></span>
+							<span class="focus-input100-2"></span>
+						</div>
 
-						<a href="../signUp/index.html" class="txt2 hov1">
-							Sign up
-						</a>
-					</div>
-				</form>
-			</div>
+						<div class="container-login100-form-btn m-t-20">
+							<input type="submit" value="login" class="login100-form-btn">
+						</div>
+
+						<div class="text-center p-t-45 p-b-4">
+							<span class="txt1">
+								Forgot
+							</span>
+
+							<a href="../views/layouts/forgotPassword.php" class="txt2 hov1">
+								Password?
+							</a>
+						</div>
+
+						<div class="text-center">
+							<span class="txt1">
+								Create an account?
+							</span>
+
+							<a href="../signUp/index.php" class="txt2 hov1">
+								Sign up
+							</a>
+						</div>
+					</form>
+				</div>
 		</div>
 	</div>
-	
+<?php
+		// Connection info. file
+
+		include '../controllers/conn.php';
+
+		// Connection variables
+		$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+		// Check connection
+		if (!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		// data sent from form login.html
+		// password encryted in sha256
+
+		if(isset($_POST['logOut'])){
+			session_destroy();
+		}
+
+		if(isset($_POST['email']) && isset($_POST['password'])){
+
+			$email = $_POST['email'];
+			$password = hash('sha256',$_POST['password']);
+
+			// Query sent to database
+			$consulta ="SELECT * FROM user WHERE email = '$email'";
+			$result = mysqli_query($conn, $consulta);
+
+			// Variable $row hold the result of the query
+			$row = mysqli_fetch_assoc($result);
+
+			// Variable $hash hold the password hash on database
+			$hash = $row['password'];
+
+			if ($password ==$hash && $row['state'] == "active") {
+
+				$_SESSION['loggedin'] = true;
+				$_SESSION['name'] = $row['name'];
+				$_SESSION['idUser'] = $row['id'];
+				
+				header("location: ../views/layouts/homePage.php");
+
+			}elseif($password ==$hash && $row['state'] == "disable"){
+				echo "<script>accountDisable();</script>";
+			}else{
+				echo "<script>wrongEmailPassword();</script>";
+			}
+		}
+?>
 
 	
 <!--===============================================================================================-->
