@@ -2,10 +2,8 @@ function main(){
     var selectTypeQuestion = document.getElementById('typeQuestion').value;
     if(selectTypeQuestion == "true/false"){
         createTrueFalseForm();
-        createImgUploader();
     }else if(selectTypeQuestion == "multipleChoice"){
         createMultipleChoiceForm();
-        createImgUploader();
     }
 
 }
@@ -28,15 +26,17 @@ function createElementDOM(tagElement, text, parentNode, attributes) {
 }
 function createImgUploader(){
     var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['class=form-group mt-3 ', 'id=divImgUpload']);
+    var div = document.getElementById('divImgUpload');
     //creating image uploader
-
-    createElementDOM('input', "", form, ["type=file","value=Search", "accept=image/*", "name=customFile"]);
+    createElementDOM('input', "", div, ["type=file","value=Search", "accept=image/*", "name=customFile"]);
 }
 
 function createTrueFalseForm(){
     deleteForm();
     createForm();
     createInputNameQuestion();
+    createImgUploader();
     createInputsTrueFalse();
     createSelectTime();
     createSelectPoints();
@@ -47,6 +47,7 @@ function createMultipleChoiceForm(){
     deleteForm();
     createForm();
     createInputNameQuestion();
+    createImgUploader();
     createSelectTime();
     createSelectPoints();
     createInputsAnswerMultipleChoice();
@@ -88,7 +89,7 @@ function createInputNameQuestion(){
 
 function createInputsTrueFalse(){
     var form = document.getElementById('formJs');
-    createElementDOM('div', "", form, ['class=custom-control custom-radio custom-control-inline', 'id=divCheckboxTrue']);
+    createElementDOM('div', "", form, ['class=custom-control custom-radio custom-control-inline mb-3', 'id=divCheckboxTrue']);
     var div = document.getElementById('divCheckboxTrue');
     createElementDOM('input', "", div, ['type=radio', 'name=correct?', 'id=radioButtonTrue', 'value=true', 'class=custom-control-input']);
     createElementDOM('label', "TRUE", div, ['class=custom-control-label', 'for=radioButtonTrue']);

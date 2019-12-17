@@ -108,6 +108,4 @@ if(isset($_POST['text_question']) && isset($_POST['correct?']) && isset($_POST['
   header("location: layouts/newQuestion.php");
 }
 
-print_r($_SESSION);
-print_r($_FILES);
 ?>
