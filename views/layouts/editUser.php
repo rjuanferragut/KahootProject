@@ -10,6 +10,8 @@
       $image = $_FILES['inputGroupFile02'];
       $rute = "../../public/img/imatges_perfil/";
       saveQuestionImage($image, $rute);
+      // $insertPregunta = "UPDATE user SET imgDir=".$_FILES['inputGroupFile02']['name']."";
+      // $resultPrgunta = mysqli_query($conn, $insertPregunta);
     }
      ?>
     <script>
@@ -66,6 +68,15 @@
     $email = $registre['email'];
     $nameUser = $registre['name'];
     // $imgUser = $registre['imgDirUser'];
+    if(isset($_FILES['inputGroupFile02'])){
+      $image = $_FILES['inputGroupFile02'];
+      $rute = "../../public/img/imatges_perfil/";
+      saveQuestionImage($image, $rute);
+      $query = $pdo->prepare("UPDATE user SET imgDirUser="."'".$_FILES['inputGroupFile02']['name']."'"." WHERE email='".$email."'");
+      $query->execute();
+      $registre = $query->fetch();
+      $img = $registre['imgDirUser'];
+    }
     ?>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -139,8 +150,6 @@
                 <h6 class="my-4">Upload a new photo</h6>
                 <div class="input-group px-lg-4">
                     <div class="custom-file">
-                      <!-- createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "name=formJs", "enctype=multipart/form-data", "id=formJs"]);
-                      createElementDOM('input', "", div, ["type=file","value=Search", "accept=image/*", "name=customFile"]); -->
                       <form method="post" action="" name="formImgUpdate" enctype="multipart/form-data" id="formImgUpdate">
                         <input type="file"id="inputGroupFile02" name="inputGroupFile02">
                         <div class="input-group-append">
