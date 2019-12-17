@@ -146,13 +146,9 @@
                         <div class="input-group-append">
                             <button class="btn btn-secondary"><i class="fa fa-upload"></i></button>
                         </div>
-                      <form>
-                        <!-- <input type="file" class="custom-file-input" id="inputGroupFile02">
-                        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label> -->
+                      </form>
                     </div>
-                    <!-- <div class="input-group-append">
-                        <button class="btn btn-secondary"><i class="fa fa-upload"></i></button>
-                    </div> -->
+
                 </div>
             </div>
         </div>
