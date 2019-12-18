@@ -13,10 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">	
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">	
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -47,18 +47,18 @@
 					</form>
 					<form action="../signUp/index.html" method="Post">
 						<input type="submit" name="pinPlayer" value="Sign up" class="btn btn-success">
-					</form>	
+					</form>
 				</div>
 			</div>
 		</nav>
-	</div>	
+	</div>
 	<div class="limiter">
 		<div class="mx-auto pt-3" id="alert" style="background-color: #e9faff">
 			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0" id="textAlertWrong" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>Email/password incorrect.</div>
 			<div class="alert alert-danger alert-dismissable col-lg-8 mx-auto mb-0"  id="textAlertAccount" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a>The account is disabled, please check your email to activated.</div>
 		</div>
 		<div class="container-login100">
-				
+
 				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50 ">
 					<form class="login100-form validate-form" action="login.php" method="post">
 						<span class="login100-form-title p-b-33">
@@ -144,7 +144,7 @@
 				$_SESSION['loggedin'] = true;
 				$_SESSION['name'] = $row['name'];
 				$_SESSION['idUser'] = $row['id'];
-				
+
 				header("location: ../views/layouts/homePage.php");
 
 			}elseif($password ==$hash && $row['state'] == "disable"){
@@ -155,7 +155,7 @@
 		}
 ?>
 
-	
+
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
