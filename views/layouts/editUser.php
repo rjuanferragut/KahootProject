@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <?php
-    include '../../controllers/random_id_pin.php';
+  include '../../controllers/random_id_pin.php';
   ?>
   <script>
   function checkNewPassword(){
@@ -13,7 +13,6 @@
     var confirmNewPassword = document.getElementById('confirmNewPassword').value;
     var alertElement = document.getElementById('textAlert');
     var form = document.getElementById('formEditUser');
-
     if(newPassword != null && confirmNewPassword != null){
 
       if(newPassword != confirmNewPassword){
@@ -60,7 +59,7 @@
   $email = $registre['email'];
   $nameUser = $registre['name'];
   $imgUser = $registre['imgDirUser'];
-
+  //$imgPasswd = $registre['password'];
   if(isset($_FILES['inputGroupFile02'])){
     $image = $_FILES['inputGroupFile02'];
     $rute = "../../public/img/imatges_perfil/";
@@ -72,7 +71,6 @@
     $registre = $query->fetch();
     $imgUser = $registre['imgDirUser'];
   }
-
   ?>
   <div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -115,57 +113,57 @@
               </div>
             </div>
           </fieldset>
-          <!-- <div class="form-group row">
-          <label class="col-lg-3 col-form-label form-control-label">Current password</label>
+          <div class="form-group row" data-validate="Password is required">
+            <label class="wrap-input100 rs1 validate-input col-lg-3 col-form-label form-control-label">Current password</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="password" value="" id="currentPassword"/>
+            </div>
+          </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">New password</label>
           <div class="col-lg-9">
-          <input class="form-control" type="password" value="" id="currentPassword"/>
+            <input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>
+          </div>
         </div>
-      </div> -->
-      <div class="form-group row">
-        <label class="col-lg-3 col-form-label form-control-label">New password</label>
-        <div class="col-lg-9">
-          <input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>
+          <div class="col-lg-9">
+            <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>
-        <div class="col-lg-9">
-          <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>
+        <div class="form-group row">
+          <div class="col-lg-9 ml-auto text-right">
+            <input type="reset" class="btn btn-outline-secondary" value="Cancel" />
+            <input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" />
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-lg-9 ml-auto text-right">
-          <input type="reset" class="btn btn-outline-secondary" value="Cancel" />
-          <input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" />
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="col-lg-4 order-lg-0 text-center">
-    <?php
-    if ($imgUser!=null){
-      echo '<img src="../../public/img/imatges_perfil/'.$imgUser.'" class="mx-auto img-fluid rounded-circle" alt="avatar" />';
-    }else{
-      echo '<img src="//api.adorable.io/avatars/120/trickst3r.png" class="mx-auto img-fluid rounded-circle" alt="avatar" />';
-    }
+      </form>
+    </div>
+    <div class="col-lg-4 order-lg-0 text-center">
+      <?php
+      if ($imgUser!=null){
+        echo '<img src="../../public/img/imatges_perfil/'.$imgUser.'" class="mx-auto img-fluid rounded-circle" alt="avatar" />';
+      }else{
+        echo '<img src="//api.adorable.io/avatars/120/trickst3r.png" class="mx-auto img-fluid rounded-circle" alt="avatar" />';
+      }
 
-    ?>
+      ?>
 
-    <!-- <img src="//api.adorable.io/avatars/120/trickst3r.png" class="mx-auto img-fluid rounded-circle" alt="avatar" /> -->
-    <h6 class="my-4">Upload a new photo</h6>
-    <div class="input-group px-lg-4">
-      <div class="custom-file">
-        <form method="post" action="" name="formImgUpdate" enctype="multipart/form-data" id="formImgUpdate">
-          <input type="file"id="inputGroupFile02" name="inputGroupFile02">
-          <!-- <div class="input-group-append"> -->
+      <!-- <img src="//api.adorable.io/avatars/120/trickst3r.png" class="mx-auto img-fluid rounded-circle" alt="avatar" /> -->
+      <h6 class="my-4">Upload a new photo</h6>
+      <div class="input-group px-lg-4">
+        <div class="custom-file">
+          <form method="post" action="" name="formImgUpdate" enctype="multipart/form-data" id="formImgUpdate">
+            <input type="file"id="inputGroupFile02" name="inputGroupFile02">
+            <!-- <div class="input-group-append"> -->
             <button type="submit" class="btn btn-secondary"><i class="fa fa-upload"></i></button>
-          <!-- </div> -->
-        </form>
-      </div>
+            <!-- </div> -->
+          </form>
+        </div>
 
+      </div>
     </div>
   </div>
-</div>
 </div>
 </body>
 </html>
