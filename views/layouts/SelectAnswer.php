@@ -14,9 +14,11 @@
 
 </head>
 <body>
-<div class="header">
-	<a>Kahoot</a>
-</div>
+ <div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    	<a href="#" class="navbar-brand">KAHOOT</a>
+    </nav>
+ </div>
 <?php
 
         session_start();

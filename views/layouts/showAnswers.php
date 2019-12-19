@@ -15,7 +15,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
+            <a href="#" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -78,43 +78,7 @@
         $registreNumQuestions = $queryNumQuestions->fetch();
 
 
-        if($_SESSION['numQuestion']>$registreNumQuestions['numQuestions']){
-            $_SESSION['numQuestion'] = 1;
-        }
-
-        
-
-        
-        // $query = $pdo->prepare("SELECT * FROM question WHERE fk_id_quiz=".$idQuiz."");
-        // $query->execute();
-        // $registre = $query->fetch();
-        // $contador = 1;
-        // while($registre){
-        //     if($contador == $_SESSION['numQuestion']){
-        //         $idQuestion = $registre['id'];
-        //         echo $registre['text_question']."<br>";
-        //         $_SESSION['numQuestion'] = $_SESSION['numQuestion'] + 1;
-        //         $queryAnswer = $pdo->prepare("SELECT * FROM answer WHERE fk_id_question=".$idQuestion."");
-        //         $queryAnswer->execute();
-        //         $registreAnswer = $queryAnswer->fetch();
-        //         while($registreAnswer){
-        //            echo "<span class= 'showQuestion'>".$registreAnswer['text_answer']."</span><br>";
-        //            $registreAnswer = $queryAnswer->fetch();
-        //         }
-        //         //echo "<span id='countdown'></span>";
-        //         //echo "<script>onload=updateClock()</script>";
-
-                
-
-        //     break;
-        //     }else{
-        //         $contador = $contador +1;
-        //     }
-        //     // echo $registre['text_question']."<br>";
-            
-        //     $registre = $query->fetch();
-        // }
-
+      
 
     ?>
 </body>
