@@ -50,7 +50,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">KAHOOT</a>
+            <a href="../Login/login.php" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,10 +58,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <form action="../views/layouts/PINPlayer.html" method="Post">
-                        <input type="submit" name="pinPlayer" value="Enter game PIN" class="btn btn-danger">
+                        <input type="submit" name="pinPlayer" value="Enter game PIN" class="btn btn-danger ">
                     </form>
                     <form action="../Login/login.php" method="Post">
-                        <input type="submit" name="createQuiz" value="Login" class="btn btn-success">
+                        <input type="submit" name="createQuiz" value="Login" class="btn btn-success ml-2">
                     </form>
                 </div>
             </div>

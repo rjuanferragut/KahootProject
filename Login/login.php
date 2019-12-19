@@ -45,7 +45,7 @@
 					<form action="../views/layouts/PINPlayer.html" method="Post">
 						<input type="submit" name="pinPlayer" value="Enter game PIN" class="btn btn-danger mr-2">
 					</form>
-					<form action="../signUp/index.html" method="Post">
+					<form action="../signUp/index.php" method="Post">
 						<input type="submit" name="pinPlayer" value="Sign up" class="btn btn-success">
 					</form>
 				</div>
