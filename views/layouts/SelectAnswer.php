@@ -16,7 +16,7 @@
 <body>
  <div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    	<a href="#" class="navbar-brand">KAHOOT</a>
+    	<a href="PINPlayer.html" class="navbar-brand">KAHOOT</a>
     </nav>
  </div>
 <?php

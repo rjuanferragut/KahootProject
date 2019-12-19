@@ -7,9 +7,12 @@
 	<link rel="stylesheet" href="../../public/css/playersWaiting.css">
 </head>
 <body>
-<div class="header">
-		<a>Kahoot</a>
-	</div>
+
+ <div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a href="PINPlayer.html" class="navbar-brand">KAHOOT</a>
+    </nav>
+ </div>
 	<div class="padre">
 		<h1>Question</h1>
 		<h3>Read the question in the other screen!</h3>
