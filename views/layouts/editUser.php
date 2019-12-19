@@ -102,7 +102,7 @@
           <div class="form-group row">
             <label class="col-lg-3 col-form-label form-control-label">Name</label>
             <div class="col-lg-9">
-              <input class="form-control" type="text" name="name" value="<?php echo $registre['name'];?>" />
+              <input class="form-control" type="text" name="name"  required="" value="<?php echo $registre['name'];?>" />
             </div>
           </div>
           <fieldset disabled>
@@ -116,7 +116,7 @@
           <div class="form-group row" data-validate="Password is required">
             <label class="wrap-input100 rs1 validate-input col-lg-3 col-form-label form-control-label">Current password</label>
             <div class="col-lg-9">
-              <input class="form-control" type="password" value="" id="currentPassword"/>
+              <input class="form-control" type="password" value="" id="currentPassword" name="currentPassword" required=""/>
             </div>
           </div>
         <div class="form-group row">
