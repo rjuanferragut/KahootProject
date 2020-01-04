@@ -81,10 +81,10 @@
                 <form method="POST" class="signup-form" id="signUpForm" action="index.php">
                     <h2 class="form-title">What type of user are you ?</h2>
                     <div class="form-radio">
-                        <input type="radio" name="role" value="student" id="newbie" checked="checked" />
-                        <label for="newbie">Student</label>
-                        <input type="radio" name="role" value="teacher" id="average" />
-                        <label for="average">Teacher</label>
+                        <input type="radio" name="role" value="premium" id="newbie" checked="checked" />
+                        <label for="newbie">Premium</label>
+                        <input type="radio" name="role" value="normal" id="average" />
+                        <label for="average">Normal</label>
                     </div>
                     <div class="form-textbox">
                         <label for="name">Name</label>

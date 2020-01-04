@@ -10,7 +10,7 @@ create table if not exists user(
     role varchar(15) not null,
     imgDirUser varchar(512),
     state varchar(60),
-    check(role='teacher' or role='student'),
+    check(role='normal' or role='premium'),
     unique(email)
 );
 

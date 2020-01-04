@@ -1,9 +1,25 @@
 function main(){
-    var selectTypeQuestion = document.getElementById('typeQuestion').value;
+    var role = document.getElementById('role').value;
+    var numQuestions = document.getElementById('numQuestions').value;
+    if(role != "premium"){
+        var rolePremium = false;
+    }else{
+        var rolePremium = true;
+    }
+    // var editValue = document.getElementById('edit').value;
+    if(document.getElementById('edit').value == "true"){
+        var edit = true;
+        var selectTypeQuestion = document.getElementById('questionType').value;
+    }else{
+        var edit = false;
+        var selectTypeQuestion = document.getElementById('typeQuestion').value;
+    }
     if(selectTypeQuestion == "true/false"){
-        createTrueFalseForm();
+        createTrueFalseForm(rolePremium, numQuestions, edit);
     }else if(selectTypeQuestion == "multipleChoice"){
-        createMultipleChoiceForm();
+        createMultipleChoiceForm(rolePremium, numQuestions, edit);
+    }else if(selectTypeQuestion == "ompleElsForats"){
+        createOmpleEslForatsForm(rolePremium, numQuestions, edit);
     }
 }
 
@@ -24,24 +40,33 @@ function createElementDOM(tagElement, text, parentNode, attributes) {
     parentNode.appendChild(element);
 }
 
-function createTrueFalseForm(){
+function createTrueFalseForm(rolePremium, numQuestions, edit){
     deleteForm();
     createForm();
-    createInputNameQuestion();
-    createInputsTrueFalse();
-    createSelectTime();
-    createSelectPoints();
-    createButtonsTrueFalse();
+    createInputNameQuestion(edit);
+    createInputsTrueFalse(edit);
+    createSelectTime(rolePremium, edit);
+    createSelectPoints(edit);
+    createButtonsTrueFalse(rolePremium, numQuestions, edit);
 }
 
-function createMultipleChoiceForm(){
+function createMultipleChoiceForm(rolePremium, numQuestions, edit){
     deleteForm();
     createForm();
-    createInputNameQuestion();
-    createSelectTime();
-    createSelectPoints();
-    createInputsAnswerMultipleChoice();
-    createButtonsMultipleChoice();
+    createInputNameQuestion(edit);
+    createSelectTime(rolePremium, edit);
+    createSelectPoints(edit);
+    createInputsAnswerMultipleChoice(edit);
+    createButtonsMultipleChoice(rolePremium, numQuestions, edit);
+}
+
+function createOmpleEslForatsForm(rolePremium, numQuestions, edit){
+    deleteForm();
+    createForm();
+    createTexAreaOmpleElsForats(edit);
+    createSelectTime(rolePremium, edit);
+    createSelectPoints(edit);
+    createButtonsOmpleEslForats(rolePremium, numQuestions, edit);
 }
 
 function randomId(){
@@ -69,7 +94,7 @@ function createForm(){
     createElementDOM('form', "", div, ["method=post", "action=../saveQuestion.php", "id=formJs"]);
 }
 
-function createInputNameQuestion(){
+function createInputNameQuestion(edit){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['class=form-group mt-3 ', 'id=divTextName']);
     var div = document.getElementById('divTextName');
@@ -77,7 +102,7 @@ function createInputNameQuestion(){
     createElementDOM('input', "", div, ['type=text', 'class=form-control col-8', 'id=inputTextQuestion', 'name=text_question', 'placeholder=Enter your question'])
 }
 
-function createInputsTrueFalse(){
+function createInputsTrueFalse(edit){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['class=custom-control custom-radio custom-control-inline', 'id=divCheckboxTrue']);
     var div = document.getElementById('divCheckboxTrue');
@@ -96,25 +121,54 @@ function createInputsTrueFalse(){
     
 }    
 
-function createButtonsTrueFalse(){
+function createTexAreaOmpleElsForats(edit){
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['id=labelOmpleElsForats', 'class=mt-5 form-group']);
+    var div = document.getElementById('labelOmpleElsForats');
+    createElementDOM('label', "Omple Els Forats:" , div, ['for=textAreaOmpleElsForats']);
+    createElementDOM('textarea', "" , div, ['id=textAreaOmpleElsForats', 'rows=3', 'class=form-control col-10', 'name=textArea']);
+}
+
+function createButtonsTrueFalse(rolePremium, numQuestions, edit){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['id=buttonsTrueFalse', 'class=mt-5']);
     var div = document.getElementById('buttonsTrueFalse');
-    createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
+    if(numQuestions>=5 && rolePremium== false){
+        createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1', 'disabled=disabled']);
+    }else{
+        createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
+    }
     createElementDOM('input', '', div, ["id=doneQuestions","type=submit", "name=Done", "value=Done", 'class=btn btn-success']);
 }
 
-function createButtonsMultipleChoice(){
+function createButtonsMultipleChoice(rolePremium, numQuestions, edit){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['id=buttonsMultipleChoice', 'class=mt-5']);
     var div = document.getElementById('buttonsMultipleChoice');
-    createElementDOM('button', "Add Answer", div, ["id=addAnswer","type=button", "name=AddAnswer", 'onclick=addAnswerMultipleChoice()','class=btn btn-warning mr-1']);
-    createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
+    if(numQuestions>=5 && rolePremium == false){
+        createElementDOM('button', "Add Answer", div, ["id=addAnswer","type=button", "name=AddAnswer", 'onclick=addAnswerMultipleChoice()','class=btn btn-warning mr-1', 'disabled=disabled']);
+        createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1', 'disabled=disabled']);
+    }else{
+        createElementDOM('button', "Add Answer", div, ["id=addAnswer","type=button", "name=AddAnswer", 'onclick=addAnswerMultipleChoice()','class=btn btn-warning mr-1']);
+        createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
+        
+    }
     createElementDOM('input', '', div, ["id=doneQuestions","type=submit", "name=Done", "value=Done", 'class=btn btn-success']);
-
 }
 
-function createInputsAnswerMultipleChoice(){
+function createButtonsOmpleEslForats(rolePremium, numQuestions, edit){
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['id=buttonsMultipleChoice', 'class=mt-5']);
+    var div = document.getElementById('buttonsMultipleChoice');
+    if(numQuestions>=5 && rolePremium == false){
+        createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1', 'disabled=disabled']);
+    }else{
+        createElementDOM('input', '', div, ["id=addQuestion","type=submit", "name=AddQuestion", "value=AddQuestion", 'class=btn btn-primary mr-1']);
+    }
+    createElementDOM('input', '', div, ["id=doneQuestions","type=submit", "name=Done", "value=Done", 'class=btn btn-success']);
+}
+
+function createInputsAnswerMultipleChoice(edit){
     var id = randomId();
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['class=input-group mb-3 mt-3 divInputMultipleChoice1']);
@@ -128,11 +182,15 @@ function createInputsAnswerMultipleChoice(){
     createElementDOM('input', "", div3, ['type=hidden', 'name=idAnswer[]', 'value='+id+'']);
 }
 
-function createSelectTime(){
+function createSelectTime(rolePremium, edit){
     var form = document.getElementById('formJs');
     createElementDOM('div', "", form, ['id=divSelectTime']);
     var div = document.getElementById('divSelectTime');
-    createElementDOM('select', "", div, ['class=custom-select mr-sm-2 col-8 mb-3', 'id=selectTime', 'name=time']);
+    if(rolePremium){
+        createElementDOM('select', "", div, ['class=custom-select mr-sm-2 col-8 mb-3', 'id=selectTime', 'name=time']);
+    }else{
+        createElementDOM('select', "", div, ['class=custom-select mr-sm-2 col-8 mb-3', 'id=selectTime', 'name=time', 'disabled=true']);
+    }
     var select = document.getElementById('selectTime');
     createElementDOM('option', '10s', select, ["value=10"]);
     createElementDOM('option', '20s', select, ["value=20"]);
@@ -162,10 +220,3 @@ function addAnswerMultipleChoice(){
     createInputsAnswerMultipleChoice();
     createButtonsMultipleChoice();
 }
-
-
-// https://getbootstrap.com/docs/4.0/components/input-group/#checkboxes-and-radios
-
-// https://stackoverflow.com/questions/7880619/multiple-inputs-with-same-name-through-post-in-php
-
-{/* <input class="form-control" type="text" placeholder="Readonly input here…" readonly></input> */}

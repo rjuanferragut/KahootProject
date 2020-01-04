@@ -84,35 +84,93 @@
                 }
             ?>
         </div>
-        <?php
-            
-            if(isset($_SESSION['idUser'])){
-                $idUser = $_SESSION['idUser'];
-            }
-            
-            try{
-                $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
-            } catch (PDOException $e) {
-                echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-                exit;
-            }
-            $queryNumQuestions = $pdo->prepare("SELECT count(*) as preguntas FROM question WHERE fk_id_quiz=".$idQuiz."");
-            $queryNumQuestions->execute();
-            $registreNumQuestions = $queryNumQuestions->fetch();
-            $numQuestions = $registreNumQuestions['preguntas'];
-
-            $queryRole = $pdo->prepare("SELECT * FROM user WHERE id=".$idUser."");
-            $queryRole->execute();
-            $registreRole = $queryRole->fetch();
-            $role = $registreRole['role'];
-
-            echo '<input type="hidden" id="role" value="'.$role.'">';
-            echo '<input type="hidden" id="numQuestions" value="'.$numQuestions.'">';
-            
-            
-            
-        ?>
         <div class="col-8" id="Questions">
+
+                <?php
+
+                    echo '<input type="hidden" name="edit" value="false">';
+                     
+                    if(isset($_SESSION['idUser'])){
+                        $idUser = $_SESSION['idUser'];
+                    }
+                    
+                    try{
+                        $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+                    } catch (PDOException $e) {
+                        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                        exit;
+                    }
+                    $queryNumQuestions = $pdo->prepare("SELECT count(*) as preguntas FROM question WHERE fk_id_quiz=".$idQuiz."");
+                    $queryNumQuestions->execute();
+                    $registreNumQuestions = $queryNumQuestions->fetch();
+                    $numQuestions = $registreNumQuestions['preguntas'];
+
+                    $queryRole = $pdo->prepare("SELECT * FROM user WHERE id=".$idUser."");
+                    $queryRole->execute();
+                    $registreRole = $queryRole->fetch();
+                    $role = $registreRole['role'];
+
+                    echo '<input type="hidden" id="role" value="'.$role.'">';
+                    echo '<input type="hidden" id="numQuestions" value="'.$numQuestions.'">';
+
+                    if(isset($_POST['Delete'])){
+                        $idQ = $_POST['idQuestion'];
+                        $queryDeleteQuestion = $pdo->prepare("DELETE FROM question WHERE id=".$idQ."");
+                        $queryDeleteQuestion->execute();
+                        $registreDeleteQuestion = $queryDeleteQuestion->fetch();
+                    }
+
+                    if(isset($_POST['Edit'])){
+                        $idQ = $_POST['idQuestion'];
+
+                        echo '<input type="hidden" name="edit" value="true">';
+
+                        $queryEditQuestion = $pdo->prepare("SELECT * FROM question WHERE id=".$idQ."");
+                        $queryEditQuestion->execute();
+                        $registreEditQuestion = $queryEditQuestion->fetch();
+
+                        $queryEditAnswers = $pdo->prepare("SELECT * FROM answer WHERE fk_id_quiz=".$idQ."");
+                        $queryEditAnswers->execute();
+                        $registreEditAnswers = $queryEditAnswers->fetch();
+
+                        $typeQuestion = $registreEditQuestion['type'];
+                        $textQuestion = $registreEditQuestion['text_question'];
+                        $timeQuestion = $registreEditQuestion['time'];
+                        $pointsQuestion = $registreEditQuestion['points'];
+
+                        echo '<input type="hidden" name="questionType" value="'.$typeQuestion.'">';
+                        echo '<input type="hidden" name="textQuestion" value="'.$textQuestion.'">';
+                        echo '<input type="hidden" name="timeQuestion" value="'.$timeQuestion.'">';
+                        echo '<input type="hidden" name="pointsQuestion" value="'.$pointsQuestion.'">';
+
+
+                        if($typeQuestion == "true/flase"){
+
+                            while($registreEditAnswers){
+                                $idA = $registreEditAnswers['id'];
+                                $textAnswer = $registreEditAnswers['text_answer'];
+                                $correctAnswer = $registreEditAnswers['correct'];
+
+                                echo '<input type="hidden" class="answer" value="'.$idA.'">';
+                                echo '<input type="hidden" class="'.$idA.'" value="'.$textAnswer.'">';
+                                echo '<input type="hidden" class="'.$idA.'" value="'.$correctAnswer.'">';
+
+                                $registreEditAnswers = $queryEditAnswers->fetch();
+                            }
+
+
+                        }elseif($typeQuestion == "multipleChoice"){
+
+                        }elseif($typeQuestion == "ompleElsForats"){
+
+                        }
+
+
+
+                        // echo "<script>main();</script>";
+                    }
+
+                ?>
             
             <select id="typeQuestion" class="custom-select col-3 mt-3" name="typeQuestion" onchange="main()">
                 <option selected>Select the type of question</option>

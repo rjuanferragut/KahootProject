@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../public/css/homePage.css">
 </head>
 <body>
+    <?php ob_start();  session_start();?>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
@@ -23,7 +24,32 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <form action="../homePage.php" method="Post">
-                        <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success mr-2">
+                    <?php
+                        if(isset($_SESSION['idUser'])){
+
+                            $idUser = $_SESSION['idUser'];
+                        }
+                        try{
+                            $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+                        } catch (PDOException $e) {
+                            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                            exit;
+                        }
+                        $query = $pdo->prepare("SELECT count(*) as questionarios FROM quiz where fk_id_user=".$idUser."");
+                        $query->execute();
+                        $registre = $query->fetch();
+
+                        $query = $pdo->prepare("SELECT * FROM user where id=".$idUser."");
+                        $query->execute();
+                        $usuario = $query->fetch();
+
+                        if($registre['questionarios'] >= 3 && $usuario['role']!="premium"){
+                            echo '<input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success mr-2" disabled="disabled">';
+                        }else{
+                            echo '<input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success mr-2">';
+                        }
+                    ?>
+                        <!-- <input type="submit" name="createQuiz" value="NEW QUIZ" class="btn btn-success mr-2"> -->
 
                     </form>
                     <form action="editUser.php" method="Post">
@@ -37,16 +63,11 @@
             </div>
         </nav>
     </div>
-    <?php
+    <?php   
+        if(isset($_SESSION['idUser'])){
 
-        session_start();
-
-        // echo $_SESSION['test'];
-        // echo $_SESSION['name'];
-        // echo $_SESSION['idUser'];
-      
-        // include '../controllers/random_id_pin.php';
-
+            $idUser = $_SESSION['idUser'];
+        }
         function randomPin(){
 
             $digits = 5;
@@ -61,24 +82,11 @@
                 echo "Failed to get DB handle: " . $e->getMessage() . "\n";
                 exit;
             }
-            $query = $pdo->prepare("SELECT * FROM quiz");
+            $query = $pdo->prepare("SELECT * FROM quiz where fk_id_user=".$_SESSION['idUser']."");
             $query->execute();
             $registre = $query->fetch();
             echo '<div class="card-columns">';
             while($registre){
-                // echo "<br><div class='quiz'>";
-                // echo '<form method="Post" action="../createRoom.php">';
-                // echo "<a>Name: ".$registre['name']."</a>";
-                // echo "<a>Create date: ".$registre['create_date']."</a>";
-                // echo '<input type="hidden" name="pin" value="'.randomPin().'">';
-                // echo '<input type="hidden" name="idQuiz" value="'.$registre['id'].'">';
-                // // if($registre['fk_id_user']== $_SESSION['idUser']){
-                // //     echo "<input type='submit' name='Edit' value='Edit'>";
-                // // }
-                // echo "<input type='submit' name='Play' value='Play'><br>";
-                // echo "<a>Description: ".$registre['resume']."</a>";
-                // echo "</form>";
-                // echo "</div>";
                 echo '<div class="card" style="width: 30rem;">';
                 // echo '<img class="card-img-top" src="..." alt="Card image cap">';
                 echo '<div class="card-body">';
@@ -89,6 +97,7 @@
                 echo '<input type="hidden" name="pin" value="'.randomPin().'">';
                 echo "<input type='hidden' name='idQuiz' value='".$registre['id']."'>";
                 echo '<input type="submit" name="Play" value="Play" class="btn btn-primary">';
+                echo '<input type="submit" name="Edit" value="Edit" class="btn btn-warning">';
                 echo "</form>";
                 echo '</div>';
                 echo '</div>';
