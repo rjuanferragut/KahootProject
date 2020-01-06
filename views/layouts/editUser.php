@@ -5,27 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script>
+
+    function wrongPassword(){
+        var alertElement = document.getElementById('textAlert');
+        alertElement.innerHTML = "Wrong password";
+        alertElement.style.display = "";
+    }
+
     function checkNewPassword(){
+        var currentPassword = document.getElementById('currentPassword').value;
         var newPassword = document.getElementById('newPassword').value;
         var confirmNewPassword = document.getElementById('confirmNewPassword').value;
         var alertElement = document.getElementById('textAlert');
         var form = document.getElementById('formEditUser');
 
-        if(newPassword != null && confirmNewPassword != null){
+        console.log(currentPassword);
+        if(currentPassword == null || currentPassword == ""){
+            alertElement.innerHTML = "Please introduce your current Password";
+            alertElement.style.display = "";
+        }else{
 
-            if(newPassword != confirmNewPassword){
-                console.log(newPassword+" ; "+confirmNewPassword);
-                // var classNewPassword = newPassword.getAttribute("class")+" is-invalid";
-                // newPassword.removeAttribute('class');
-                // newPassword.setAttribute("class", classNewPassword);
-                alertElement.innerHTML = "Passwords doesn't match";
-                alertElement.style.display = "";
-            }else{
-                form.submit();
-                // alert("enviar Formulario");
+            if(newPassword != null && confirmNewPassword != null){
+
+                if(newPassword != confirmNewPassword){
+                    console.log(newPassword+" ; "+confirmNewPassword);
+                    // var classNewPassword = newPassword.getAttribute("class")+" is-invalid";
+                    // newPassword.removeAttribute('class');
+                    // newPassword.setAttribute("class", classNewPassword);
+                    alertElement.innerHTML = "Passwords doesn't match";
+                    alertElement.style.display = "";
+                }else{
+                    form.submit();
+                    // alert("enviar Formulario");
+                }
             }
         }
-    
     }
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -52,6 +66,7 @@
         exit;
     }
 
+
     $query = $pdo->prepare("SELECT * FROM user where id=".$idUser."");
     $query->execute();
     $registre = $query->fetch();
@@ -61,7 +76,7 @@
     ?>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">KAHOOT</a>
+            <a href="homePage.php" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -100,12 +115,12 @@
                             </div>
                         </div>
                     </fieldset>
-                    <!-- <div class="form-group row">
+                    <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Current password</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="password" value="" id="currentPassword"/>
+                            <input class="form-control" type="password" name="currentPassword" id="currentPassword"  required="true"/>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">New password</label>
                         <div class="col-lg-9">
@@ -141,5 +156,12 @@
             </div>
         </div>
     </div>
+    <?php
+    if(isset($_SESSION['wrongPassword'])){
+        echo $_SESSION['wrongPassword'];
+        echo "<script>document.addEventListener('load', wrongPassword());</script>";
+        // echo "<script>wrongPassword();</script>";
+    }
+    ?>
 </body>
 </html>

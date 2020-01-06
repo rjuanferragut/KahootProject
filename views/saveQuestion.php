@@ -17,13 +17,31 @@ session_start();
 
     
     // check if the button press is to add another question
-    if (isset($_POST['AddQuestion'])) {
+    if (isset($_POST['AddQuestion']) || isset($_POST['SaveQuestion'])) {
+
+        if(isset($_POST['SaveQuestion'])){
+            $idQuestion = $_POST['questionId'];
+
+            try{
+                $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+            } catch (PDOException $e) {
+                echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                exit;
+            }
+
+            $deleteQuery = $pdo->prepare("DELETE FROM question WHERE id=".$idQuestion."");
+            $deleteQuery->execute();
+
+            echo "id Question: ".$idQuestion;
+        }
 
         if(isset($_POST['textArea'])){
 
             $points = $_POST['points'];
             $string = $_POST['textArea'];
             $question = $_POST['textArea'];
+            $time = $_POST['time'];
+            $time = $_POST['waitingtime'];
             $start = "_<";
             $end = ">_";
 
@@ -72,6 +90,7 @@ session_start();
             $idAnswers = $_POST['idAnswer'];
             $idCorrectAnswer = $_POST['correctAnswer'];
             $time = $_POST['time'];
+            $time = $_POST['waitingtime'];
             $points = $_POST['points'];
 
             $idQuestion = randomID();
@@ -85,7 +104,7 @@ session_start();
 				die("Connection failed: " . mysqli_connect_error());
             }
 
-            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multipleChoice',".$points.",".$idQuiz.")";
             $resultPrgunta = mysqli_query($conn, $insertPregunta);
 
             for($i = 0; $i < sizeof($textAnswers); $i++){
@@ -101,6 +120,11 @@ session_start();
 
             }
 
+            echo "id respuestas: ";
+            print_r($idAnswers);
+            echo "<br> id respuestas correctas: ";
+            print_r($idCorrectAnswer);
+
             header("location: layouts/newQuestion.php");
             
         }
@@ -112,6 +136,7 @@ session_start();
             $textQuestion = $_POST['text_question'];
             $correct = $_POST['correct?'];
             $time = $_POST['time'];
+            $time = $_POST['waitingtime'];
             $points = $_POST['points'];
 
             $id = randomID();

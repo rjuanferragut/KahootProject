@@ -5,6 +5,8 @@
     include '../controllers/conn.php';
 
     if(isset($_POST['Edit'])){
+        $idQuiz = $_POST['idQuiz'];
+            $_SESSION['idQuiz'] = $idQuiz;
         header("location: layouts/editQuestions.php");
     }
 

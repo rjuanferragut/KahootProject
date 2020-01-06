@@ -39,6 +39,7 @@ create table if not exists question(
     text_question varchar(300) not null,
     type varchar(30) not null,
     time int default 30,
+    waitingTime int default 0,
     points int not null,
     fk_id_quiz int,
     imgDir varchar(512),

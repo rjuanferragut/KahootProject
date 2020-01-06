@@ -17,7 +17,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
+            <a href="homePage.php" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,8 +48,10 @@
                     exit;
                 }
                 if(isset($_SESSION['idQuiz'])){
+                    
                     $idQuiz = $_SESSION['idQuiz'];
                 }
+                
                 $queryNameQuiz = $pdo->prepare("SELECT name FROM quiz WHERE id=".$idQuiz."");
                 $queryNameQuiz->execute();
                 $registreNameQuiz = $queryNameQuiz->fetch();
@@ -129,7 +131,7 @@
                         $queryEditQuestion->execute();
                         $registreEditQuestion = $queryEditQuestion->fetch();
 
-                        $queryEditAnswers = $pdo->prepare("SELECT * FROM answer WHERE fk_id_quiz=".$idQ."");
+                        $queryEditAnswers = $pdo->prepare("SELECT * FROM answer WHERE fk_id_question=".$idQ."");
                         $queryEditAnswers->execute();
                         $registreEditAnswers = $queryEditAnswers->fetch();
 
@@ -138,15 +140,18 @@
                         $timeQuestion = $registreEditQuestion['time'];
                         $pointsQuestion = $registreEditQuestion['points'];
 
-                        echo '<input type="hidden" name="questionType" value="'.$typeQuestion.'">';
-                        echo '<input type="hidden" name="textQuestion" value="'.$textQuestion.'">';
-                        echo '<input type="hidden" name="timeQuestion" value="'.$timeQuestion.'">';
-                        echo '<input type="hidden" name="pointsQuestion" value="'.$pointsQuestion.'">';
+                        echo '<input type="hidden" id="questionId" value="'.$idQ.'">';
+                        echo '<input type="hidden" id="questionType" value="'.$typeQuestion.'">';
+                        echo '<input type="hidden" id="textQuestion" value="'.$textQuestion.'">';
+                        echo '<input type="hidden" id="timeQuestion" value="'.$timeQuestion.'">';
+                        echo '<input type="hidden" id="pointsQuestion" value="'.$pointsQuestion.'">';
+                        
 
+                        if($typeQuestion == "true/false" || $typeQuestion == "multipleChoice"){
 
-                        if($typeQuestion == "true/flase"){
-
+                            
                             while($registreEditAnswers){
+                                
                                 $idA = $registreEditAnswers['id'];
                                 $textAnswer = $registreEditAnswers['text_answer'];
                                 $correctAnswer = $registreEditAnswers['correct'];
@@ -159,25 +164,25 @@
                             }
 
 
-                        }elseif($typeQuestion == "multipleChoice"){
-
                         }elseif($typeQuestion == "ompleElsForats"){
 
                         }
 
 
 
-                        // echo "<script>main();</script>";
+                        echo "<script>edit(true);</script>";
                     }
 
                 ?>
             
-            <select id="typeQuestion" class="custom-select col-3 mt-3" name="typeQuestion" onchange="main()">
+            <select id="typeQuestion" class="custom-select col-3 mt-3" name="typeQuestion" onchange="main(false)">
                 <option selected>Select the type of question</option>
                 <option value="true/false">True/False</option>
                 <option value="multipleChoice">Multiple Choice</option>
                 <option value="ompleElsForats">Omple els forats</option>
             </select>
+
+
         </div>
     </div>
     </body>

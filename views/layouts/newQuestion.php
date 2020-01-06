@@ -17,7 +17,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
+            <a href="homePage.php" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -114,7 +114,7 @@
         ?>
         <div class="col-8" id="Questions">
             
-            <select id="typeQuestion" class="custom-select col-3 mt-3" name="typeQuestion" onchange="main()">
+            <select id="typeQuestion" class="custom-select col-3 mt-3" name="typeQuestion" onchange="main(false)">
                 <option selected>Select the type of question</option>
                 <option value="true/false">True/False</option>
                 <option value="multipleChoice">Multiple Choice</option>
