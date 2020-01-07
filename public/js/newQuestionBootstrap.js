@@ -283,21 +283,84 @@ function createSelectTime(rolePremium, edit){
     createElementDOM('option', '60s', select, ["value=60"]);
 }
 
+function toggleTime(){
+    var selectTime = document.getElementById('selectTime');
+    selectTime.toggleAttribute("disabled");
+
+    var selectwaitingTime = document.getElementById('selectWaitingTime');
+    selectwaitingTime.toggleAttribute("disabled");
+}
+
 function name(rolePremium, edit) {
-    console.log(rolePremium);
-    var form = document.getElementById('formJs');
-    createElementDOM('div', "", form, ['id=divSelectsTime', 'class=form-row mt-3 mb-3']);
+    var time10, waitingtime10, time20, waitingtime20, time30, waitingtime30, time40, waitingtime40, time50, waitingtime50, time60, waitingtime60;
+    time10 = waitingtime10 = ["value=10"];
+    time20 = waitingtime20 = ["value=20"];
+    time30 = waitingtime30 = ["value=30"];
+    time40 = waitingtime40 = ["value=40"];
+    time50 = waitingtime50 = ["value=50"];
+    time60 = waitingtime60 = ["value=60"];
+
+    if(edit){
+        var typeSelect = document.getElementById('typeSelectTime').value;
+        if (typeSelect == "time") {
+            var valueSelect = document.getElementById('timeQuestion').value;
+            switch (valueSelect) {
+                case "10":
+                    time10 = ["value=10", 'selected=selected'];
+                    break;
+                case "20":
+                    time20 = ["value=20", 'selected=selected'];
+                    break;
+                case "30":
+                    time30 = ["value=30", 'selected=selected'];
+                    break;
+                case "40":
+                    time40 = ["value=40", 'selected=selected'];
+                    break;
+                case "50":
+                    time50 = ["value=50", 'selected=selected'];
+                    break;
+                case "60":
+                    time60 = ["value=60", 'selected=selected'];
+                    break;
+            }
+        }else if(typeSelect == "waitingTime"){
+            var valueSelect = document.getElementById('waitingTimeQuestion').value;
+            switch (valueSelect) {
+                case "10":
+                    waitingtime10 = ["value=10", 'selected=selected'];
+                    break;
+                case "20":
+                    waitingtime20 = ["value=20", 'selected=selected'];
+                    break;
+                case "30":
+                    waitingtime30 = ["value=30", 'selected=selected'];
+                    break;
+                case "40":
+                    waitingtime40 = ["value=40", 'selected=selected'];
+                    break;
+                case "50":
+                    waitingtime50 = ["value=50", 'selected=selected'];
+                    break;
+                case "60":
+                    waitingtime60 = ["value=60", 'selected=selected'];
+                    break;
+            }
+        }
+    }
+    
     if(rolePremium){
-        console.log("dentro if");
-        var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime'];
+        var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime', 'disabled=true' ];
         var classTime = ['class=custom-select', 'id=selectTime', 'name=time'];
-        var inputRadio = ['type=radio', 'name=time', 'value=time'];
+        var inputRadio = ['type=radio', 'name=time', 'value=time', 'onchange=toggleTime()'];
     }else{
-        console.log("dentro else");
         var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime' , 'disabled=true'];
         var classTime = ['class=custom-select', 'id=selectTime', 'name=time', 'disabled=true'];
         var inputRadio = ['type=radio', 'name=time', 'value=time', 'disabled=true'];
     }
+
+    var form = document.getElementById('formJs');
+    createElementDOM('div', "", form, ['id=divSelectsTime', 'class=form-row mt-3 mb-3']);
     var div = document.getElementById('divSelectsTime');
     createElementDOM('div', "", div, ['id=div1time', 'class=input-group col-4']);
     var div1time = document.getElementById('div1time');
@@ -305,12 +368,12 @@ function name(rolePremium, edit) {
     createElementDOM('select', "", div1time, classTime);
     var select = document.getElementById('selectTime');
     createElementDOM('option', 'Time to answer', select, []);
-    createElementDOM('option', '10s', select, ["value=10"]);
-    createElementDOM('option', '20s', select, ["value=20"]);
-    createElementDOM('option', '30s', select, ["value=30"]);
-    createElementDOM('option', '40s', select, ["value=40"]);
-    createElementDOM('option', '50s', select, ["value=50"]);
-    createElementDOM('option', '60s', select, ["value=60"]);
+    createElementDOM('option', '10s', select, time10);
+    createElementDOM('option', '20s', select, time20);
+    createElementDOM('option', '30s', select, time30);
+    createElementDOM('option', '40s', select, time40);
+    createElementDOM('option', '50s', select, time50);
+    createElementDOM('option', '60s', select, time60);
     var div2time = document.getElementById('div2time');
     createElementDOM('div', "", div2time, ['id=div3time', 'class=input-group-text']);
     var div3time = document.getElementById('div3time');
@@ -323,12 +386,12 @@ function name(rolePremium, edit) {
     createElementDOM('select', "", div1waitingtime, classWaitingTime);
     var select = document.getElementById('selectwaitingTime');
     createElementDOM('option', 'Waiting time', select, []);
-    createElementDOM('option', '10s', select, ["value=10"]);
-    createElementDOM('option', '20s', select, ["value=20"]);
-    createElementDOM('option', '30s', select, ["value=30"]);
-    createElementDOM('option', '40s', select, ["value=40"]);
-    createElementDOM('option', '50s', select, ["value=50"]);
-    createElementDOM('option', '60s', select, ["value=60"]);
+    createElementDOM('option', '10s', select, waitingtime10);
+    createElementDOM('option', '20s', select, waitingtime20);
+    createElementDOM('option', '30s', select, waitingtime30);
+    createElementDOM('option', '40s', select, waitingtime40);
+    createElementDOM('option', '50s', select, waitingtime50);
+    createElementDOM('option', '60s', select, waitingtime60);
     var div2waitingtime = document.getElementById('div2waitingtime');
     createElementDOM('div', "", div2waitingtime, ['id=div3waitingtime', 'class=input-group-text']);
     var div3waitingtime = document.getElementById('div3waitingtime');

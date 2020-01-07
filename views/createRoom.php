@@ -4,10 +4,23 @@
 
     include '../controllers/conn.php';
 
+    if(isset($_POST['Delete'])){
+        $idQuiz = $_POST['idQuiz'];
+        try{
+            $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            exit;
+        }
+        $query = $pdo->prepare("DELETE FROM quiz where id=".$idQuiz."");
+        $query->execute();
+        header("location: layouts/homePage.php");
+    }
+
     if(isset($_POST['Edit'])){
         $idQuiz = $_POST['idQuiz'];
-            $_SESSION['idQuiz'] = $idQuiz;
-        header("location: layouts/editQuestions.php");
+        $_SESSION['idQuiz'] = $idQuiz;
+        header("location: layouts/editQuiz.php");
     }
 
     if(isset($_POST['Play'])){

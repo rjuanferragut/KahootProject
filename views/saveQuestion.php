@@ -40,8 +40,6 @@ session_start();
             $points = $_POST['points'];
             $string = $_POST['textArea'];
             $question = $_POST['textArea'];
-            $time = $_POST['time'];
-            $time = $_POST['waitingtime'];
             $start = "_<";
             $end = ">_";
 
@@ -64,7 +62,17 @@ session_start();
                 exit;
             }
 
-            $queryQuestion = $pdo->prepare("INSERT INTO question (id, text_question, type, points, fk_id_quiz) VALUE(".$idQuestion.", '".$question."', 'OmpleElsForats', ".$points.", '".$idQuiz."')");
+            if(isset($_POST['time'])){
+                $time = $_POST['time'];
+                $queryQuestion = $pdo->prepare("INSERT INTO question (id, text_question, type, time, points, fk_id_quiz) VALUE(".$idQuestion.", '".$question."', 'OmpleElsForats',".$time.", ".$points.", '".$idQuiz."')");
+            }elseif(isset($_POST['waitingtime'])){
+                $watingTime = $_POST['waitingtime'];
+                $queryQuestion = $pdo->prepare("INSERT INTO question (id, text_question, type, waitingTime, points, fk_id_quiz) VALUE(".$idQuestion.", '".$question."', 'OmpleElsForats', ".$watingTime.", ".$points.", '".$idQuiz."')");
+            }else{
+                $queryQuestion = $pdo->prepare("INSERT INTO question (id, text_question, type, points, fk_id_quiz) VALUE(".$idQuestion.", '".$question."', 'OmpleElsForats', ".$points.", '".$idQuiz."')");
+            }
+
+            
             $queryQuestion->execute();
 
             $idAnswer = randomID();
@@ -89,8 +97,6 @@ session_start();
             $textQuestion= $_POST['text_question'];
             $idAnswers = $_POST['idAnswer'];
             $idCorrectAnswer = $_POST['correctAnswer'];
-            $time = $_POST['time'];
-            $time = $_POST['waitingtime'];
             $points = $_POST['points'];
 
             $idQuestion = randomID();
@@ -104,7 +110,17 @@ session_start();
 				die("Connection failed: " . mysqli_connect_error());
             }
 
-            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multipleChoice',".$points.",".$idQuiz.")";
+            if(isset($_POST['time'])){
+                $time = $_POST['time'];
+                $insertPregunta = "insert into question (id, text_question, type, time, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multipleChoice',".$time.",".$points.",".$idQuiz.")";
+            }elseif(isset($_POST['waitingtime'])){
+                $watingTime = $_POST['waitingtime'];
+                $insertPregunta = "insert into question (id, text_question, type, waitingTime, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multipleChoice',".$watingTime.",".$points.",".$idQuiz.")";
+            }else{
+                $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$idQuestion.",'".$textQuestion."','multipleChoice',".$points.",".$idQuiz.")";
+            }
+
+            
             $resultPrgunta = mysqli_query($conn, $insertPregunta);
 
             for($i = 0; $i < sizeof($textAnswers); $i++){
@@ -135,8 +151,6 @@ session_start();
 
             $textQuestion = $_POST['text_question'];
             $correct = $_POST['correct?'];
-            $time = $_POST['time'];
-            $time = $_POST['waitingtime'];
             $points = $_POST['points'];
 
             $id = randomID();
@@ -150,7 +164,17 @@ session_start();
 				die("Connection failed: " . mysqli_connect_error());
             }
             
-            $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+            if(isset($_POST['time'])){
+                $time = $_POST['time'];
+                $insertPregunta = "insert into question (id, text_question, type, time, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false', ".$time.", ".$points.",".$idQuiz.")";
+            }elseif(isset($_POST['waitingtime'])){
+                $watingTime = $_POST['waitingtime'];
+                $insertPregunta = "insert into question (id, text_question, type, waitingTime, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false', ".$watingTime.", ".$points.",".$idQuiz.")";
+            }else{
+                $insertPregunta = "insert into question (id, text_question, type, points, fk_id_quiz) value(".$id.",'".$textQuestion."','true/false',".$points.",".$idQuiz.")";
+            }
+
+            
             $resultPrgunta = mysqli_query($conn, $insertPregunta);
 
             $idAnswer1= randomID();

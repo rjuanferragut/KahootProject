@@ -32,10 +32,35 @@
     
     <div class="content">
 	    <label> New Questonary</label>
-	    <form action="../saveQuiz.php" method="Post">
-	        <input type="text" name="name" placeholder="Quetionary name">
-	        <input type="text" name="resume" placeholder="Description">
-	        <input type="submit" value="Continue">
+        <form action="../saveQuiz.php" method="Post">
+            <?php
+                session_start();
+
+                try{
+                    $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+                } catch (PDOException $e) {
+                    echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                    exit;
+                }
+
+                if(isset($_SESSION['idQuiz'])){
+                    $idQuiz = $_SESSION['idQuiz'];
+                }
+
+                $queryQuiz = $pdo->prepare("SELECT * FROM quiz WHERE id=".$idQuiz."");
+                $queryQuiz->execute();
+                $registreQuiz = $queryQuiz->fetch();
+
+                $name = $registreQuiz['name'];
+                $description  = $registreQuiz['resume'];
+
+                echo '<input type="text" name="name" placeholder="Quetionary name" value="'.$name.'">';
+                echo '<input type="text" name="resume" placeholder="Description" value="'.$description.'">';
+                echo '<input type="hidden" name="idQuiz" value="'.$idQuiz.'">';
+
+            ?>
+	        
+	        <input type="submit" name="Save" value="Save">
 	    </form>
 	</div>
     

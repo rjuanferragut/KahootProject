@@ -138,12 +138,20 @@
                         $typeQuestion = $registreEditQuestion['type'];
                         $textQuestion = $registreEditQuestion['text_question'];
                         $timeQuestion = $registreEditQuestion['time'];
+                        $waitingTimeQuestion = $registreEditQuestion['waitingTime'];
                         $pointsQuestion = $registreEditQuestion['points'];
+
+                        if($waitingTimeQuestion>0){
+                            echo '<input type="hidden" id="typeSelectTime" value="time">';
+                        }else{
+                            echo '<input type="hidden" id="typeSelectTime" value="waitingTime">';
+                        }
 
                         echo '<input type="hidden" id="questionId" value="'.$idQ.'">';
                         echo '<input type="hidden" id="questionType" value="'.$typeQuestion.'">';
                         echo '<input type="hidden" id="textQuestion" value="'.$textQuestion.'">';
                         echo '<input type="hidden" id="timeQuestion" value="'.$timeQuestion.'">';
+                        echo '<input type="hidden" id="waitingTimeQuestion" value="'.$waitingTimeQuestion.'">';
                         echo '<input type="hidden" id="pointsQuestion" value="'.$pointsQuestion.'">';
                         
 

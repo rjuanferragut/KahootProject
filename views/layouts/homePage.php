@@ -98,6 +98,7 @@
                 echo "<input type='hidden' name='idQuiz' value='".$registre['id']."'>";
                 echo '<input type="submit" name="Play" value="Play" class="btn btn-primary">';
                 echo '<input type="submit" name="Edit" value="Edit" class="btn btn-warning">';
+                echo '<input type="submit" name="Delete" value="Delete" class="btn btn-danger">';
                 echo "</form>";
                 echo '</div>';
                 echo '</div>';
