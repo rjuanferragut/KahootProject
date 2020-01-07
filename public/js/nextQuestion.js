@@ -1,5 +1,5 @@
 window.onload = updateClock;
- var totalTime =25;
+ var totalTime =5;
 function updateClock() {
     document.getElementById('countdown').innerHTML = totalTime;
     if(totalTime==0){
