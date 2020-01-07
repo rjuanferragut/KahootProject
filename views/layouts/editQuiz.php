@@ -57,10 +57,11 @@
                 echo '<input type="text" name="name" placeholder="Quetionary name" value="'.$name.'">';
                 echo '<input type="text" name="resume" placeholder="Description" value="'.$description.'">';
                 echo '<input type="hidden" name="idQuiz" value="'.$idQuiz.'">';
+                echo '<input type="submit" name="Save" value="Save">';
 
             ?>
 	        
-	        <input type="submit" name="Save" value="Save">
+	        
 	    </form>
 	</div>
     

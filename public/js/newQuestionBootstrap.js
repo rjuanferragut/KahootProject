@@ -287,7 +287,7 @@ function toggleTime(){
     var selectTime = document.getElementById('selectTime');
     selectTime.toggleAttribute("disabled");
 
-    var selectwaitingTime = document.getElementById('selectWaitingTime');
+    var selectwaitingTime = document.getElementById('selectwaitingTime');
     selectwaitingTime.toggleAttribute("disabled");
 }
 
@@ -350,13 +350,18 @@ function name(rolePremium, edit) {
     }
     
     if(rolePremium){
-        var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime', 'disabled=true' ];
-        var classTime = ['class=custom-select', 'id=selectTime', 'name=time'];
-        var inputRadio = ['type=radio', 'name=time', 'value=time', 'onchange=toggleTime()'];
+        var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime' ];
+        var classTime = ['class=custom-select', 'id=selectTime', 'name=time', 'disabled=true'];
+        var inputRadioTime = ['type=radio', 'name=time', 'value=time', 'onchange=toggleTime()'];
+        var inputRadioWaiting = ['type=radio', 'name=time', 'value=time', 'onchange=toggleTime()', 'checked=checked'];
     }else{
         var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime' , 'disabled=true'];
         var classTime = ['class=custom-select', 'id=selectTime', 'name=time', 'disabled=true'];
-        var inputRadio = ['type=radio', 'name=time', 'value=time', 'disabled=true'];
+        var inputRadioTime = ['type=radio', 'name=time', 'value=time', 'onchange=toggleTime()', 'disabled=true'];
+        var inputRadioWaiting = ['type=radio', 'name=time', 'value=time', 'onchange=toggleTime()', 'checked=checked', 'disabled=true'];
+        // var classWaitingTime = ['class=custom-select', 'id=selectwaitingTime', 'name=waitingtime' , 'disabled=true'];
+        // var classTime = ['class=custom-select', 'id=selectTime', 'name=time', 'disabled=true'];
+        // var inputRadio = ['type=radio', 'name=time', 'value=time', 'disabled=true'];
     }
 
     var form = document.getElementById('formJs');
@@ -377,7 +382,7 @@ function name(rolePremium, edit) {
     var div2time = document.getElementById('div2time');
     createElementDOM('div', "", div2time, ['id=div3time', 'class=input-group-text']);
     var div3time = document.getElementById('div3time');
-    createElementDOM('input', "", div3time, inputRadio);
+    createElementDOM('input', "", div3time, inputRadioTime);
 
 
     createElementDOM('div', "", div, ['id=div1waitingtime', 'class=input-group col-4']);
@@ -395,7 +400,7 @@ function name(rolePremium, edit) {
     var div2waitingtime = document.getElementById('div2waitingtime');
     createElementDOM('div', "", div2waitingtime, ['id=div3waitingtime', 'class=input-group-text']);
     var div3waitingtime = document.getElementById('div3waitingtime');
-    createElementDOM('input', "", div3waitingtime, inputRadio);
+    createElementDOM('input', "", div3waitingtime, inputRadioWaiting);
 
 }
 

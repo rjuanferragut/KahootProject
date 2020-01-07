@@ -16,7 +16,7 @@
     <?php ob_start();  session_start();?>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
+            <a href="homePage.php" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>

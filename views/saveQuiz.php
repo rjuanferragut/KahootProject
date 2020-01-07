@@ -36,7 +36,7 @@ include '../controllers/random_id_pin.php';
                 exit;
             }
 
-            $queryUpdate = $pdo->prepare("UPDATE quiz SET name='".$name."', resume='".$resume."' WHERE id=".$idQuiz."");
+            $queryUpdate = $pdo->prepare("UPDATE quiz SET name='".$name."', resume='".$resume."' WHERE id=".$id."");
             $queryUpdate->execute();
 
             header("location: layouts/editQuestions.php");
