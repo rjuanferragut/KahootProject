@@ -50,6 +50,7 @@
 
             $listAnswers = $_SESSION['listAnswers'];
             $TextQuestion = $_SESSION['TextQuestion'];
+            $typeQuestion = $_SESSION['typeQuestion'];
             echo "<div style= ' background-color: lightblue;'>";
             echo "<label class='h1 col-11 mb-0 py-5' style='text-align: center'>".$TextQuestion."</label>";
             echo "</div>";

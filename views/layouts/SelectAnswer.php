@@ -17,46 +17,59 @@
 <div class="header">
 	<a>Kahoot</a>
 </div>
-<?php
 
+<?php
         session_start();
 	      // Connection info. file
 	      include '../../controllers/conn.php';
 	      //include '../controllers/random_id_pin.php';
-
 	      if(isset($_SESSION['roomPin']) && isset($_SESSION['idQuiz'])){
 	        $roomPin = $_SESSION['roomPin'];
 	        $idQuiz = $_SESSION['idQuiz'];
+	        
+	        
+	        $textQuestion = $_SESSION['TextQuestion'];
 	      }
-
 	      if(isset($_SESSION['listAnswers'])){
 	      	$listAnswers = $_SESSION['listAnswers'];
 	      }
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
 	      // Check connection
 	      if (!$conn) {
 	        die("Connection failed: " . mysqli_connect_error());
 	      }
-
+	     	echo "<div style= ' background-color: lightblue;'>";
+         	echo "<label class='h1 col-12 mb-0 py-5' style='text-align: center'>".$textQuestion."</label>";
+            
+            echo "</div>";
 
 	      foreach ($listAnswers as $key) {
-
-                if ($key=="True") {
-
-                    echo "<button style='background-color:green; text-align:center ' class='btn btn-responsive col-5 centrado mt-4 mr-2 ml-2' >".$key."</button>";
+	      	
+	      	echo "<div class='form-row'>";
+	      	
+	      	if($_SESSION['typeQuestion'] == "true/false"){
+	      	
+               
+	      		if ($key=="True") {
+                    echo "<button style='background-color:green; display: flex; justify-content: center; height:100px; text-align:center;' class='btn btn-responsive mt-4 btn-lg btn-block ml-4 mr-4' >".$key."</button>";
                     
-                }else{
-
-                    echo "<button style='background-color:red; text-align:center' class='btn btn-responsive col-5 centrado mt-4' >".$key."</button>";
+                }else if($key=="False"){
+                    echo "<button style='background-color:red; height:100px; text-align:center' class='btn btn-responsive btn-block mt-4 ml-4 mr-4' >".$key."</button>";
                 }
-                
-          
-            }  
+               
+               
+	      		}else if($_SESSION['typeQuestion'] == "multipleChoice"){
+	      			echo "<button style='background-color:GREY; display: flex; justify-content: center; height:100px; text-align:center;' class='btn btn-responsive mt-4 btn-lg btn-block ml-4 mr-4' >".$key."</button>";
+              
+          	
+            	}else if($_SESSION['typeQuestion'] == "ompleElsForats"){
+            	
+            	}
+            echo "</div>";	
+	    }
             
-
 ?>
 	
-
+<div>
 </body>
 </html>
