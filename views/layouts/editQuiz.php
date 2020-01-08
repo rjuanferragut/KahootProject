@@ -29,10 +29,6 @@
             </div>
         </nav>
     </div>
-    
-    <div class="content">
-	    <label> New Questonary</label>
-        <form action="../saveQuiz.php" method="Post">
             <?php
                 session_start();
 
@@ -54,16 +50,22 @@
                 $name = $registreQuiz['name'];
                 $description  = $registreQuiz['resume'];
 
-                echo '<input type="text" name="name" placeholder="Quetionary name" value="'.$name.'">';
-                echo '<input type="text" name="resume" placeholder="Description" value="'.$description.'">';
-                echo '<input type="hidden" name="idQuiz" value="'.$idQuiz.'">';
-                echo '<input type="submit" name="Save" value="Save">';
-
             ?>
-	        
-	        
-	    </form>
-	</div>
+    
+    <div class="content col-6 mx-auto mt-5">
+        <label class="h2"> New Questonary</label>
+        <form action="../saveQuiz.php" method="Post">
+            <div class="input-group mb-3 mt-3">
+                    <?php echo '<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="name" required="" value="'.$name.'">';?>
+            </div>
+     
+             <div class="input-group mb-3 mt-3 ">
+               <?php echo '<textarea style="height: 20vh;" class="form-control" aria-label="With textarea" name="resume" required="" value="">'.$description.'</textarea>'; ?> 
+             </div>
+             <?php echo '<input type="hidden" name="idQuiz" value="'.$idQuiz.'">';?>
+             <input type="submit" value="Continue" class="btn btn-success">
+        </form>
+    </div>
     
     
 </body>

@@ -21,7 +21,7 @@ create table if not exists user_token(
     state varchar(120) not null,
     fk_id_user int,
     foreign key (fk_id_user) references user(id) on delete cascade
-)
+);
 
 create table if not exists quiz(
     id int auto_increment primary key,
@@ -76,9 +76,9 @@ create table if not exists player_answer(
     foreign key (fk_id_player) references player(id) on delete cascade
 );
 
-insert into user (email, name, password, role, state) value('mateo.nal@gmail.com', 'Mateo', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'teacher', 'active');
-insert into user (email, name, password, role, state) value('rjuanferragut@gmail.com', 'Rafa', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'teacher', 'active');
-insert into user (email, name, password, role, state) value('oskralonso10@gmail.com', 'Oscar', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'teacher', 'active');
+insert into user (email, name, password, role, state) value('mateo.nal@gmail.com', 'Mateo', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'premium', 'active');
+insert into user (email, name, password, role, state) value('rjuanferragut@gmail.com', 'Rafa', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'normal', 'active');
+insert into user (email, name, password, role, state) value('oskralonso10@gmail.com', 'Oscar', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'premium', 'active');
 
 insert into quiz (name, resume, create_date, num_questions, num_plays, fk_id_user) value('Questionario1','Questionaraio de prueba 1', curdate(), 5, 0, 1);
 

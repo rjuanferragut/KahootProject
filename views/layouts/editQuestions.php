@@ -67,7 +67,7 @@
                 while($registreNameQuestions){
                     $idQuestion = $registreNameQuestions['id'];
                     $textQuestion = $registreNameQuestions['text_question'];
-                    $textQuestion = str_limit($textQuestion, 25);
+                    // $textQuestion = str_limit($textQuestion, 25);
                     echo '<form action="editQuestions.php" method="POST">';
                     echo '<div class="input-group col-10 mx-auto mt-3">';
                     echo '<input type="hidden" name="idQuestion" value="'.$idQuestion.'">';
