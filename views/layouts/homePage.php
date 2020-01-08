@@ -120,7 +120,7 @@
         delete($id);
         header("Refresh: 0;");
       }else if(isset($_POST['Modify'.$id.''])){
-        edit($id);
+        //edit($id);
       }
       $registre = $query->fetch();
     }
