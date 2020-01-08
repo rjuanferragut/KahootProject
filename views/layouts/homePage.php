@@ -112,12 +112,11 @@
       echo "</form>";
       echo '<form method="POST" id="delete/edit" name="delete/edit" action="">';
       echo '<input type="submit" name="Delete'.$id.'" value="Delete" class="btn btn-danger mt-1">';
-      //  echo '<input type="submit" name="Modify'.$id.'" value="Modify" class="btn btn-warning mt-1 ml-1" onclick="edit('.$id.')">';
+      //echo '<input type="submit" name="Modify'.$id.'" value="Modify" class="btn btn-warning mt-1 ml-1" onclick="edit('.$id.')">';
       echo "</form>";
       echo '</div>';
       echo '</div>';;
-      if(isset($_POST['Delete'.$id.'']))
-      {
+      if(isset($_POST['Delete'.$id.''])){
         delete($id);
         header("Refresh: 0;");
       }else if(isset($_POST['Modify'.$id.''])){
