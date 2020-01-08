@@ -27,6 +27,9 @@
 	      if(isset($_SESSION['roomPin']) && isset($_SESSION['idQuiz'])){
 	        $roomPin = $_SESSION['roomPin'];
 	        $idQuiz = $_SESSION['idQuiz'];
+	        
+	        
+	        $textQuestion = $_SESSION['TextQuestion'];
 	      }
 
 	      if(isset($_SESSION['listAnswers'])){
@@ -39,20 +42,39 @@
 	        die("Connection failed: " . mysqli_connect_error());
 	      }
 
+	     	echo "<div style= ' background-color: lightblue;'>";
+
+         	echo "<label class='h1 col-11 mb-0 py-5' style='text-align: center'>".$textQuestion."</label>";
+            
+            echo "</div>";
 
 	      foreach ($listAnswers as $key) {
 
-                if ($key=="True") {
+	      	if($_SESSION['typeQuestion'] == "true/false"){
 
-                    echo "<button style='background-color:green; text-align:center ' class='btn btn-responsive col-5 centrado mt-4 mr-2 ml-2' >".$key."</button>";
+	      		if ($key=="True") {
+
+                    echo "<button style='background-color:green; height:; text-align:center;' class='btn btn-responsive col-5 centrado mt-4 mr-2 ml-2 row-5' >".$key."</button>";
                     
-                }else{
+                }else if($key=="False"){
 
-                    echo "<button style='background-color:red; text-align:center' class='btn btn-responsive col-5 centrado mt-4' >".$key."</button>";
+                    echo "<button style='background-color:red; height:; text-align:center' class='btn btn-responsive col-5 centrado mt-4 row-5' >".$key."</button>";
                 }
-                
+
+	      	}else if($_SESSION['typeQuestion'] == "multipleChoice"){
+
+	      		echo "<button style='background-color:blue; height:; text-align:center' class='btn btn-responsive col-5 centrado mt-4 row-5' >".$key."</button>";
+              
           
-            }  
+            }else if($_SESSION['typeQuestion'] == "ompleElsForats"){
+
+            	
+
+            }
+
+
+
+	    }
             
 
 ?>

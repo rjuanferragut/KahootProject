@@ -81,6 +81,8 @@
                 echo "<label class='h1 col-11 mb-0 py-5' style='text-align: center'>".$registre['text_question']."</label>";
                 echo "<span id='countdown' style=' border: solid black' class='col-1 p-3 rounded-circle'></span>";
                 echo "</div>";
+                $_SESSION['typeQuestion'] = $registre['type'];
+                echo $registre['type'];
                 $_SESSION['TextQuestion'] = $registre['text_question'];
                 //$_SESSION['numQuestion'] = $_SESSION['numQuestion'] + 1;
                 $queryAnswer = $pdo->prepare("SELECT * FROM answer WHERE fk_id_question=".$idQuestion."");
