@@ -15,7 +15,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="../../Login/index.html" class="navbar-brand">KAHOOT</a>
+            <a href="#" class="navbar-brand">KAHOOT</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,6 +74,7 @@
         $registre = $query->fetch();
         $contador = 1;
         $listAnswers = [];
+        $idAnswers = [];
         while($registre){
             if($contador == $_SESSION['numQuestion']){
                 $idQuestion = $registre['id'];
@@ -88,13 +89,13 @@
                 $registreAnswer = $queryAnswer->fetch();
                 while($registreAnswer){
                     array_push($listAnswers, $registreAnswer['text_answer']);
+                    array_push($idAnswers, $registreAnswer['id']);
                     $_SESSION['listAnswers'] = $listAnswers;
+                    $_SESSION['idAnswers'] = $idAnswers;
                    echo "<span class= 'showQuestion' style='display: none'>".$registreAnswer['text_answer']."</span>";
                    $registreAnswer = $queryAnswer->fetch();
                 }
-                echo "<script>onload=updateClock()</script>";
-
-                
+                echo "<script>onload=updateClock()</script>"; 
 
             break;
             }else{

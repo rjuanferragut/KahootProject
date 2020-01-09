@@ -20,6 +20,7 @@ include '../controllers/random_id_pin.php';
             }
 
             $idPlayer = randomID();
+            $_SESSION['idPlayer'] = $idPlayer;
             $insert ="insert into player (id, name, fk_pin_room) value(".$idPlayer.", '".$nickName."', ".$roomPin.")";
             $result = mysqli_query($conn, $insert);
             
