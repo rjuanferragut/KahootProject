@@ -83,6 +83,7 @@
                 echo "<span id='countdown' style=' border: solid black' class='col-1 p-3 rounded-circle'></span>";
                 echo "</div>";
                 $_SESSION['TextQuestion'] = $registre['text_question'];
+                $_SESSION['typeQuestion'] = $registre['type'];
                 //$_SESSION['numQuestion'] = $_SESSION['numQuestion'] + 1;
                 $queryAnswer = $pdo->prepare("SELECT * FROM answer WHERE fk_id_question=".$idQuestion."");
                 $queryAnswer->execute();

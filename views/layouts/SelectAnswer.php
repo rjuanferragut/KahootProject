@@ -25,9 +25,8 @@
 			if(isset($_SESSION['roomPin']) && isset($_SESSION['idQuiz'])){
 				$roomPin = $_SESSION['roomPin'];
 				$idQuiz = $_SESSION['idQuiz'];
-				
-				
 				$textQuestion = $_SESSION['TextQuestion'];
+				
 			}
 			if(isset($_SESSION['listAnswers'])){
 				$listAnswers = $_SESSION['listAnswers'];
@@ -48,6 +47,7 @@
 				
 				echo "</div>";
 			$typeQuestion = $_SESSION['typeQuestion'];
+			echo $typeQuestion;
 			// echo '<form action="#" method="post">';
 			echo '<input type="hidden" name="typeQuestion" value="'.$typeQuestion.'">';
 
