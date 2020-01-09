@@ -48,7 +48,7 @@
 				
 				echo "</div>";
 			$typeQuestion = $_SESSION['typeQuestion'];
-			echo '<form action="checkAnswer.php" method="post">';
+			// echo '<form action="#" method="post">';
 			echo '<input type="hidden" name="typeQuestion" value="'.$typeQuestion.'">';
 
 			$idsAnswers = $_SESSION['idAnswers'];
@@ -69,14 +69,14 @@
 				}else if($_SESSION['typeQuestion'] == "multipleChoice"){
 					echo "<button style='background-color:GREY; display: flex; justify-content: center; height:100px; text-align:center;' class='btn btn-responsive mt-4 btn-lg btn-block ml-4 mr-4' >".$key."</button>";
 					//cambiar a checkboxes con el nombre answers[]
-				}else if($_SESSION['typeQuestion'] == "ompleElsForats"){
+				}else if($_SESSION['typeQuestion'] == "OmpleElsForats"){
 					
 				}
 				echo "</div>";
 				$contador = $contador +1;	
 			}
 
-			echo '</form>';
+			// echo '</form>';
 				
 		?>
 		
