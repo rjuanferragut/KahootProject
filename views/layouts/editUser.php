@@ -171,9 +171,9 @@ if(isset($_FILES['inputGroupFile02'])){
     </div>
     <?php
     if(isset($_SESSION['wrongPassword'])){
-        echo $_SESSION['wrongPassword'];
+        ///echo $_SESSION['wrongPassword'];
         echo "<script>document.addEventListener('load', wrongPassword());</script>";
-        // echo "<script>wrongPassword();</script>";
+        //echo "<script>wrongPassword();</script>";
     }
     ?>
 </body>
