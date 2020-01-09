@@ -176,8 +176,8 @@
 
                 echo "<script>console.log('dentro');</script>";
                 $url = "http://mateocasas.tk/KahootProject/views/activateAccount.php?token=".$token;
-                // $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
-                // mail($email, "Activated account", $msg);
+                $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
+                mail($email, "Activated account", $msg);
 
                 if($role == "premium"){
                     $token2 = bin2hex(random_bytes(25));
@@ -187,12 +187,15 @@
                     $insert = $insertToken->execute();
 
                     $url2 = "http://mateocasas.tk/KahootProject/views/activatePremium.php?token=".$token2;
-                    $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url."<br> Y accede a este link para activar todas las ventajas de tu cuenta premium".$url2;
-                }else{       
-                    $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
+                    // $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url." \n Y accede a este link para activar todas las ventajas de tu cuenta premium".$url2;
+                    $msg = "Accede a este link para activar todas las ventajas de tu cuenta premium".$url2;
+                    mail($email, "Activated Premium", $msg2);
                 }
+                // else{       
+                //     $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
+                // }
 
-                mail($email, "Activated account", $msg);
+                // mail($email, "Activated account", $msg);
 
                 echo "<script>console.log('fuera');</script>";
                 echo "<script>correctUser();</script>";
