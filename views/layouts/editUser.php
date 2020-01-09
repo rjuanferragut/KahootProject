@@ -139,7 +139,7 @@ if(isset($_FILES['inputGroupFile02'])){
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-9 ml-auto text-right">
-                            <input type="reset" class="btn btn-outline-secondary" value="Cancel" />
+                            <!-- <input type="reset" class="btn btn-outline-secondary" value="Cancel" /> -->
                             <input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" />
                         </div>
                     </div>

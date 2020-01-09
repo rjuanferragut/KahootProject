@@ -15,8 +15,9 @@ function main(edit){
         createTrueFalseForm(rolePremium, numQuestions, edit);
     }else if(selectTypeQuestion == "multipleChoice"){
         createMultipleChoiceForm(rolePremium, numQuestions, edit);
-    }else if(selectTypeQuestion == "OmpleElsForats"){
+    }else if(selectTypeQuestion == "ompleElsForats"){
         createOmpleEslForatsForm(rolePremium, numQuestions, edit);
+
     }
 
 }
