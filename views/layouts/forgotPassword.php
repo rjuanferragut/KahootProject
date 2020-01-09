@@ -33,7 +33,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <form action="../../Login/index.html" method="Post">
+                    <form action="../../Login/login.php" method="Post">
                         <input type="submit" name="Login" value="Login" class="btn btn-danger">
                     </form>
                 </div>
@@ -45,7 +45,7 @@
         <div class="alert alert-info alert-dismissable" id="textAlertGood" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> Email send successfully</div>
     </div>
     <div class="col-lg-6 mx-auto">
-    
+
         <form action="" method="post">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -68,7 +68,7 @@
                 echo "Failed to get DB handle: " . $e->getMessage() . "\n";
                 exit;
             }
-    
+
             $query = $pdo->prepare("SELECT id, count(*) as num FROM user where email='".$email."'");
             $query->execute();
             $registre = $query->fetch();
@@ -87,13 +87,13 @@
                     $msg = "Accede a este link para cambiar la contrasena, solo es valido durante las proximas 2 horas. ".$url;
                     mail($email, "Reset Password", $msg);
                 }
-                
+
                 echo "<script>emailSend();</script>";
             }else{
                 echo "<script>wrongEmail();</script>";
             }
 
-        }     
+        }
 
     ?>
 </body>

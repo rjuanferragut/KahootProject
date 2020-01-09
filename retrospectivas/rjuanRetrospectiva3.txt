@@ -1,0 +1,10 @@
+Que problemas tuvimos:
+Algunas especificaciones del sprint 2 se nos acumularon debido al desconocimiento de como se hacían algunas cosas y al arreglar código creado anteriormente.
+También ha habido poca comunicación en el grupo y eso nos ha retrasado bastante.
+
+Que hemos hecho bien:
+Hemos hecho uso de herramientas como bootstrap que nos han ayudado a ahorrarnos mucho tiempo en el diseño y también lo ha mejorado.
+árbol de directorios bien estructurado de manera que nos permite encontrar fácilmente los archivos necesarios.
+
+Que haremos para mejorar:
+Mejorar la comunicación del equipo, ayudarnos más entre nosotros y resolver las dudas fuera de las horas de proyecto para no perder tiempo.

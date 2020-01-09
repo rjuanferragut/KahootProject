@@ -39,6 +39,7 @@
 			$_SESSION['loggedin'] = true;
 			$_SESSION['name'] = $row['name'];
 			$_SESSION['idUser'] = $row['id'];
+			$_SESSION['role'] = $row['role'];
 
 			echo "<div class='alert alert-success mt-4' role='alert'><strong>Welcome!</strong> ".$row['name']."
 			</div>";

@@ -36,7 +36,7 @@
 <?php ob_start();  session_start();?>
 	<div>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<a href="index.html" class="navbar-brand">KAHOOT</a>
+			<a href="login.php" class="navbar-brand">KAHOOT</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -45,7 +45,7 @@
 					<form action="../views/layouts/PINPlayer.html" method="Post">
 						<input type="submit" name="pinPlayer" value="Enter game PIN" class="btn btn-danger mr-2">
 					</form>
-					<form action="../signUp/index.html" method="Post">
+					<form action="../signUp" method="Post">
 						<input type="submit" name="pinPlayer" value="Sign up" class="btn btn-success">
 					</form>
 				</div>

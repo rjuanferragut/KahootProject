@@ -81,10 +81,10 @@
                 <form method="POST" class="signup-form" id="signUpForm" action="index.php">
                     <h2 class="form-title">What type of user are you ?</h2>
                     <div class="form-radio">
-                        <input type="radio" name="role" value="student" id="newbie" checked="checked" />
-                        <label for="newbie">Student</label>
-                        <input type="radio" name="role" value="teacher" id="average" />
-                        <label for="average">Teacher</label>
+                        <input type="radio" name="role" value="premium" id="newbie" checked="checked" />
+                        <label for="newbie">Premium</label>
+                        <input type="radio" name="role" value="normal" id="average" />
+                        <label for="average">Normal</label>
                     </div>
                     <div class="form-textbox">
                         <label for="name">Name</label>
@@ -164,7 +164,7 @@
             echo "<script>wrongEmail();</script>";
         }else{
             $idUser= randomID();
-            $insertUser = $pdo->prepare("insert into user (id, email, name, password, role, state) value(".$idUser.",'".$email."', '".$name."', '".$password1."', '".$role."', 'disable')");
+            $insertUser = $pdo->prepare("insert into user (id, email, name, password, role, state) value(".$idUser.",'".$email."', '".$name."', '".$password1."', 'normal', 'disable')");
             $insertUser->execute();
 
             if($insertUser){
@@ -178,6 +178,24 @@
                 $url = "http://mateocasas.tk/KahootProject/views/activateAccount.php?token=".$token;
                 $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
                 mail($email, "Activated account", $msg);
+
+                if($role == "premium"){
+                    $token2 = bin2hex(random_bytes(25));
+                    $encryptToken2 = hash("sha256", $token2);
+
+                    $insertToken = $pdo->prepare("INSERT INTO user_token (token, expires, state, fk_id_user) VALUE ('".$encryptToken2."', TIMESTAMPADD(HOUR, 2, current_timestamp()), 'unused', '".$idUser."')");
+                    $insert = $insertToken->execute();
+
+                    $url2 = "http://mateocasas.tk/KahootProject/views/activatePremium.php?token=".$token2;
+                    // $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url." \n Y accede a este link para activar todas las ventajas de tu cuenta premium".$url2;
+                    $msg = "Accede a este link para activar todas las ventajas de tu cuenta premium".$url2;
+                    mail($email, "Activated Premium", $msg2);
+                }
+                // else{       
+                //     $msg = "Accede a este link para aceptar los Tos y activar la cuenta, solo es valido durante las proximas 2 horas. ".$url;
+                // }
+
+                // mail($email, "Activated account", $msg);
 
                 echo "<script>console.log('fuera');</script>";
                 echo "<script>correctUser();</script>";
