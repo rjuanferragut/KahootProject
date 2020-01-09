@@ -15,7 +15,7 @@ function main(edit){
         createTrueFalseForm(rolePremium, numQuestions, edit);
     }else if(selectTypeQuestion == "multipleChoice"){
         createMultipleChoiceForm(rolePremium, numQuestions, edit);
-    }else if(selectTypeQuestion == "ompleElsForats"){
+    }else if(selectTypeQuestion == "OmpleElsForats"){
         createOmpleEslForatsForm(rolePremium, numQuestions, edit);
     }
 
@@ -179,13 +179,15 @@ function createTexAreaOmpleElsForats(edit){
     if(edit){
         var inputTextQuestion = document.getElementById('textQuestion').value;
         var questionId = document.getElementById('questionId').value;
-        var textAreaClass = ['id=textAreaOmpleElsForats', 'rows=3', 'class=form-control col-10', 'name=textArea', 'value='+inputTextQuestion+''];
+        // var textAreaClass = ['id=textAreaOmpleElsForats', 'rows=3', 'class=form-control col-10', 'name=textArea', 'value='+inputTextQuestion+''];
+        var textAreaClass = ['id=textAreaOmpleElsForats', 'rows=3', 'class=form-control col-10', 'name=textArea'];
         createElementDOM('input', "", div, ['type=hidden', 'name=questionId', 'value='+questionId+'']);
     }else{
         var textAreaClass = ['id=textAreaOmpleElsForats', 'rows=3', 'class=form-control col-10', 'name=textArea'];
+        var inputTextQuestion = "";
     }
     createElementDOM('label', "Omple Els Forats:" , div, ['for=textAreaOmpleElsForats']);
-    createElementDOM('textarea', "" , div, textAreaClass);
+    createElementDOM('textarea', inputTextQuestion , div, textAreaClass);
 }
 
 function createButtonsTrueFalse(rolePremium, numQuestions, edit){
@@ -275,6 +277,7 @@ function createEditInputsAnswerMultipleChoice(id){
     var correct = answer[1].value;
     createInputsAnswerMultipleChoice(true, id, text, correct);
 }
+
 
 function createSelectTime(rolePremium, edit){
 

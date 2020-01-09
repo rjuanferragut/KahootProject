@@ -173,7 +173,7 @@
 
 
                         }elseif($typeQuestion == "ompleElsForats"){
-
+                            echo '<input type="hidden" name="edit" value="true">';
                         }
 
 
