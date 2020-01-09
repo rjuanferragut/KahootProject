@@ -10,9 +10,8 @@ create table if not exists user(
     role varchar(15) not null,
     imgDirUser varchar(512),
     state varchar(60),
-    check(role='teacher' or role='student'),
-    unique(email),
-    state varchar(15)
+    check(role='normal' or role='premium'),
+    unique(email)
 );
 
 create table if not exists user_token(
@@ -22,7 +21,7 @@ create table if not exists user_token(
     state varchar(120) not null,
     fk_id_user int,
     foreign key (fk_id_user) references user(id) on delete cascade
-)
+);
 
 create table if not exists quiz(
     id int auto_increment primary key,
@@ -40,6 +39,7 @@ create table if not exists question(
     text_question varchar(300) not null,
     type varchar(30) not null,
     time int default 30,
+    waitingTime int default 0,
     points int not null,
     fk_id_quiz int,
     imgDir varchar(512),
@@ -76,9 +76,9 @@ create table if not exists player_answer(
     foreign key (fk_id_player) references player(id) on delete cascade
 );
 
-insert into user (email, name, password, role) value('mateo.nal@gmail.com', 'Mateo', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'teacher');
-insert into user (email, name, password, role) value('rjuanferragut@gmail.com', 'Rafa', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'teacher');
-insert into user (email, name, password, role) value('oskralonso10@gmail.com', 'Oscar', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'teacher');
+insert into user (email, name, password, role, state) value('mateo.nal@gmail.com', 'Mateo', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'premium', 'active');
+insert into user (email, name, password, role, state) value('rjuanferragut@gmail.com', 'Rafa', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'normal', 'active');
+insert into user (email, name, password, role, state) value('oskralonso10@gmail.com', 'Oscar', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'premium', 'active');
 
 insert into quiz (name, resume, create_date, num_questions, num_plays, fk_id_user) value('Questionario1','Questionaraio de prueba 1', curdate(), 5, 0, 1);
 

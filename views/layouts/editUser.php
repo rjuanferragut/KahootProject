@@ -8,6 +8,12 @@
   include '../../controllers/random_id_pin.php';
   ?>
   <script>
+  function wrongPassword(){
+      var alertElement = document.getElementById('textAlert');
+      alertElement.innerHTML = "Wrong password";
+      alertElement.style.display = "";
+  }
+
   function checkNewPassword(){
     var newPassword = document.getElementById('newPassword').value;
     var confirmNewPassword = document.getElementById('confirmNewPassword').value;
@@ -47,98 +53,98 @@
     $idUser = $_SESSION['idUser'];
   }
 
-  try{
-    $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
-  } catch (PDOException $e) {
-    echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-    exit;
-  }
+try{
+  $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+} catch (PDOException $e) {
+  echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+  exit;
+}
+$query = $pdo->prepare("SELECT * FROM user where id=".$idUser."");
+$query->execute();
+$registre = $query->fetch();
+$email = $registre['email'];
+$nameUser = $registre['name'];
+$imgUser = $registre['imgDirUser'];
+//$imgPasswd = $registre['password'];
+if(isset($_FILES['inputGroupFile02'])){
+  $image = $_FILES['inputGroupFile02'];
+  $rute = "../../public/img/imatges_perfil/";
+  saveQuestionImage($image, $rute);
+  $query = $pdo->prepare("UPDATE user SET imgDirUser="."'".$_FILES['inputGroupFile02']['name']."'"." WHERE email='".$email."'");
+  $query->execute();
   $query = $pdo->prepare("SELECT * FROM user where id=".$idUser."");
   $query->execute();
   $registre = $query->fetch();
-  $email = $registre['email'];
-  $nameUser = $registre['name'];
   $imgUser = $registre['imgDirUser'];
-  //$imgPasswd = $registre['password'];
-  if(isset($_FILES['inputGroupFile02'])){
-    $image = $_FILES['inputGroupFile02'];
-    $rute = "../../public/img/imatges_perfil/";
-    saveQuestionImage($image, $rute);
-    $query = $pdo->prepare("UPDATE user SET imgDirUser="."'".$_FILES['inputGroupFile02']['name']."'"." WHERE email='".$email."'");
-    $query->execute();
-    $query = $pdo->prepare("SELECT * FROM user where id=".$idUser."");
-    $query->execute();
-    $registre = $query->fetch();
-    $imgUser = $registre['imgDirUser'];
-  }
-  ?>
-  <div>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">KAHOOT</a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+}
+?>
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="homePage.php" class="navbar-brand">KAHOOT</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ml-auto">
-          <form action="#" method="Post">
-            <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
-          </form>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <div class="container py-2">
-    <div class="row my-2">
-      <!-- edit form column -->
-      <div class="col-lg-4">
-        <h2 class="text-center font-weight-light"><?php echo $nameUser; ?> Profile</h2>
-      </div>
-      <div class="col-lg-8 " id="alert" >
-        <div class="alert alert-danger alert-dismissable" id="textAlert" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
-      </div>
-      <div class="col-lg-8 order-lg-1 personal-info">
-        <form role="form" id="formEditUser" action="../editProfile.php" method="POST">
-          <div class="form-group row">
-            <label class="col-lg-3 col-form-label form-control-label">Name</label>
-            <div class="col-lg-9">
-              <input class="form-control" type="text" name="name"  required="" value="<?php echo $registre['name'];?>" />
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <form action="#" method="Post">
+                        <input type="submit" name="signOut" value="Sign out" class="btn btn-danger">
+                    </form>
+                </div>
             </div>
-          </div>
-          <fieldset disabled>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Email</label>
-              <div class="col-lg-9">
-                <input class="form-control disabled" type="email" value="<?php echo $email;?>" />
-              </div>
-            </div>
-          </fieldset>
-          <div class="form-group row" data-validate="Password is required">
-            <label class="wrap-input100 rs1 validate-input col-lg-3 col-form-label form-control-label">Current password</label>
-            <div class="col-lg-9">
-              <input class="form-control" type="password" value="" id="currentPassword" name="currentPassword" required=""/>
-            </div>
-          </div>
-        <div class="form-group row">
-          <label class="col-lg-3 col-form-label form-control-label">New password</label>
-          <div class="col-lg-9">
-            <input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>
-          <div class="col-lg-9">
-            <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-lg-9 ml-auto text-right">
-            <input type="reset" class="btn btn-outline-secondary" value="Cancel" />
-            <input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" />
-          </div>
-        </div>
-      </form>
+        </nav>
     </div>
+    <div class="container py-2">
+        <div class="row my-2">
+            <!-- edit form column -->
+            <div class="col-lg-4">
+                <h2 class="text-center font-weight-light"><?php echo $nameUser; ?> Profile</h2>
+            </div>
+            <div class="col-lg-8 " id="alert" >
+                <div class="alert alert-danger alert-dismissable" id="textAlert" style="display:none"> <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user. </div>
+            </div>
+            <div class="col-lg-8 order-lg-1 personal-info">
+                <form role="form" id="formEditUser" action="../editProfile.php" method="POST">
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Name</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="name" value="<?php echo $registre['name'];?>" />
+                        </div>
+                    </div>
+                    <fieldset disabled>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control disabled" type="email" value="<?php echo $email;?>" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Current password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" name="currentPassword" id="currentPassword"  required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">New password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" value="" id="newPassword" name="newPassword"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Confirm new password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" value="" id="confirmNewPassword" name="confirmNewPassword"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-9 ml-auto text-right">
+                            <input type="reset" class="btn btn-outline-secondary" value="Cancel" />
+                            <input type="button" class="btn btn-primary" value="Save Changes" onclick="checkNewPassword()" />
+                        </div>
+                    </div>
+                </form>
+            </div>
     <div class="col-lg-4 order-lg-0 text-center">
       <?php
       if ($imgUser!=null){
@@ -163,7 +169,12 @@
 
       </div>
     </div>
-  </div>
-</div>
+    <?php
+    if(isset($_SESSION['wrongPassword'])){
+        echo $_SESSION['wrongPassword'];
+        echo "<script>document.addEventListener('load', wrongPassword());</script>";
+        // echo "<script>wrongPassword();</script>";
+    }
+    ?>
 </body>
 </html>

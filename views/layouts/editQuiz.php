@@ -19,7 +19,7 @@
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+    
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <form action="../../Login/login.php" method="Post">
@@ -29,21 +29,44 @@
             </div>
         </nav>
     </div>
+            <?php
+                session_start();
 
+                try{
+                    $pdo = new PDO("mysql:host=localhost;dbname=kahoot", "admin", "admin123");
+                } catch (PDOException $e) {
+                    echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                    exit;
+                }
+
+                if(isset($_SESSION['idQuiz'])){
+                    $idQuiz = $_SESSION['idQuiz'];
+                }
+
+                $queryQuiz = $pdo->prepare("SELECT * FROM quiz WHERE id=".$idQuiz."");
+                $queryQuiz->execute();
+                $registreQuiz = $queryQuiz->fetch();
+
+                $name = $registreQuiz['name'];
+                $description  = $registreQuiz['resume'];
+
+            ?>
+    
     <div class="content col-6 mx-auto mt-5">
         <label class="h2"> New Questonary</label>
         <form action="../saveQuiz.php" method="Post">
             <div class="input-group mb-3 mt-3">
-                    <input type="text" class="form-control" placeholder="Questionary Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="">
+                    <?php echo '<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="name" required="" value="'.$name.'">';?>
             </div>
-
+     
              <div class="input-group mb-3 mt-3 ">
-               <textarea style="height: 20vh;" class="form-control" aria-label="With textarea" name="resume" placeholder="Description" required=""></textarea>
+               <?php echo '<textarea style="height: 20vh;" class="form-control" aria-label="With textarea" name="resume" required="" value="">'.$description.'</textarea>'; ?> 
              </div>
+             <?php echo '<input type="hidden" name="idQuiz" value="'.$idQuiz.'">';?>
              <input type="submit" value="Continue" class="btn btn-success">
         </form>
     </div>
-
-
+    
+    
 </body>
 </html>
